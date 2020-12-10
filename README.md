@@ -23,9 +23,10 @@ git checkout -b main origin/main
 ./setup/setup__minikube.bash
 ```
 
-## All (optional)
+### All (optional)
 ```bash
 ./setup/setup.bash
+```
 
 
 ## License
