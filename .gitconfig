@@ -1,0 +1,17 @@
+[user]
+  name = %HOME_USER_NAME%
+  email = %HOME_USER_EMAIL%
+[color]
+  diff   = auto
+  status = auto
+  branch = auto
+[alias]
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  di = diff
+  plog = log --pretty=format:'%h %Cblue%cn %Creset%cr %Cgreen%s'
+[core]
+  whitespace = trailing-space, space-before-tab, cr-at-eol
+  editor = vim
