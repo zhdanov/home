@@ -1,2 +1,3 @@
 . ./setup/setup_def.bash
+alias ta="tmux attach"
 alias world="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
