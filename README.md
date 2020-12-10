@@ -18,16 +18,10 @@ git checkout -b main origin/main
 ./setup/setup__dotfiles.bash
 ```
 
-### Minikube (optional)
-```bash
-./setup/setup__minikube.bash
-```
-
-### All (optional)
+### Workstation (optional)
 ```bash
 ./setup/setup.bash
 ```
-
 
 ## License
 The home directory is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
