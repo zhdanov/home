@@ -6,3 +6,4 @@
 . setup__commitizen.bash
 
 . setup__configure-ssh.bash
+. setup__configure-laptop.bash
