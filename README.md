@@ -13,6 +13,11 @@ git fetch origin
 git checkout -b main origin/main
 ```
 2. Change ./setup/setup_def.bash
+```bash
+HOME_USER_NAME=torvalds
+HOME_USER_EMAIL=torvalds@linux-foundation.org
+...
+```
 3. Run setup
 ```bash
 ./setup/setup__dotfiles.bash
