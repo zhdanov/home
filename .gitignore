@@ -5,6 +5,7 @@
 !setup
 !.bashrc_home
 !.gitconfig
+!.vimrc
 !.tmux.conf
 !.config/i3/config
 !Pictures/background.png

@@ -8,6 +8,7 @@ cd "$(dirname "$0")"
 
 . setup__configure-ssh.bash
 . setup__configure-laptop.bash
+. setup__configure-vim.bash
 
 . setup__kubernetes.bash
 . setup__helm.bash
