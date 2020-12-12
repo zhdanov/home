@@ -1,7 +1,9 @@
 #!/bin/bash
 
-mkdir $HOME/bin
+[[ ! -d $HOME/bin ]] && mkdir $HOME/bin
 
-pushd $HOME/bin
-    curl -L https://raw.githubusercontent.com/werf/multiwerf/master/get.sh | bash
-popd
+if [[ ! -f "$HOME/bin/multiwerf" ]]; then
+    pushd $HOME/bin
+        curl -L https://raw.githubusercontent.com/werf/multiwerf/master/get.sh | bash
+    popd
+fi
