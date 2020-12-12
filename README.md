@@ -23,9 +23,9 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ./setup/setup__dotfiles.bash
 ```
 
-### Workstation (optional)
+### Workspace (optional)
 ```bash
-./setup/setup.bash
+./setup/setup__workspace.bash
 ```
 
 ## License
