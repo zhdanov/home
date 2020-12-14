@@ -10,3 +10,12 @@ complete -F __start_kubectl k
 # werf
 export PATH=$PATH:$HOME/bin
 . $(multiwerf use 1.1 stable --as-file)
+
+# fzf + rg￼
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore -g "!{.git,node_modules,vendor}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+if [ -t 1 ]
+then
+  bind -x '"\C-p": fzf_path=$(fzf); vim $fzf_path; history -s vim $fzf_path'
+  bind -x '"\C-h": fzf_path=`pwd`;cd $HOME/Yandex.Disk/workspace/;fzf_path_vim=$(fzf);vim $fzf_path_vim;cd $fzf_path;history -s vim $HOME/Yandex.Disk/workspace/$fzf_path_vim'
+fi
