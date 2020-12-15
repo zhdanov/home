@@ -20,6 +20,6 @@ if [[ ! -d "$HOME/Yandex.Disk/workspace" ]]; then
     mkdir -p $HOME/Yandex.Disk/workspace
 fi
 
-if [[ ! -f "$HOME/workspace" ]]; then
+if [[ ! -f "$HOME/workspace" ]] && [[ ! -L "$HOME/workspace" ]]; then
     ln -s $HOME/Yandex.Disk/workspace $HOME/workspace
 fi
