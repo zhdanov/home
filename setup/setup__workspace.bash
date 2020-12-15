@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eux
 cd "$(dirname "$0")"
 
 . setup_def.bash

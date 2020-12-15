@@ -1,7 +1,6 @@
 #!/bin/bash
+set -eux
 cd "$(dirname "$0")"
-
-set -e
 
 ./setup__dotfiles.bash
 ./setup__workspace.bash
