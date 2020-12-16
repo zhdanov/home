@@ -15,11 +15,3 @@ cd "$(dirname "$0")"
 . setup__helm.bash
 . setup__minikube.bash
 . setup__werf.bash
-
-if [[ ! -d "$HOME/Yandex.Disk/workspace" ]]; then
-    mkdir -p $HOME/Yandex.Disk/workspace
-fi
-
-if [[ ! -f "$HOME/workspace" ]] && [[ ! -L "$HOME/workspace" ]]; then
-    ln -s $HOME/Yandex.Disk/workspace $HOME/workspace
-fi

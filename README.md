@@ -25,7 +25,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 ### Workspace (optional)
 ```bash
-./setup/setup__workspace.bash
+./setup/setup.bash
 ```
 
 ## License
