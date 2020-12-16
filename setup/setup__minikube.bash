@@ -9,6 +9,9 @@ fi
 unset KUBECONFIG
 if [ $(minikube status | grep Running | wc -l) -gt 0 ]; then
     echo "minikube is already started"
+elif docker ps -a | grep -q minikube; then
+    echo "starting existing minikube"
+    minikube start
 else
     eval $(ssh-agent -s)
     ssh-add
