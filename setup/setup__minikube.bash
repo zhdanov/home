@@ -15,7 +15,7 @@ else
 
     minikube config set cpus $HOME_MINIKUBE_CPU
     minikube config set memory $HOME_MINIKUBE_MEM
-    minikube start --addons registry --addons metrics-server --addons ingress --driver=docker --mount-string "$SSH_AUTH_SOCK:/ssh-agent"
+    minikube start --addons registry --addons metrics-server --addons ingress --addons dashboard --driver=docker --mount-string "$SSH_AUTH_SOCK:/ssh-agent"
 
     kubectl config use-context minikube
 
