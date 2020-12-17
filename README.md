@@ -1,5 +1,26 @@
 # Welcome Home
-Hi! My name is Yuriy Zhdanov. This is my home directory. Ubuntu 20.04.
+Hi! My name is Yuriy Zhdanov. This is my home directory for deploying the desktop environment. Ubuntu 20.04.
+
+## Structure
+
+### Dotfiles
+```
+.bashrc_home  aliases, environment variables
+.gitconfig    aliases, settings
+.tmux.conf    hotkeys, options
+.vimrc        nothing outstanding
+```
+
+### Packages set
+```
+tmux     terminal multiplexer
+htop     better than top
+fzf      fuzzy finder
+ripgrep  better than grep
+ncdu     better than du
+docker   containers
+kubectl  container orchestration
+```
 
 ## Installation
 
