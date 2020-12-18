@@ -1,4 +1,4 @@
-. ./setup/setup_def.bash
+. $HOME/setup/setup_def.bash
 alias ta="tmux attach"
 alias k=kubectl
 alias world="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
