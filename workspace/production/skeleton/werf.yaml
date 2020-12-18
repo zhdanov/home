@@ -1,0 +1,9 @@
+project: skeleton
+configVersion: 1
+deploy:
+  namespace: production
+  namespaceSlug: false
+
+---
+image: skeleton-nginx
+from: nginx:1.18.0-alpine

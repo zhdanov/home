@@ -12,6 +12,9 @@ if [ $(minikube status | grep Running | wc -l) -gt 0 ]; then
 elif docker ps -a | grep -q minikube; then
     echo "starting existing minikube"
     minikube start
+    export REGISTRY_IP=$(kubectl -n kube-system get service registry -o=template={{.spec.clusterIP}})
+    minikube ssh "cat /etc/hosts | grep -v werf-registry | sudo tee /etc/hosts"
+    minikube ssh "echo '$REGISTRY_IP $HOME_REGISTRY' | sudo tee -a /etc/hosts"
 else
     eval $(ssh-agent -s)
     ssh-add
@@ -39,7 +42,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "4096m"
 spec:
   rules:
-  - host: "werf-registry.kube-system.svc.cluster.local"
+  - host: "$HOME_REGISTRY"
     http:
       paths:
       - pathType: Prefix
@@ -54,10 +57,10 @@ EOF
     export REGISTRY_IP=$(kubectl -n kube-system get service registry -o=template={{.spec.clusterIP}})
 
     minikube ssh "cat /etc/hosts | grep -v werf-registry | sudo tee /etc/hosts"
-    minikube ssh "echo '$REGISTRY_IP werf-registry.kube-system.svc.cluster.local' | sudo tee -a /etc/hosts"
+    minikube ssh "echo '$REGISTRY_IP $HOME_REGISTRY' | sudo tee -a /etc/hosts"
 
     sudo sed -i -e '/^.*werf-registry.*$/d' /etc/hosts
-    echo `minikube ip`" werf-registry.kube-system.svc.cluster.local" | sudo tee -a /etc/hosts
+    echo `minikube ip`" $HOME_REGISTRY" | sudo tee -a /etc/hosts
 
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
 fi

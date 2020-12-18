@@ -14,7 +14,7 @@ EOF
     sudo usermod -aG docker $USER
 
     echo "{
-    \"insecure-registries\": [\"werf-registry.kube-system.svc.cluster.local\"]
+    \"insecure-registries\": [\"$HOME_REGISTRY\"]
 }" | sudo tee /etc/docker/daemon.json
 
     sudo systemctl daemon-reload

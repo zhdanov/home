@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: {{ .Chart.Name }}
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        ingressInternal: "yes"
+        ingressExternal: "yes"
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+      - name: nginx
+        {{ tuple (printf "%s-%s" .Chart.Name "nginx") . | werf_container_image }}
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP

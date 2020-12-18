@@ -15,3 +15,5 @@ cd "$(dirname "$0")"
 . setup__helm.bash
 . setup__minikube.bash
 . setup__werf.bash
+
+. setup__workspace-deploy.bash
