@@ -48,10 +48,17 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 ### Other (optional)
 ```bash
-./setup/setup__dashboard.bash                             minikube dashboard
-./setup/setup__dashboard-connect-through-ssh-tunnel.bash  connect to minikube dashboard
-./setup/setup__commitizen.bash                            for contribute this repo (nodejs+commitizen)
-./setup/setup__notepad.bash                               notepad
+# minikube dashboard
+./setup/setup__dashboard.bash
+
+# connect to minikube dashboard
+./setup/setup__dashboard-connect-through-ssh-tunnel.bash
+
+# for contribute this repo (nodejs+commitizen)
+./setup/setup__commitizen.bash
+
+# notepad
+./setup/setup__notepad.bash
 ```
 
 ## License
