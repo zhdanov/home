@@ -13,7 +13,9 @@ Hi! My name is Yuriy Zhdanov. This is my home directory for deploying the deskto
 
 ### Packages set
 ```
+i3       tiling window manager
 tmux     terminal multiplexer
+vim      text editor
 htop     better than top
 fzf      fuzzy finder
 ripgrep  better than grep
