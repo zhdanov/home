@@ -48,7 +48,6 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 ### Other (optional)
 ```bash
-./setup/setup__dotfiles.bash                              dotfiles
 ./setup/setup__dashboard.bash                             minikube dashboard
 ./setup/setup__dashboard-connect-through-ssh-tunnel.bash  connect to minikube dashboard
 ./setup/setup__notepad.bash                               notepad
