@@ -1,16 +1,21 @@
 hi Visual cterm=reverse
 hi Visual ctermbg=NONE
 
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Indentation
 set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set nopaste
-set incsearch
-set ignorecase
-set smartcase
-set nocompatible
 
+" Misc
+set nopaste
+set nocompatible
 filetype plugin on
 
 " begin set paste
