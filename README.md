@@ -26,7 +26,7 @@ kubectl  container orchestration
 
 ## Installation
 
-### Dotfiles
+### Workspace
 1. Init home directory
 ```bash
 cd $HOME
@@ -43,12 +43,15 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ```
 3. Run setup
 ```bash
-./setup/setup__dotfiles.bash
+./setup/setup.bash
 ```
 
-### Workspace (optional)
+### Other (optional)
 ```bash
-./setup/setup.bash
+./setup/setup__dotfiles.bash                              dotfiles
+./setup/setup__dashboard.bash                             minikube dashboard
+./setup/setup__dashboard-connect-through-ssh-tunnel.bash  connect to minikube dashboard
+./setup/setup__notepad.bash                               notepad
 ```
 
 ## License
