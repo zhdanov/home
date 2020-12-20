@@ -59,6 +59,9 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 # notepad
 ./setup/setup__notepad.bash
+
+# uninstall
+./setup/uninstall.bash
 ```
 
 ## License
