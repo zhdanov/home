@@ -11,10 +11,17 @@ if [ $(minikube status | grep Running | wc -l) -gt 0 ]; then
     echo "minikube is already started"
 elif docker ps -a | grep -q minikube; then
     echo "starting existing minikube"
+    pkill -f "minikube mount $HOME/data-store"
+
     minikube start
     export REGISTRY_IP=$(kubectl -n kube-system get service registry -o=template={{.spec.clusterIP}})
     minikube ssh "cat /etc/hosts | grep -v werf-registry | sudo tee /etc/hosts"
     minikube ssh "echo '$REGISTRY_IP $HOME_REGISTRY' | sudo tee -a /etc/hosts"
+
+    kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
+
+    nohup minikube mount $HOME/data-store:/data-store &
+
 else
     eval $(ssh-agent -s)
     ssh-add
@@ -61,6 +68,8 @@ EOF
 
     sudo sed -i -e '/^.*werf-registry.*$/d' /etc/hosts
     echo `minikube ip`" $HOME_REGISTRY" | sudo tee -a /etc/hosts
+
+    nohup minikube mount $HOME/data-store:/data-store &
 
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
 fi
