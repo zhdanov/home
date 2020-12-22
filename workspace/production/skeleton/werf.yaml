@@ -7,3 +7,7 @@ deploy:
 ---
 image: skeleton-nginx
 from: nginx:1.18.0-alpine
+
+---
+image: skeleton-mongodb
+from: mongo:4.4.2-bionic

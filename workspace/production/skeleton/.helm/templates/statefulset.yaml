@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Chart.Name }}-statefulset
+spec:
+  serviceName: {{ .Chart.Name }}-statefulset
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}-statefulset
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-statefulset
+    spec:
+      containers:
+      - name: mongodb
+        {{ tuple (printf "%s-%s" .Chart.Name "mongodb") . | werf_container_image }}
+        ports:
+        - containerPort: 27017
+          name: mongod
+          protocol: TCP
+        volumeMounts:
+        - name: data-store
+          mountPath: /data/db
+          subPath: skeleton-mongodb
+      volumes:
+      - name: data-store
+        persistentVolumeClaim:
+          claimName: nfs-pvc-data-store
