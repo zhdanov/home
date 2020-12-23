@@ -30,4 +30,4 @@ spec:
       volumes:
       - name: data-store
         persistentVolumeClaim:
-          claimName: nfs-pvc-data-store
+          claimName: nfs-pvc-production

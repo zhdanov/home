@@ -59,6 +59,9 @@ spec:
               number: 80
 EOF
 
+    kubectl create namespace production
+    kubectl create namespace development
+
     export REGISTRY_IP=$(kubectl -n kube-system get service registry -o=template={{.spec.clusterIP}})
 
     minikube ssh "cat /etc/hosts | grep -v werf-registry | sudo tee /etc/hosts"
@@ -69,25 +72,73 @@ EOF
 
     # nfs host
     sudo sed -i -e '/^.*data-store.*$/d' /etc/exports
-    echo "$HOME/data-store "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+    echo "$HOME/data-store/production "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+    echo "$HOME/data-store/development "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
 
     sudo systemctl restart nfs-kernel-server
 
-    cat <<EOF | kubectl apply -f -
+    cat <<EOF | kubectl --namespace production apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-data-store
+  name: nfs-pv-production
 spec:
   storageClassName: manual
   capacity:
-    storage: 200Gi
+    storage: 100Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: host.minikube.internal
-    path: $HOME/data-store
+    path: $HOME/data-store/production
+EOF
+
+    cat <<EOF | kubectl --namespace production apply -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-pvc-production
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+  volumeName: "nfs-pv-production"
+EOF
+
+    cat <<EOF | kubectl --namespace development apply -f -
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-development
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: host.minikube.internal
+    path: $HOME/data-store/development
+EOF
+
+    cat <<EOF | kubectl --namespace development apply -f -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-pvc-development
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Gi
+  volumeName: "nfs-pv-development"
 EOF
 
     # nfs client (example)
