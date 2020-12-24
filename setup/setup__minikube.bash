@@ -1,5 +1,7 @@
 #!/bin/bash
 
+NAMESPACE_LIST=( development testing staging production)
+
 if [[ ! -f "/usr/bin/minikube" ]]; then
     curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
     sudo dpkg -i minikube_latest_amd64.deb
@@ -59,8 +61,10 @@ spec:
               number: 80
 EOF
 
-    kubectl create namespace production
-    kubectl create namespace development
+    for namespace in "${NAMESPACE_LIST[@]}"
+    do
+        kubectl create namespace $namespace
+    done
 
     export REGISTRY_IP=$(kubectl -n kube-system get service registry -o=template={{.spec.clusterIP}})
 
@@ -72,74 +76,48 @@ EOF
 
     # nfs host
     sudo sed -i -e '/^.*data-store.*$/d' /etc/exports
-    echo "$HOME/data-store/production "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
-    echo "$HOME/data-store/development "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+
+    for namespace in "${NAMESPACE_LIST[@]}"
+    do
+        echo "$HOME/data-store/$namespace "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+    done
 
     sudo systemctl restart nfs-kernel-server
 
-    cat <<EOF | kubectl --namespace production apply -f -
+    for namespace in "${NAMESPACE_LIST[@]}"
+    do
+        cat <<EOF | kubectl --namespace $namespace apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-production
+  name: nfs-pv-$namespace
 spec:
   storageClassName: manual
   capacity:
-    storage: 100Gi
+    storage: $HOME_MINIKUBE_PV_SIZE
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: host.minikube.internal
-    path: $HOME/data-store/production
+    path: $HOME/data-store/$namespace
 EOF
 
-    cat <<EOF | kubectl --namespace production apply -f -
+        cat <<EOF | kubectl --namespace $namespace apply -f -
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: nfs-pvc-production
+  name: nfs-pvc-$namespace
 spec:
   storageClassName: manual
   accessModes:
     - ReadWriteMany
   resources:
     requests:
-      storage: 100Gi
-  volumeName: "nfs-pv-production"
+      storage: $HOME_MINIKUBE_PV_SIZE
+  volumeName: "nfs-pv-$namespace"
 EOF
-
-    cat <<EOF | kubectl --namespace development apply -f -
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nfs-pv-development
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 100Gi
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: host.minikube.internal
-    path: $HOME/data-store/development
-EOF
-
-    cat <<EOF | kubectl --namespace development apply -f -
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: nfs-pvc-development
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 100Gi
-  volumeName: "nfs-pv-development"
-EOF
+    done
 
     # nfs client (example)
     #minikube ssh "sudo mkdir /data-store"
