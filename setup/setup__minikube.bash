@@ -16,7 +16,6 @@ elif docker ps -a | grep -q minikube; then
 
     minikube start
 
-    # registry
     export REGISTRY_IP=$(kubectl -n kube-system get service registry -o=template={{.spec.clusterIP}})
     minikube ssh "cat /etc/hosts | grep -v werf-registry | sudo tee /etc/hosts"
     minikube ssh "echo '$REGISTRY_IP $HOME_REGISTRY' | sudo tee -a /etc/hosts"
@@ -37,29 +36,7 @@ else
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l registry-proxy=true
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
 
-    cat <<EOF | kubectl --namespace kube-system apply -f -
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: registry-ingress
-  annotations:
-    kubernetes.io/ingress.class: "nginx"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
-    ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/proxy-body-size: "4096m"
-spec:
-  rules:
-  - host: "$HOME_REGISTRY"
-    http:
-      paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: "registry"
-            port:
-              number: 80
-EOF
+    . setup__minikube-ingress.bash
 
     for namespace in "${NAMESPACE_LIST[@]}"
     do
@@ -74,56 +51,7 @@ EOF
     sudo sed -i -e '/^.*werf-registry.*$/d' /etc/hosts
     echo `minikube ip`" $HOME_REGISTRY" | sudo tee -a /etc/hosts
 
-    # nfs host
-    sudo sed -i -e '/^.*data-store.*$/d' /etc/exports
-
-    for namespace in "${NAMESPACE_LIST[@]}"
-    do
-        echo "$HOME/data-store/$namespace "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
-    done
-
-    sudo systemctl restart nfs-kernel-server
-
-    for namespace in "${NAMESPACE_LIST[@]}"
-    do
-        cat <<EOF | kubectl --namespace $namespace apply -f -
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: nfs-pv-$namespace
-spec:
-  storageClassName: manual
-  capacity:
-    storage: $HOME_MINIKUBE_PV_SIZE
-  accessModes:
-    - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
-  nfs:
-    server: host.minikube.internal
-    path: $HOME/data-store/$namespace
-EOF
-
-        cat <<EOF | kubectl --namespace $namespace apply -f -
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: nfs-pvc-$namespace
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: $HOME_MINIKUBE_PV_SIZE
-  volumeName: "nfs-pv-$namespace"
-EOF
-    done
-
-    # nfs client (example)
-    #minikube ssh "sudo mkdir /data-store"
-    #minikube ssh "sudo mount host.minikube.internal:$HOME/data-store /data-store"
-    #minikube ssh "cat /etc/fstab | grep -v data-store | sudo tee /etc/fstab"
-    #minikube ssh "echo 'host.minikube.internal:$HOME/data-store    /nfs/home    nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0' | sudo tee -a /etc/fstab"
+    . setup__minikube-pv.bash
 
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
 fi
