@@ -11,3 +11,7 @@ from: nginx:1.18.0-alpine
 ---
 image: skeleton-mongodb
 from: mongo:4.4.2-bionic
+
+---
+image: skeleton-mariadb
+from: mariadb:10.5.8-focal

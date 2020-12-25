@@ -24,6 +24,19 @@ spec:
         - name: data-store
           mountPath: /data/db
           subPath: skeleton-mongodb
+      - name: mariadb
+        {{ tuple (printf "%s-%s" .Chart.Name "mariadb") . | werf_container_image }}
+        ports:
+        - containerPort: 3306
+          name: mysql
+          protocol: TCP
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        volumeMounts:
+        - name: data-store
+          mountPath: /var/lib/mysql
+          subPath: skeleton-mariadb
       volumes:
       - name: data-store
         persistentVolumeClaim:

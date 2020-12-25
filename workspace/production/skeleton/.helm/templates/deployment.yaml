@@ -23,11 +23,3 @@ spec:
         - containerPort: 80
           name: http
           protocol: TCP
-        volumeMounts:
-          - name: data-store
-            mountPath: /usr/share/nginx/html
-            subPath: skeleton-nginx
-      volumes:
-      - name: data-store
-        persistentVolumeClaim:
-          claimName: nfs-pvc-production
