@@ -35,7 +35,7 @@ git remote add origin https://github.com/zhdanov/home
 git fetch origin
 git checkout -b main origin/main
 ```
-2. Change ./setup/setup_def.bash
+2. Change ./setup/setup_def.bash (or create setup/setup_def_custom.bash)
 ```bash
 HOME_USER_NAME=torvalds
 HOME_USER_EMAIL=torvalds@linux-foundation.org

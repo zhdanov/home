@@ -3,6 +3,7 @@
 !README.md
 !LICENSE
 !setup
+setup/setup_def_custom.bash
 !.bashrc_home
 !.gitconfig
 !.vimrc
