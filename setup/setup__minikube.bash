@@ -22,12 +22,19 @@ elif docker ps -a | grep -q minikube; then
 
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
 else
-    eval $(ssh-agent -s)
+
+    [ $(ps aux | grep ssh-agent | wc -l) -eq 0 ] &&
+    eval `ssh-agent -s` &&
+    ssh-add
+
+    CHECK_AUTH_SOCK=SSH_AUTH_SOCK
+    [ ! -z ${CHECK_AUTH_SOCK} ] &&
+    eval `ssh-agent -s` &&
     ssh-add
 
     minikube config set cpus $HOME_MINIKUBE_CPU
     minikube config set memory $HOME_MINIKUBE_MEM
-    minikube start --addons registry --addons metrics-server --addons ingress --addons dashboard --driver=docker --mount-string "$SSH_AUTH_SOCK:/ssh-agent"
+    minikube start --addons registry --addons metrics-server --addons ingress --addons dashboard --driver=docker --mount-string "$SSH_AUTH_SOCK:/ssh-agent" --mount
 
     kubectl config use-context minikube
 
