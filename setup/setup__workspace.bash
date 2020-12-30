@@ -12,4 +12,4 @@
 . setup__minikube.bash
 . setup__werf.bash
 
-. setup__workspace-deploy.bash
+./setup__workspace-deploy.bash

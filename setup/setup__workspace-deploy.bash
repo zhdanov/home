@@ -1,4 +1,6 @@
 #!/bin/bash
+set -eux
+cd "$(dirname "$0")"
 
 . $(multiwerf use 1.1 stable --as-file)
 

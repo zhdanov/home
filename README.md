@@ -48,6 +48,9 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 ### Other (optional)
 ```bash
+# deploy workspace
+./setup/setup__workspace-deploy.bash
+
 # minikube dashboard
 ./setup/setup__dashboard.bash
 
