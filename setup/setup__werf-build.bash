@@ -11,6 +11,6 @@ fi
 NAMESPACE=$1
 APP=$2
 
-pushd $HOME/workspace/$1/$2
+pushd $HOME/workspace/$NAMESPACE/$APP
     werf build --stages-storage :local --introspect-error=true --log-debug=true --log-verbose=true
 popd

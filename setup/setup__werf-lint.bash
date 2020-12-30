@@ -12,7 +12,7 @@ NAMESPACE=$1
 APP=$2
 TAG=0.1
 
-pushd $HOME/workspace/$1/$2
+pushd $HOME/workspace/$NAMESPACE/$APP
     werf helm lint --env $NAMESPACE --set ci_url=$CI_URL
     werf helm render --tag-custom $TAG --env $NAMESPACE
 popd
