@@ -9,6 +9,14 @@ image: skeleton-nginx
 from: nginx:1.18.0-alpine
 
 ---
+image: skeleton-php-fpm
+from: php:7.4.13-fpm-alpine3.12
+docker:
+  USER: root
+  WORKDIR: /var/www/html
+  EXPOSE: "9000"
+
+---
 image: skeleton-mongodb
 from: mongo:4.4.2-bionic
 

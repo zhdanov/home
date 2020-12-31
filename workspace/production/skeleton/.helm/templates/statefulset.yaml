@@ -14,6 +14,23 @@ spec:
         app: {{ .Chart.Name }}-statefulset
     spec:
       containers:
+      - name: mariadb
+        {{ tuple (printf "%s-%s" .Chart.Name "mariadb") . | werf_container_image }}
+        ports:
+        - containerPort: 3306
+          name: mysql
+          protocol: TCP
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        - name: SSH_AUTH_SOCK
+          value: /ssh-agent
+        volumeMounts:
+        - name: data-store
+          mountPath: /var/lib/mysql
+          subPath: skeleton-mariadb
+        - name: ssh-agent-sock
+          mountPath: /ssh-agent
       - name: mongodb
         {{ tuple (printf "%s-%s" .Chart.Name "mongodb") . | werf_container_image }}
         ports:
@@ -24,20 +41,14 @@ spec:
         - name: data-store
           mountPath: /data/db
           subPath: skeleton-mongodb
-      - name: mariadb
-        {{ tuple (printf "%s-%s" .Chart.Name "mariadb") . | werf_container_image }}
-        ports:
-        - containerPort: 3306
-          name: mysql
-          protocol: TCP
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: root
-        volumeMounts:
-        - name: data-store
-          mountPath: /var/lib/mysql
-          subPath: skeleton-mariadb
       volumes:
+      - name: config-volume
+        configMap:
+          name: {{ .Chart.Name }}-config-files
       - name: data-store
         persistentVolumeClaim:
           claimName: nfs-pvc-production
+      - name: ssh-agent-sock
+        hostPath:
+          path: /ssh-agent
+          type: Socket

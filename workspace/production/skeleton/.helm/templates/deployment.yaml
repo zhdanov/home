@@ -23,3 +23,27 @@ spec:
         - containerPort: 80
           name: http
           protocol: TCP
+        volumeMounts:
+          - name: config-volume
+            subPath: nginx.conf
+            mountPath: /etc/nginx/nginx.conf
+          - name: data-store
+            mountPath: /var/www
+            subPath: {{ .Chart.Name }}-www
+      - name: php-fpm
+        {{ tuple (printf "%s-%s" .Chart.Name "php-fpm") . | werf_container_image }}
+        ports:
+        - containerPort: 9000
+          name: http
+          protocol: TCP
+        volumeMounts:
+          - name: data-store
+            mountPath: /var/www
+            subPath: {{ .Chart.Name }}-www
+      volumes:
+      - name: config-volume
+        configMap:
+          name: {{ .Chart.Name }}-config-files
+      - name: data-store
+        persistentVolumeClaim:
+          claimName: nfs-pvc-production
