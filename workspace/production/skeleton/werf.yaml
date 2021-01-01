@@ -1,15 +1,17 @@
-project: skeleton
+{{ $_ := set . "project" "skeleton" }}
+
+project: {{ .project }}
 configVersion: 1
 deploy:
   namespace: production
   namespaceSlug: false
 
 ---
-image: skeleton-nginx
+image: {{ .project }}-nginx
 from: nginx:1.18.0-alpine
 
 ---
-image: skeleton-php-fpm
+image: {{ .project }}-php-fpm
 from: php:7.4.13-fpm-alpine3.12
 docker:
   USER: root
@@ -17,9 +19,9 @@ docker:
   EXPOSE: "9000"
 
 ---
-image: skeleton-mongodb
+image: {{ .project }}-mongodb
 from: mongo:4.4.2-bionic
 
 ---
-image: skeleton-mariadb
+image: {{ .project }}-mariadb
 from: mariadb:10.5.8-focal
