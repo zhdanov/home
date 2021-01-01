@@ -8,7 +8,8 @@ cd "$(dirname "$0")"
 
 kubectl config use-context $HOME_KUBECONTEXT
 
-TAG=0.1
+TAG=`echo -n "$(date)" | md5sum | awk '{print $1}'`
+
 for namespace in `ls $HOME/workspace`; do
     for appname in `ls $HOME/workspace/$namespace`; do
         pushd $HOME/workspace/$namespace/$appname
