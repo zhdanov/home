@@ -28,7 +28,7 @@ ansible:
       mv install-php-extensions /usr/local/bin/
       chmod uga+x /usr/local/bin/install-php-extensions && sync
       # install pecl extensions
-      install-php-extensions gd zip
+      install-php-extensions gd zip pdo_mysql
   - name: install php config
     shell: |
       cp /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
