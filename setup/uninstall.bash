@@ -1,10 +1,7 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 
-. $(multiwerf use 1.1 stable --as-file)
-
-pushd $HOME/workspace/production/skeleton/
-    werf stages purge --force --stages-storage=:local
-popd
+./uninstall-purge.bash
 
 minikube delete
 pkill -f minikube
