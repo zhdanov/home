@@ -24,12 +24,13 @@ nemo     better than nautilus
 docker   containers
 kubectl  container orchestration
 
-browsers:
+== browsers ==
 google-chrome
 firefox
+opera
 yandex-browser
 
-also:
+== also ==
 ttf-mscorefonts
 kate
 fbreader

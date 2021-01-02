@@ -8,6 +8,7 @@ sudo apt -y install vim git openssh-server net-tools curl tree nfs-kernel-server
 sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader audacity
 
 . setup__google-chrome.bash
+. setup__opera.bash
 . setup__yandex-browser.bash
 
 sudo snap install dbeaver-ce
