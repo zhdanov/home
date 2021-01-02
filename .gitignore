@@ -12,3 +12,5 @@ setup/setup_def_custom.bash
 !Pictures/background.png
 !workspace
 !data-store
+!bin
+bin/multiwerf
