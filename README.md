@@ -20,8 +20,21 @@ htop     better than top
 fzf      fuzzy finder
 ripgrep  better than grep
 ncdu     better than du
+nemo     better than nautilus
 docker   containers
 kubectl  container orchestration
+
+browsers:
+google-chrome
+firefox
+yandex-browser
+
+also:
+ttf-mscorefonts
+kate
+fbreader
+audacity
+dbeaver
 ```
 
 ## Installation
