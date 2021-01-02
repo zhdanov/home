@@ -17,6 +17,6 @@ HOME_REGISTRY=werf-registry.kube-system.svc.cluster.local
 HOME_KUBECONTEXT=minikube
 HOME_KUBECONFIG=$HOME/.kube/config
 
-if [[ -f "setup_def_custom.bash" ]]; then
-    . setup_def_custom.bash
+if [[ -f "$HOME/setup/setup_def_custom.bash" ]]; then
+    . $HOME/setup/setup_def_custom.bash
 fi
