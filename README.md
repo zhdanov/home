@@ -75,8 +75,8 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 # for contribute this repo (nodejs+commitizen)
 ./setup/setup__commitizen.bash
 
-# notepad
-./setup/setup__notepad.bash
+# yandex-disk, dropbox
+./setup/setup__cloud-drive.bash
 
 # uninstall
 ./setup/uninstall.bash
