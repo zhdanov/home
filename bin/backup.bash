@@ -9,6 +9,10 @@
 
 cd "$(dirname "$0")"
 
+ROTATE_DAILY=10
+ROTATE_MONTHLY=5
+ROTATE_YEARLY=5
+
 CLOUD_DIR_LIST=(
 Yandex.Disk
 Dropbox
@@ -18,6 +22,8 @@ NOW=$(date +"%Y-%m-%d")
 NOW_D=$(date +"%d")
 NOW_MD=$(date +"%m-%d")
 
+
+# make backups
 for namespace in `ls ../data-store`; do
     if [[ -f "../data-store/$namespace/backup-list.txt" ]]; then
 
@@ -52,5 +58,32 @@ for namespace in `ls ../data-store`; do
             done
         done
 
+    fi
+done
+
+
+# rotate backups
+for clouddir in "${CLOUD_DIR_LIST[@]}"
+do
+    if [[ -d "../$clouddir/backup/daily" ]]; then
+        pushd ../$clouddir/backup/daily
+            if (( $(ls | grep -P "^\d{4}-\d{2}-\d{2}$" | wc -l) > $ROTATE_DAILY )); then
+                rm -rf $(ls | grep -P "^\d{4}-\d{2}-\d{2}$" | head -1)
+            fi
+        popd
+    fi
+    if [[ -d "../$clouddir/backup/monthly" ]]; then
+        pushd ../$clouddir/backup/monthly
+            if (( $(ls | grep -P "^\d{4}-\d{2}-\d{2}$" | wc -l) > $ROTATE_MONTHLY )); then
+                rm -rf $(ls | grep -P "^\d{4}-\d{2}-\d{2}$" | head -1)
+            fi
+        popd
+    fi
+    if [[ -d "../$clouddir/backup/yearly" ]]; then
+        pushd ../$clouddir/backup/yearly
+            if (( $(ls | grep -P "^\d{4}-\d{2}-\d{2}$" | wc -l) > $ROTATE_YEARLY )); then
+                rm -rf $(ls | grep -P "^\d{4}-\d{2}-\d{2}$" | head -1)
+            fi
+        popd
     fi
 done
