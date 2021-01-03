@@ -61,6 +61,32 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ./setup/setup.bash
 ```
 
+### Auto backup to cloud
+1. Setup cloud drive
+```
+./setup/setup__cloud-drive.bash
+```
+2. Change ./bin/backup.bash
+```
+ROTATE_DAILY=10
+ROTATE_MONTHLY=5
+ROTATE_YEARLY=5
+
+CLOUD_DIR_LIST=(
+Yandex.Disk
+Dropbox
+)
+```
+3. Make files workspace/%namespace%/backup-list.txt
+```
+pv-dir1
+pv-dir2
+```
+4. Cron by root
+```
+30 4 * * * /home/%user%/bin/backup.bash
+```
+
 ### Other (optional)
 ```bash
 # deploy workspace

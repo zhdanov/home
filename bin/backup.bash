@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # 1. Execute ./setup/setup__cloud-drive.bash
-# 2. Make file workspace/%namespace%/backup-list.txt
+# 2. Make files workspace/%namespace%/backup-list.txt
 #    with list dirs for backup
 # 3. Cron by root:
 #    30 4 * * * /home/%user%/bin/backup.bash
