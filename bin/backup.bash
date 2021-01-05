@@ -27,6 +27,30 @@ NOW_MD=$(date +"%m-%d")
 for namespace in `ls ../data-store`; do
     if [[ -f "../data-store/$namespace/backup-list.txt" ]]; then
 
+        for item in `cat ../data-store/$namespace/backup-list.txt`; do
+
+            pushd ../data-store/$namespace
+                if echo $item | grep -qoP '@.*:'; then
+                    DOMAIN_NAME=`echo $item | grep -oP '@.*:' | cut -d '@' -f 2 | cut -d ':' -f 1`
+                    scp $item/$NOW.zip $DOMAIN_NAME.zip
+
+                    if [[ -f $DOMAIN_NAME.zip ]]; then
+                        item=$DOMAIN_NAME
+                    fi
+                else
+                    zip -r $item.zip $item
+                fi
+            popd
+
+        done
+
+    fi
+done
+
+# copy backups
+for namespace in `ls ../data-store`; do
+    if [[ -f "../data-store/$namespace/backup-list.txt" ]]; then
+
         for clouddir in "${CLOUD_DIR_LIST[@]}"
         do
             if [[ ! -d "../$clouddir/backup/daily/$NOW/$namespace" ]]; then
@@ -35,32 +59,30 @@ for namespace in `ls ../data-store`; do
 
             cp ../data-store/$namespace/backup-list.txt ../$clouddir/backup/daily/$NOW/$namespace/
 
-            for item in `cat ../data-store/$namespace/backup-list.txt`; do
-                pushd ../data-store/$namespace
-                    zip -r $item.zip $item
-                popd
-
-                if [[ $NOW_D -eq "02" ]]; then
-                    if [[ ! -f "../$clouddir/backup/monthly/$NOW/$namespace" ]]; then
-                        mkdir -p ../$clouddir/backup/monthly/$NOW/$namespace
-                    fi
-                    cp ../data-store/$namespace/$item.zip ../$clouddir/backup/monthly/$NOW/$namespace/
+            if [[ $NOW_D -eq "02" ]]; then
+                if [[ ! -f "../$clouddir/backup/monthly/$NOW/$namespace" ]]; then
+                    mkdir -p ../$clouddir/backup/monthly/$NOW/$namespace
                 fi
+                cp ../data-store/$namespace/*.zip ../$clouddir/backup/monthly/$NOW/$namespace/
+            fi
 
-                if [[ $NOW_MD -eq "01-02" ]]; then
-                    if [[ ! -f "../$clouddir/backup/yearly/$NOW/$namespace" ]]; then
-                        mkdir -p ../$clouddir/backup/yearly/$NOW/$namespace
-                    fi
-                    cp ../data-store/$namespace/$item.zip ../$clouddir/backup/yearly/$NOW/$namespace/
+            if [[ $NOW_MD -eq "01-02" ]]; then
+                if [[ ! -f "../$clouddir/backup/yearly/$NOW/$namespace" ]]; then
+                    mkdir -p ../$clouddir/backup/yearly/$NOW/$namespace
                 fi
+                cp ../data-store/$namespace/*.zip ../$clouddir/backup/yearly/$NOW/$namespace/
+            fi
 
-                mv ../data-store/$namespace/$item.zip ../$clouddir/backup/daily/$NOW/$namespace/
-            done
+            cp ../data-store/$namespace/*.zip ../$clouddir/backup/daily/$NOW/$namespace/
         done
 
     fi
 done
 
+# clean backups
+for namespace in `ls ../data-store`; do
+    rm ../data-store/$namespace/*.zip
+done
 
 # rotate backups
 for clouddir in "${CLOUD_DIR_LIST[@]}"
