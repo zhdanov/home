@@ -23,6 +23,12 @@ NOW_D=$(date +"%d")
 NOW_MD=$(date +"%m-%d")
 
 
+. ../setup/setup_def.bash
+if [[ -f "../setup/setup_def_custom.bash" ]]; then
+    . ../setup/setup_def_custom.bash
+fi
+
+
 # make backups
 for namespace in `ls ../data-store`; do
     if [[ -f "../data-store/$namespace/backup-list.txt" ]]; then
@@ -59,13 +65,6 @@ for namespace in `ls ../data-store`; do
 
             cp ../data-store/$namespace/backup-list.txt ../$clouddir/backup/daily/$NOW/$namespace/
 
-            if [[ $NOW_D -eq "02" ]]; then
-                if [[ ! -f "../$clouddir/backup/monthly/$NOW/$namespace" ]]; then
-                    mkdir -p ../$clouddir/backup/monthly/$NOW/$namespace
-                fi
-                cp ../data-store/$namespace/*.zip ../$clouddir/backup/monthly/$NOW/$namespace/
-            fi
-
             if [[ $NOW_MD -eq "01-02" ]]; then
                 if [[ ! -f "../$clouddir/backup/yearly/$NOW/$namespace" ]]; then
                     mkdir -p ../$clouddir/backup/yearly/$NOW/$namespace
@@ -73,7 +72,18 @@ for namespace in `ls ../data-store`; do
                 cp ../data-store/$namespace/*.zip ../$clouddir/backup/yearly/$NOW/$namespace/
             fi
 
+            if [[ $NOW_D -eq "02" ]]; then
+                if [[ ! -f "../$clouddir/backup/monthly/$NOW/$namespace" ]]; then
+                    mkdir -p ../$clouddir/backup/monthly/$NOW/$namespace
+                fi
+                cp ../data-store/$namespace/*.zip ../$clouddir/backup/monthly/$NOW/$namespace/
+            fi
+
             cp ../data-store/$namespace/*.zip ../$clouddir/backup/daily/$NOW/$namespace/
+
+	    chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/yearly/$NOW
+	    chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/monthly/$NOW
+	    chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/daily/$NOW
         done
 
     fi
