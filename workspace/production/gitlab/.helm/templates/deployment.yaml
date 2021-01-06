@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-deployment
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: {{ .Chart.Name }}-deployment
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        ingressInternal: "yes"
+        ingressExternal: "yes"
+        app: {{ .Chart.Name }}-deployment
+    spec:
+      containers:
+      - name: gitlab
+        {{ tuple (printf "%s-%s" .Chart.Name "gitlab") . | werf_container_image }}
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 22
+          hostPort: 2222
+          name: ssh
+          protocol: TCP
+        volumeMounts:
+          - name: data-store
+            mountPath: /etc/gitlab
+            subPath: {{ .Chart.Name }}-config
+          - name: data-store
+            mountPath: /var/log/gitlab
+            subPath: {{ .Chart.Name }}-logs
+          - name: data-store
+            mountPath: /var/opt/gitlab
+            subPath: {{ .Chart.Name }}-data
+      volumes:
+      - name: data-store
+        persistentVolumeClaim:
+          claimName: nfs-pvc-production

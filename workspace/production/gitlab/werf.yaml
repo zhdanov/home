@@ -1,0 +1,11 @@
+{{ $_ := set . "project" "gitlab" }}
+
+project: {{ .project }}
+configVersion: 1
+deploy:
+  namespace: production
+  namespaceSlug: false
+
+---
+image: {{ .project }}-gitlab
+from: gitlab/gitlab-ce:13.7.1-ce.0
