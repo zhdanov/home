@@ -81,9 +81,17 @@ for namespace in `ls ../data-store`; do
 
             cp ../data-store/$namespace/*.zip ../$clouddir/backup/daily/$NOW/$namespace/
 
-	    chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/yearly/$NOW
-	    chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/monthly/$NOW
-	    chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/daily/$NOW
+            if [[ -d "../$clouddir/backup/yearly/$NOW" ]]; then
+                chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/yearly/$NOW
+            fi
+
+            if [[ -d "../$clouddir/backup/monthly/$NOW" ]]; then
+                chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/monthly/$NOW
+            fi
+
+            if [[ -d "../$clouddir/backup/daily/$NOW" ]]; then
+                chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/daily/$NOW
+            fi
         done
 
     fi
