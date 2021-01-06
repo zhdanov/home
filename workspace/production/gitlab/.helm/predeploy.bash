@@ -1,5 +1,5 @@
 #!/bin/bash
 
-if kubectl -n production get deployments.apps | grep -q gitlab-deployment; then
-    kubectl -n production delete deployments.apps gitlab-deployment
+if kubectl -n production get statefulsets.apps | grep -q gitlab-statefulset; then
+    kubectl -n production delete statefulsets.apps gitlab-statefulset
 fi

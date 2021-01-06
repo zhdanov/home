@@ -1,20 +1,19 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: {{ .Chart.Name }}-deployment
+  name: {{ .Chart.Name }}-statefulset
 spec:
+  serviceName: {{ .Chart.Name }}-statefulset
   replicas: 1
   selector:
       matchLabels:
-        app: {{ .Chart.Name }}-deployment
-  strategy:
+        app: {{ .Chart.Name }}-statefulset
+  updateStrategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        ingressInternal: "yes"
-        ingressExternal: "yes"
-        app: {{ .Chart.Name }}-deployment
+        app: {{ .Chart.Name }}-statefulset
     spec:
       containers:
       - name: gitlab
