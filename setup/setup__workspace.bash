@@ -11,5 +11,6 @@
 . setup__helm.bash
 . setup__minikube.bash
 . setup__werf.bash
+. setup__backup.bash
 
 ./setup__workspace-deploy.bash

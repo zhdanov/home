@@ -16,6 +16,7 @@ HOME_VIM_INDENT_SHELL=4
 HOME_REGISTRY=werf-registry.kube-system.svc.cluster.local
 HOME_KUBECONTEXT=minikube
 HOME_KUBECONFIG=$HOME/.kube/config
+HOME_BACKUP_CRON="30 4 * * *"
 
 if [[ -f "$HOME/setup/setup_def_custom.bash" ]]; then
     . $HOME/setup/setup_def_custom.bash
