@@ -17,6 +17,65 @@ overwrite="true"
 EOF
 
     yandex-disk setup
+
+    cat <<EOF | sudo tee /etc/init.d/yandex-disk
+#!/bin/sh -e
+### BEGIN INIT INFO
+# Provides:          yandex-disk
+# Required-Start:    \$local_fs
+# Required-Stop:     \$local_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Manage Yandex.Disk deamon
+### END INIT INFO
+
+# Various constants
+user=$HOME_USER_NAME
+
+execute() {
+    su -c "\$1" "\$user"
+}
+
+start() {
+    echo "Starting Yandex.Disk daemon..."
+    execute "yandex-disk start"
+}
+
+stop() {
+    echo "Stopping Yandex.Disk daemon..."
+    execute "yandex-disk stop"
+}
+
+status() {
+    execute "yandex-disk status"
+}
+
+# Carry out specific functions when asked to by the system
+case "\$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo "Usage: \$0 {start|stop|status|restart}"
+    exit 1
+    ;;
+esac
+
+exit 0
+EOF
+sudo chmod +x /etc/init.d/yandex-disk
+update-rc.d yandex-disk defaults
+
 fi
 
 if [[ ! -d "/opt/dropbox" ]]; then
