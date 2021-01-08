@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}-deployment
+  name: {{ .Chart.Name }}-deployment-{{ env "environment" }}
 spec:
   replicas: 1
   selector:
       matchLabels:
-        app: {{ .Chart.Name }}-deployment
+        app: {{ .Chart.Name }}-deployment-{{ env "environment" }}
   strategy:
     type: RollingUpdate
   template:
@@ -14,7 +14,7 @@ spec:
       labels:
         ingressInternal: "yes"
         ingressExternal: "yes"
-        app: {{ .Chart.Name }}-deployment
+        app: {{ .Chart.Name }}-deployment-{{ env "environment" }}
     spec:
       containers:
       - name: nginx

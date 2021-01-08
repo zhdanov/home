@@ -4,10 +4,13 @@ sudo sed -i -e '/^.*data-store.*$/d' /etc/exports
 
 for environment in `ls $HOME/workspace`; do
     for appname in `ls $HOME/workspace/$environment`; do
-        if [[ ! -d "$HOME/data-store/$appname-$environment" ]]; then
-            mkdir -p "$HOME/data-store/$appname-$environment"
+
+        shortenv $environment
+
+        if [[ ! -d "$HOME/data-store/$appname-$shortenv" ]]; then
+            mkdir -p "$HOME/data-store/$appname-$shortenv"
         fi
-        echo "$HOME/data-store/$appname-$environment "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+        echo "$HOME/data-store/$appname-$shortenv "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
 
     done
 done
@@ -16,11 +19,14 @@ sudo systemctl restart nfs-kernel-server
 
 for environment in `ls $HOME/workspace`; do
     for appname in `ls $HOME/workspace/$environment`; do
-        cat <<EOF | kubectl --namespace $appname-$environment apply -f -
+
+        shortenv $environment
+
+        cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-$appname-$environment
+  name: nfs-pv-$appname-$shortenv
 spec:
   storageClassName: manual
   capacity:
@@ -30,14 +36,14 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: host.minikube.internal
-    path: $HOME/data-store/$appname-$environment
+    path: $HOME/data-store/$appname-$shortenv
 EOF
 
-        cat <<EOF | kubectl --namespace $appname-$environment apply -f -
+        cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: nfs-pvc-$appname-$environment
+  name: nfs-pvc-$appname-$shortenv
 spec:
   storageClassName: manual
   accessModes:
@@ -45,7 +51,7 @@ spec:
   resources:
     requests:
       storage: $HOME_MINIKUBE_PV_SIZE
-  volumeName: "nfs-pv-$appname-$environment"
+  volumeName: "nfs-pv-$appname-$shortenv"
 EOF
     done
 done

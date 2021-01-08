@@ -9,17 +9,3 @@ if grep -q "#PermitRootLogin" /etc/ssh/sshd_config; then
     echo "set PermitRootLogin no in /etc/ssh/sshd_config"
     sudo sed -i "/.*#PermitRootLogin.*/c\PermitRootLogin no" /etc/ssh/sshd_config
 fi
-
-
-if [[ ! -d "$HOME/.ssh" ]]; then
-    mkdir $HOME/.ssh
-fi
-
-if [[ ! -f "$HOME/.ssh/config" ]]; then
-    touch ~/.ssh/config
-    chmod 600 ~/.ssh/config
-    cat <<EOF | sudo tee $HOME/.ssh/config
-Host gitlab.loc
-    Port 2222
-EOF
-fi

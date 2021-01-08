@@ -5,6 +5,7 @@ cd "$(dirname "$0")"
 . $(multiwerf use 1.1 stable --as-file)
 
 . setup_def.bash
+. setup__shortenv-func.bash
 
 kubectl config use-context $HOME_KUBECONTEXT
 
@@ -13,10 +14,12 @@ TAG=`echo -n "$(date)" | md5sum | awk '{print $1}'`
 
 function deploy()
 {
-    export environment=$1
+    shortenv $1
+
+    export environment=$shortenv
     export appname=$2
 
-    pushd $HOME/workspace/$environment/$appname
+    pushd $HOME/workspace/$1/$appname
         if [[ -f "./.helm/predeploy.bash" ]]; then
             ./.helm/predeploy.bash
         fi
@@ -43,9 +46,9 @@ function deploy()
 if [[ $# -eq 2 ]]; then
     deploy $1 $2
 else
-    for environment in `ls $HOME/workspace`; do
-        for appname in `ls $HOME/workspace/$environment`; do
-            deploy $environment $appname
+    for fullenv in `ls $HOME/workspace`; do
+        for appname in `ls $HOME/workspace/$fullenv`; do
+            deploy $fullenv $appname
         done
     done
 fi

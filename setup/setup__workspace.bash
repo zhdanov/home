@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . setup_def.bash
+. setup__shortenv-func.bash
 . setup__packages.bash
 
 . setup__configure-ssh.bash

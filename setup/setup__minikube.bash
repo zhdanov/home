@@ -45,7 +45,10 @@ else
 
     for environment in `ls $HOME/workspace`; do
         for appname in `ls $HOME/workspace/$environment`; do
-            kubectl create namespace "$appname-$environment"
+
+            shortenv $environment
+
+            kubectl create namespace "$appname-$shortenv"
         done
     done
 
