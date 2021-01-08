@@ -77,14 +77,14 @@ Yandex.Disk
 Dropbox
 )
 ```
-3. Make files workspace/%namespace%/backup-list.txt
+3. Make files data-store/%appname%-%environment%/backup-list.txt
 ```
 pv-dir1
 pv-dir2
 ```
 4. Cron by root
 ```
-30 4 * * * /home/%user%/bin/backup.bash
+30 4 * * * /bin/bash /home/%user%/bin/backup.bash
 ```
 
 ### Other (optional)

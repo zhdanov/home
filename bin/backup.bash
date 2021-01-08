@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # 1. Execute ./setup/setup__cloud-drive.bash
-# 2. Make files workspace/%namespace%/backup-list.txt
+# 2. Make files workspace/%environment%/backup-list.txt
 #    with list dirs for backup
 # 3. Cron by root:
 #    30 4 * * * /home/%user%/bin/backup.bash
@@ -30,12 +30,12 @@ fi
 
 
 # make backups
-for namespace in `ls ../data-store`; do
-    if [[ -f "../data-store/$namespace/backup-list.txt" ]]; then
+for environment in `ls ../data-store`; do
+    if [[ -f "../data-store/$environment/backup-list.txt" ]]; then
 
-        for item in `cat ../data-store/$namespace/backup-list.txt`; do
+        for item in `cat ../data-store/$environment/backup-list.txt`; do
 
-            pushd ../data-store/$namespace
+            pushd ../data-store/$environment
                 if echo $item | grep -qoP '@.*:'; then
                     DOMAIN_NAME=`echo $item | grep -oP '@.*:' | cut -d '@' -f 2 | cut -d ':' -f 1`
                     scp $item/$NOW.zip $DOMAIN_NAME.zip
@@ -54,32 +54,32 @@ for namespace in `ls ../data-store`; do
 done
 
 # copy backups
-for namespace in `ls ../data-store`; do
-    if [[ -f "../data-store/$namespace/backup-list.txt" ]]; then
+for environment in `ls ../data-store`; do
+    if [[ -f "../data-store/$environment/backup-list.txt" ]]; then
 
         for clouddir in "${CLOUD_DIR_LIST[@]}"
         do
-            if [[ ! -d "../$clouddir/backup/daily/$NOW/$namespace" ]]; then
-                mkdir -p ../$clouddir/backup/daily/$NOW/$namespace
+            if [[ ! -d "../$clouddir/backup/daily/$NOW/$environment" ]]; then
+                mkdir -p ../$clouddir/backup/daily/$NOW/$environment
             fi
 
-            cp ../data-store/$namespace/backup-list.txt ../$clouddir/backup/daily/$NOW/$namespace/
+            cp ../data-store/$environment/backup-list.txt ../$clouddir/backup/daily/$NOW/$environment/
 
             if [[ $NOW_MD -eq "01-02" ]]; then
-                if [[ ! -f "../$clouddir/backup/yearly/$NOW/$namespace" ]]; then
-                    mkdir -p ../$clouddir/backup/yearly/$NOW/$namespace
+                if [[ ! -f "../$clouddir/backup/yearly/$NOW/$environment" ]]; then
+                    mkdir -p ../$clouddir/backup/yearly/$NOW/$environment
                 fi
-                cp ../data-store/$namespace/*.zip ../$clouddir/backup/yearly/$NOW/$namespace/
+                cp ../data-store/$environment/*.zip ../$clouddir/backup/yearly/$NOW/$environment/
             fi
 
             if [[ $NOW_D -eq "02" ]]; then
-                if [[ ! -f "../$clouddir/backup/monthly/$NOW/$namespace" ]]; then
-                    mkdir -p ../$clouddir/backup/monthly/$NOW/$namespace
+                if [[ ! -f "../$clouddir/backup/monthly/$NOW/$environment" ]]; then
+                    mkdir -p ../$clouddir/backup/monthly/$NOW/$environment
                 fi
-                cp ../data-store/$namespace/*.zip ../$clouddir/backup/monthly/$NOW/$namespace/
+                cp ../data-store/$environment/*.zip ../$clouddir/backup/monthly/$NOW/$environment/
             fi
 
-            cp ../data-store/$namespace/*.zip ../$clouddir/backup/daily/$NOW/$namespace/
+            cp ../data-store/$environment/*.zip ../$clouddir/backup/daily/$NOW/$environment/
 
             if [[ -d "../$clouddir/backup/yearly/$NOW" ]]; then
                 chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/yearly/$NOW
@@ -98,8 +98,8 @@ for namespace in `ls ../data-store`; do
 done
 
 # clean backups
-for namespace in `ls ../data-store`; do
-    rm ../data-store/$namespace/*.zip
+for environment in `ls ../data-store`; do
+    rm ../data-store/$environment/*.zip
 done
 
 # rotate backups

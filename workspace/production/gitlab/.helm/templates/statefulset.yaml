@@ -39,4 +39,4 @@ spec:
       volumes:
       - name: data-store
         persistentVolumeClaim:
-          claimName: nfs-pvc-production
+          claimName: nfs-pvc-{{ .Chart.Name }}-{{ env "environment" }}

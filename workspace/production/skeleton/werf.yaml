@@ -1,17 +1,15 @@
-{{ $_ := set . "project" "skeleton" }}
-
-project: {{ .project }}
+project: {{ env "appname" }}
 configVersion: 1
 deploy:
-  namespace: production
+  namespace: {{ env "appname" }}-{{ env "environment" }}
   namespaceSlug: false
 
 ---
-image: {{ .project }}-nginx
+image: {{ env "appname" }}-nginx
 from: nginx:1.18.0-alpine
 
 ---
-image: {{ .project }}-php-fpm
+image: {{ env "appname" }}-php-fpm
 from: php:7.4.13-fpm-alpine3.12
 docker:
   USER: root
@@ -36,9 +34,9 @@ ansible:
     shell: printf "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n" >> /etc/ssh/ssh_config
 
 ---
-image: {{ .project }}-mongodb
+image: {{ env "appname" }}-mongodb
 from: mongo:4.4.2-bionic
 
 ---
-image: {{ .project }}-mariadb
+image: {{ env "appname" }}-mariadb
 from: mariadb:10.5.8-focal

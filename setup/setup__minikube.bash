@@ -1,7 +1,5 @@
 #!/bin/bash
 
-NAMESPACE_LIST=( development testing staging production)
-
 if [[ ! -f "/usr/bin/minikube" ]]; then
     curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
     sudo dpkg -i minikube_latest_amd64.deb
@@ -45,9 +43,10 @@ else
 
     . setup__minikube-ingress.bash
 
-    for namespace in "${NAMESPACE_LIST[@]}"
-    do
-        kubectl create namespace $namespace
+    for environment in `ls $HOME/workspace`; do
+        for appname in `ls $HOME/workspace/$environment`; do
+            kubectl create namespace "$appname-$environment"
+        done
     done
 
     export REGISTRY_IP=$(kubectl -n kube-system get service registry -o=template={{.spec.clusterIP}})

@@ -5,9 +5,11 @@ cd "$(dirname "$0")"
 
 . setup_def.bash
 
-for namespace in `ls $HOME/workspace`; do
-    for appname in `ls $HOME/workspace/$namespace`; do
-        pushd $HOME/workspace/$namespace/$appname
+for environment in `ls $HOME/workspace`; do
+    for appname in `ls $HOME/workspace/$environment`; do
+        pushd $HOME/workspace/$environment/$appname
+            export environment=$environment
+            export appname=$appname
             werf stages purge --force --stages-storage=:local
         popd
     done

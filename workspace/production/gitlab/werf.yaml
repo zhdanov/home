@@ -1,11 +1,9 @@
-{{ $_ := set . "project" "gitlab" }}
-
-project: {{ .project }}
+project: {{ env "appname" }}
 configVersion: 1
 deploy:
-  namespace: production
+  namespace: {{ env "appname" }}-{{ env "environment" }}
   namespaceSlug: false
 
 ---
-image: {{ .project }}-gitlab
+image: {{ env "appname" }}-gitlab
 from: gitlab/gitlab-ce:13.7.1-ce.0

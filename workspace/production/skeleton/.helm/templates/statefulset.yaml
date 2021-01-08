@@ -55,7 +55,7 @@ spec:
           name: {{ .Chart.Name }}-config-files
       - name: data-store
         persistentVolumeClaim:
-          claimName: nfs-pvc-production
+          claimName: nfs-pvc-{{ .Chart.Name }}-{{ env "environment" }}
       - name: ssh-agent-sock
         hostPath:
           path: /ssh-agent
