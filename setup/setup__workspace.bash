@@ -14,4 +14,5 @@
 . setup__werf.bash
 . setup__backup.bash
 
+. setup__workspace-active-projects.bash
 ./setup__workspace-deploy.bash
