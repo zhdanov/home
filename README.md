@@ -27,6 +27,11 @@ kubectl  container orchestration
 
 == browsers ==
 google-chrome
+  Go Back With Backspace
+  DeadMouse
+  Notifier for Gmail
+  Browsec
+  Adblock
 firefox
 opera
 yandex-browser
