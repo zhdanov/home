@@ -127,3 +127,12 @@ do
         popd
     fi
 done
+
+# pull git-store
+if [[ -d "$HOME/Yandex.Disk/git-store" ]]; then
+    for repo in `ls $HOME/Yandex.Disk/git-store`; do
+        pushd $HOME/Yandex.Disk/git-store/$repo
+            git pull origin main
+        popd
+    done
+fi
