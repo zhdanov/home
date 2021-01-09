@@ -6,6 +6,11 @@ alias world="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
 # keyboard carret speed
 xset r rate 250 28
 
+# don't sleep monitor
+xset s off
+xset -dpms
+xset s noblank
+
 # kubernetes
 source <(kubectl completion bash)
 complete -F __start_kubectl k
