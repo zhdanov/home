@@ -22,12 +22,15 @@ NOW=$(date +"%Y-%m-%d")
 NOW_D=$(date +"%d")
 NOW_MD=$(date +"%m-%d")
 
-
 . ../setup/setup_def.bash
 if [[ -f "../setup/setup_def_custom.bash" ]]; then
     . ../setup/setup_def_custom.bash
 fi
 
+if [[ ! -d /root/.kube ]]; then
+    mkdir /root/.kube
+    cp /home/$HOME_USER_NAME/.kube/config /root/.kube/config
+fi
 
 # make backups
 for environment in `ls ../data-store`; do
@@ -36,12 +39,18 @@ for environment in `ls ../data-store`; do
         for item in `cat ../data-store/$environment/backup-list.txt`; do
 
             pushd ../data-store/$environment
-                if echo $item | grep -qoP '@.*:'; then
+                if echo $item | grep -qoP '@.*:'
+                then
                     DOMAIN_NAME=`echo $item | grep -oP '@.*:' | cut -d '@' -f 2 | cut -d ':' -f 1`
                     scp $item/$NOW.zip $DOMAIN_NAME.zip
 
                     if [[ -f $DOMAIN_NAME.zip ]]; then
                         item=$DOMAIN_NAME
+                    fi
+                elif echo $item | grep -qoP '.*\/backup\.bash$'
+                then
+                    if [[ -f $item ]]; then
+                        /bin/bash $item $HOME_USER_NAME
                     fi
                 else
                     zip -r $item.zip $item
@@ -63,23 +72,28 @@ for environment in `ls ../data-store`; do
                 mkdir -p ../$clouddir/backup/daily/$NOW/$environment
             fi
 
-            cp ../data-store/$environment/backup-list.txt ../$clouddir/backup/daily/$NOW/$environment/
-
-            if [[ $NOW_MD -eq "01-02" ]]; then
-                if [[ ! -f "../$clouddir/backup/yearly/$NOW/$environment" ]]; then
-                    mkdir -p ../$clouddir/backup/yearly/$NOW/$environment
-                fi
-                cp ../data-store/$environment/*.zip ../$clouddir/backup/yearly/$NOW/$environment/
+            if [[ -f ../data-store/$environment/backup-list.txt ]]; then
+                cp ../data-store/$environment/backup-list.txt ../$clouddir/backup/daily/$NOW/$environment/
             fi
 
-            if [[ $NOW_D -eq "02" ]]; then
-                if [[ ! -f "../$clouddir/backup/monthly/$NOW/$environment" ]]; then
-                    mkdir -p ../$clouddir/backup/monthly/$NOW/$environment
+            if ls ../data-store/$environment/ | grep -qoP '\.zip|\.tar$'
+            then
+                if [[ $NOW_MD -eq "01-02" ]]; then
+                    if [[ ! -d "../$clouddir/backup/yearly/$NOW/$environment" ]]; then
+                        mkdir -p ../$clouddir/backup/yearly/$NOW/$environment
+                    fi
+                    cp ../data-store/$environment/*.{zip,tar} ../$clouddir/backup/yearly/$NOW/$environment/
                 fi
-                cp ../data-store/$environment/*.zip ../$clouddir/backup/monthly/$NOW/$environment/
-            fi
 
-            cp ../data-store/$environment/*.zip ../$clouddir/backup/daily/$NOW/$environment/
+                if [[ $NOW_D -eq "02" ]]; then
+                    if [[ ! -d "../$clouddir/backup/monthly/$NOW/$environment" ]]; then
+                        mkdir -p ../$clouddir/backup/monthly/$NOW/$environment
+                    fi
+                    cp ../data-store/$environment/*.{zip,tar} ../$clouddir/backup/monthly/$NOW/$environment/
+                fi
+
+                cp ../data-store/$environment/*.{zip,tar} ../$clouddir/backup/daily/$NOW/$environment/
+            fi
 
             if [[ -d "../$clouddir/backup/yearly/$NOW" ]]; then
                 chown -R $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/yearly/$NOW
@@ -99,7 +113,10 @@ done
 
 # clean backups
 for environment in `ls ../data-store`; do
-    rm ../data-store/$environment/*.zip
+    if ls ../data-store/$environment/ | grep -qoP '\.zip|\.tar$'
+    then
+        rm -f ../data-store/$environment/*.{zip,tar}
+    fi
 done
 
 # rotate backups
