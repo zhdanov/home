@@ -1,12 +1,6 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
-if [[ $# -ne 2 ]]; then
-    echo "usage:"
-    echo "./setup/setup__workspace-deploy.bash environment project"
-    exit 0
-fi
-
 . $(multiwerf use 1.1 stable --as-file)
 
 . setup_def.bash
