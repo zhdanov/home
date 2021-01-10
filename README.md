@@ -1,6 +1,8 @@
 # Welcome Home
 Hi! My name is Yuriy Zhdanov. This is my home directory for deploying the desktop environment. Ubuntu 20.04.
 
+Last stable version: [1.0.0](https://github.com/zhdanov/home/releases/tag/1.0.0)
+
 ## Structure
 
 ### Dotfiles
