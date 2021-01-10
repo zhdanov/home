@@ -38,7 +38,7 @@ spec:
         volumeMounts:
         - name: data-store
           mountPath: /var/lib/mysql
-          subPath: skeleton-mariadb
+          subPath: {{ .Chart.Name }}-mariadb
       - name: mongodb
         {{ tuple (printf "%s-%s" .Chart.Name "mongodb") . | werf_container_image }}
         ports:
@@ -48,7 +48,7 @@ spec:
         volumeMounts:
         - name: data-store
           mountPath: /data/db
-          subPath: skeleton-mongodb
+          subPath: {{ .Chart.Name }}-mongodb
       volumes:
       - name: config-volume
         configMap:
