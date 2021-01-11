@@ -1,7 +1,7 @@
 . $HOME/setup/setup_def.bash
 alias ta="tmux attach"
 alias k=kubectl
-alias world="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
+alias master="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
 
 if [[ $HOME_SESSION_TYPE != "remote/ssh" ]]; then
     # keyboard carret speed

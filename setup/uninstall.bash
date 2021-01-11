@@ -1,7 +1,9 @@
 #!/bin/bash
-cd "$(dirname "$0")"
+pushd "$(dirname "$0")"
 
-./uninstall-purge.bash
+    ./uninstall-purge.bash
 
-minikube delete
-pkill -f minikube
+    minikube delete
+    pkill -f minikube
+
+popd

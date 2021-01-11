@@ -8,11 +8,13 @@
 . setup__configure-laptop.bash
 . setup__configure-vim.bash
 
-. setup__kubernetes.bash
-. setup__helm.bash
-. setup__minikube.bash
-. setup__werf.bash
-. setup__backup.bash
+if [[ $SETUP_TYPE == "master" ]]; then
+    . setup__kubernetes.bash
+    . setup__helm.bash
+    . setup__minikube.bash
+    . setup__werf.bash
+    . setup__backup.bash
 
-. setup__workspace-active-projects.bash
-./setup__workspace-deploy.bash
+    . setup__workspace-active-projects.bash
+    ./setup__workspace-deploy.bash
+fi
