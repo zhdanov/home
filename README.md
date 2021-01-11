@@ -65,7 +65,8 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ```
 3. Run setup
 ```bash
-./setup/setup.bash
+./setup/setup.bash slave   # for workstation
+./setup/setup.bash master  # for minikube
 ```
 
 ### Auto backup to cloud
