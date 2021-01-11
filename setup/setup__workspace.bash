@@ -1,6 +1,8 @@
 #!/bin/bash
 
+set +eux
 . setup_def.bash
+set -eux
 . setup__shortenv-func.bash
 . setup__packages.bash
 
