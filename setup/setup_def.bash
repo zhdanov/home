@@ -18,6 +18,15 @@ HOME_KUBECONTEXT=minikube
 HOME_KUBECONFIG=$HOME/.kube/config
 HOME_BACKUP_CRON="30 4 * * *"
 
+HOME_SESSION_TYPE=local
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+  HOME_SESSION_TYPE=remote/ssh
+else
+  case $(ps -o comm= -p $PPID) in
+    sshd|*/sshd) HOME_SESSION_TYPE=remote/ssh;;
+  esac
+fi
+
 if [[ -f "$HOME/setup/setup_def_custom.bash" ]]; then
     . $HOME/setup/setup_def_custom.bash
 fi

@@ -3,13 +3,15 @@ alias ta="tmux attach"
 alias k=kubectl
 alias world="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
 
-# keyboard carret speed
-xset r rate 250 28
+if [[ $HOME_SESSION_TYPE != "remote/ssh" ]]; then
+    # keyboard carret speed
+    xset r rate 250 28
 
-# don't sleep monitor
-xset s off
-xset -dpms
-xset s noblank
+    # don't sleep monitor
+    xset s off
+    xset -dpms
+    xset s noblank
+fi
 
 # kubernetes
 source <(kubectl completion bash)
