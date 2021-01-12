@@ -11,6 +11,9 @@ if [[ $HOME_SESSION_TYPE != "remote/ssh" ]]; then
     xset s off
     xset -dpms
     xset s noblank
+
+    # switching the keyboard layout
+    setxkbmap "us,$HOME_SECOND_KEYBOARD_LAYOUT" ",winkeys" "grp:win_space_toggle"
 fi
 
 # kubernetes

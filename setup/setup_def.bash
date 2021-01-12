@@ -17,6 +17,7 @@ HOME_REGISTRY=werf-registry.kube-system.svc.cluster.local
 HOME_KUBECONTEXT=minikube
 HOME_KUBECONFIG=$HOME/.kube/config
 HOME_BACKUP_CRON="30 4 * * *"
+HOME_SECOND_KEYBOARD_LAYOUT="ru"
 
 HOME_SESSION_TYPE=local
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then

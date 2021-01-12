@@ -160,7 +160,7 @@ bar {
 bindsym Mod4+c exec xclip -o | xclip -selection clipboard -i
 
 # lock screen
-bindsym Mod1+Control+l exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/zhdanov/Pictures/background.png; setxkbmap 'us,ru' ',winkeys' 'grp:win_space_toggle'"
+bindsym Mod1+Control+l exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/%HOME_USER_NAME%/Pictures/background.png; setxkbmap 'us,%HOME_SECOND_KEYBOARD_LAYOUT%' ',winkeys' 'grp:win_space_toggle'"
 
 # screenshot
 bindsym --release Mod1+Control+4 exec "gnome-screenshot -a"
