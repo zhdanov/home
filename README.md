@@ -70,29 +70,17 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ```
 
 ### Auto backup to cloud
-1. Setup cloud drive
+1. Make backup-list files. Example:
+```bash
+~/data-store/gitlab-prod/backup-list.txt
+    gitlab-config
+    /home/user/workspace/production/gitlab/backup.bash
+    user@host:/path/to/backup/daily # will be downloaded $NOW.zip
 ```
-./setup/setup__cloud-drive.bash
-```
-2. Change ./bin/backup.bash
-```
-ROTATE_DAILY=10
-ROTATE_MONTHLY=5
-ROTATE_YEARLY=5
-
-CLOUD_DIR_LIST=(
-Yandex.Disk
-Dropbox
-)
-```
-3. Make files data-store/%appname%-%environment%/backup-list.txt
-```
-pv-dir1
-pv-dir2
-```
-4. Cron by root
-```
-30 4 * * * /bin/bash /home/%user%/bin/backup.bash
+2. Change HOME_BACKUP_CRON in:
+```bash
+setup/setup_def.bash
+or setup/setup_def_custom.bash
 ```
 
 ### Other (optional)

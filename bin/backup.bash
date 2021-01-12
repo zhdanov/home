@@ -1,22 +1,26 @@
 #!/bin/bash
 #
-# 1. Execute ./setup/setup__cloud-drive.bash
-# 2. Make files workspace/%environment%/backup-list.txt
-#    with list dirs for backup
-# 3. Cron by root:
-#    30 4 * * * /home/%user%/bin/backup.bash
+# 1. Make backup-list files. Example:
+#    ~/data-store/gitlab-prod/backup-list.txt
+#        gitlab-config
+#        /home/user/workspace/production/gitlab/backup.bash
+#        user@host:/path/to/backup/daily # will be downloaded $NOW.zip
+#
+# 2. Change HOME_BACKUP_CRON in:
+#    setup/setup_def.bash
+#    or setup/setup_def_custom.bash
 #
 
+ROTATE_DAILY=10
+ROTATE_MONTHLY=5
+ROTATE_YEARLY=5
+
+CLOUD_DIR_LIST=(
+Yandex.Disk
+Dropbox
+)
+
 pushd "$(dirname "$0")"
-
-    ROTATE_DAILY=10
-    ROTATE_MONTHLY=5
-    ROTATE_YEARLY=5
-
-    CLOUD_DIR_LIST=(
-    Yandex.Disk
-    Dropbox
-    )
 
     NOW=$(date +"%Y-%m-%d")
     NOW_D=$(date +"%d")
