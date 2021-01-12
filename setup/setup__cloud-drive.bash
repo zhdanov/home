@@ -78,7 +78,7 @@ EOF
 
     fi
 
-    if [[ ! -d "/opt/dropbox" ]]; then
+    if [ $SETUP_TYPE == "master" ] && [ ! -d "/opt/dropbox" ]; then
         wget https://www.dropbox.com/download?plat=lnx.x86_64 -O dropbox-linux.tar.gz
 
         sudo mkdir /opt/dropbox/
