@@ -73,9 +73,9 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 1. Make backup-list files. Example:
 ```bash
 ~/data-store/gitlab-prod/backup-list.txt
-    gitlab-config
-    /home/user/workspace/production/gitlab/backup.bash
-    user@host:/path/to/backup/daily # will be downloaded $NOW.zip
+    gitlab-config                    # pvc-directory name example
+    /path/to/backup.bash             # execute this script with parameter $HOME_USER_NAME
+    user@host:/path/to/backup/daily  # scp $NOW.zip from the daily directory
 ```
 2. Change HOME_BACKUP_CRON in:
 ```bash
