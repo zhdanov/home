@@ -1,0 +1,14 @@
+#!/bin/bash
+pushd "$(dirname "$0")"
+
+    . ./setup_def.bash
+
+    if ! ps ax | grep ssh | grep -q "D $HOME_SOCKET_PORT "; then
+        ssh -p $HOME_SSH_PORT -D $HOME_SOCKET_PORT -f -C -q -N $HOME_USER_NAME@$HOME_SSH_HOST
+    fi
+
+    echo "== settings for browser =="
+    echo "socks host: localhost"
+    echo "socks host: $HOME_SOCKET_PORT"
+
+popd
