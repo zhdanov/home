@@ -183,9 +183,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 assign [title="Google Chrome"] 91:browser
 bindsym Mod4+1 exec app-workspace google-chrome 91:browser
 
-# workspace 2 world
-exec --no-startup-id i3-msg "workspace 92:world; exec gnome-terminal"
-bindsym Mod4+2 exec i3-msg "workspace 92:world"
+# workspace 2 master
+exec --no-startup-id i3-msg "workspace 92:master; exec gnome-terminal"
+bindsym Mod4+2 exec i3-msg "workspace 92:master"
 
 # workspace 3 prod
 bindsym Mod4+3 exec i3-msg "workspace 93:prod"
@@ -194,15 +194,15 @@ bindsym Mod4+3 exec i3-msg "workspace 93:prod"
 assign [title="Home"] 94:files
 bindsym Mod4+4 exec app-workspace nemo 94:files
 
-# workspace 5 q/local
-exec --no-startup-id i3-msg "workspace 95:q/local; exec gnome-terminal"
-bindsym Mod4+5 exec i3-msg "workspace 95:q/local"
-bindsym Mod1+q exec i3-msg "workspace 95:q/local"
+# workspace 5 q/host
+exec --no-startup-id i3-msg "workspace 95:q/host; exec gnome-terminal"
+bindsym Mod4+5 exec i3-msg "workspace 95:q/host"
+bindsym Mod1+q exec i3-msg "workspace 95:q/host"
 
-# workspace 6 z/services
-assign [title="Mozilla Firefox"] 96:z/services
-bindsym Mod4+6 exec app-workspace firefox 96:z/services
-bindsym Mod1+z exec app-workspace firefox 96:z/services
+# workspace 6 z/kube
+assign [title="Mozilla Firefox"] 96:z/kube
+bindsym Mod4+6 exec app-workspace firefox 96:z/kube
+bindsym Mod1+z exec app-workspace firefox 96:z/kube
 
 # workspace 7 board
 assign [title="Yandex Browser"] 96:board
