@@ -15,7 +15,7 @@ if [[ $SETUP_TYPE == "master" ]]; then
     . setup__helm.bash
     . setup__minikube.bash
     . setup__werf.bash
-    . setup__cloud-drive.bash
+    ./setup__cloud-drive.bash
     . setup__backup.bash
 
     . setup__workspace-active-projects.bash
