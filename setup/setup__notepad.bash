@@ -1,7 +1,7 @@
 #!/bin/bash
 pushd "$(dirname "$0")"
 
-    . setup__cloud-drive.bash
+    ./setup__cloud-drive.bash
 
     # notepad directory
     if [[ ! -d "$HOME/Yandex.Disk/notepad" ]]; then
