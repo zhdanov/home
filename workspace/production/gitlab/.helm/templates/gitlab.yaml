@@ -1,3 +1,4 @@
+{{ $_ := env "environment" | set . "env" }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -23,7 +24,11 @@ spec:
           name: http
           protocol: TCP
         - containerPort: 22
-          hostPort: 2222
+{{- range $key, $item := .Values.hostPort }}
+{{- if (eq $.env $item.env) }}
+          hostPort: {{ $item.port }}
+{{- end }}
+{{- end }}
           name: ssh
           protocol: TCP
         volumeMounts:

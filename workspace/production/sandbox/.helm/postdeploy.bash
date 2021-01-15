@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo sed -i -e '/^.*sandbox-prod.loc\.loc.*$/d' /etc/hosts
-echo `minikube ip`" sandbox-prod.loc" | sudo tee -a /etc/hosts
+sudo sed -i -e "/^.*sandbox-$shortenv\.loc.*$/d" /etc/hosts
+echo `minikube ip`" sandbox-$shortenv.loc" | sudo tee -a /etc/hosts

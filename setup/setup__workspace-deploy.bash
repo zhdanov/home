@@ -5,6 +5,7 @@ pushd "$(dirname "$0")"
 
     . setup_def.bash
     . setup__shortenv-func.bash
+    . setup__minikube-pv.bash
 
     kubectl config use-context $HOME_KUBECONTEXT
 
@@ -17,6 +18,7 @@ pushd "$(dirname "$0")"
 
         export environment=$shortenv
         export appname=$2
+        export shortenv=$shortenv
 
         pushd $HOME/workspace/$1/$appname
             if [[ -f "./.helm/predeploy.bash" ]]; then

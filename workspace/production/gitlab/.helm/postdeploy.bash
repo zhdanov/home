@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo sed -i -e '/^.*gitlab-prod\.loc.*$/d' /etc/hosts
-echo `minikube ip`" gitlab-prod.loc" | sudo tee -a /etc/hosts
+sudo sed -i -e "/^.*gitlab-$shortenv\.loc.*$/d" /etc/hosts
+echo `minikube ip`" gitlab-$shortenv.loc" | sudo tee -a /etc/hosts
 
 
 if [[ ! -d "$HOME/.ssh" ]]; then

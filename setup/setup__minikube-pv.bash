@@ -22,7 +22,9 @@ for environment in `ls $HOME/workspace`; do
 
         shortenv $environment
 
-        cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
+        if ! kubectl --namespace $appname-$shortenv get pv | grep -q "$appname-$shortenv"
+        then
+            cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -38,8 +40,11 @@ spec:
     server: host.minikube.internal
     path: $HOME/data-store/$appname-$shortenv
 EOF
+        fi
 
-        cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
+        if ! kubectl --namespace $appname-$shortenv get pvc | grep -q "$appname-$shortenv"
+        then
+            cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -53,6 +58,7 @@ spec:
       storage: $HOME_MINIKUBE_PV_SIZE
   volumeName: "nfs-pv-$appname-$shortenv"
 EOF
+        fi
     done
 done
 

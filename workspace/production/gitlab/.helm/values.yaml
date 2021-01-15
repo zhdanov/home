@@ -1,0 +1,5 @@
+hostPort:
+  - env: prod
+    port: 2222
+  - env: test
+    port: 2223
