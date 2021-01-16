@@ -48,7 +48,10 @@ else
 
             shortenv $environment
 
-            kubectl create namespace "$appname-$shortenv"
+            if ! kubectl get namespaces | grep -q "$appname-$shortenv"
+            then
+                kubectl create namespace "$appname-$shortenv"
+            fi
         done
     done
 

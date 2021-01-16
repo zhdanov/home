@@ -22,6 +22,11 @@ for environment in `ls $HOME/workspace`; do
 
         shortenv $environment
 
+        if ! kubectl get namespaces | grep -q "$appname-$shortenv"
+        then
+            kubectl create namespace "$appname-$shortenv"
+        fi
+
         if ! kubectl --namespace $appname-$shortenv get pv | grep -q "$appname-$shortenv"
         then
             cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
