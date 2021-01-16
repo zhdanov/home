@@ -20,8 +20,8 @@ spec:
       - name: gitlab
         {{ tuple (printf "%s-%s" .Chart.Name "gitlab") . | werf_container_image }}
         ports:
-        - containerPort: 80
-          name: http
+        - name: http
+          containerPort: 80
           protocol: TCP
         - containerPort: 22
 {{- range $key, $item := .Values.hostPort }}
@@ -31,6 +31,12 @@ spec:
 {{- end }}
           name: ssh
           protocol: TCP
+        startupProbe:
+          httpGet:
+            path: /users/sign_in
+            port: http
+          failureThreshold: 60
+          periodSeconds: 10
         volumeMounts:
           - name: data-store
             mountPath: /etc/gitlab
