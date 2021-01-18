@@ -16,16 +16,17 @@ Last stable version: [1.0.0](https://github.com/zhdanov/home/releases/tag/1.0.0)
 ### Packages set
 ```
 == main ==
-i3       tiling window manager
-tmux     terminal multiplexer
-vim      text editor
-htop     better than top
-fzf      fuzzy finder
-ripgrep  better than grep
-ncdu     better than du
-nemo     better than nautilus
-docker   containers
-kubectl  container orchestration
+i3        tiling window manager
+tmux      terminal multiplexer
+vim       text editor
+htop      better than top
+fzf       fuzzy finder
+ripgrep   better than grep
+ncdu      better than du
+nemo      better than nautilus
+docker    containers
+kubectl   container orchestration
+minikube  local kubernetes cluster
 
 == browsers ==
 google-chrome
