@@ -94,11 +94,18 @@ or setup/setup_def_custom.bash
 # connect to minikube dashboard
 ./setup/setup__dashboard-connect-through-ssh-tunnel.bash
 
+# ssh tunnel for browser
+./setup/setup__ssh-tunnel-for-browser.ssh
+
 # for contribute this repo (nodejs+commitizen)
 ./setup/setup__commitizen.bash
 
 # yandex-disk, dropbox
 ./setup/setup__cloud-drive.bash
+
+# make symbolic links in ~/develop/ and ~/workspace/
+# sources: ~/Yandex.Disk/git-store/%repo% and %repo%/namespace-list.txt
+./setup/setup__workspace-active-projects.bash
 
 # uninstall
 ./setup/uninstall.bash
