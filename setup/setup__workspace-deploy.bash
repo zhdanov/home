@@ -19,6 +19,7 @@ pushd "$(dirname "$0")"
         export environment=$shortenv
         export appname=$2
         export shortenv=$shortenv
+        export HOME_USER_NAME=$HOME_USER_NAME
 
         pushd $HOME/workspace/$1/$appname
             if [[ -f "./.helm/predeploy.bash" ]]; then
