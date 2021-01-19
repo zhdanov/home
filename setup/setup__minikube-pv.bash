@@ -47,7 +47,7 @@ spec:
 EOF
         fi
 
-        until kubectl get pv -A | grep -q $appname-$shortenv; do sleep 1; done
+        until kubectl -n "$appname-$shortenv" get pv | grep -q $appname-$shortenv; do sleep 1; done
 
         if ! kubectl --namespace $appname-$shortenv get pvc | grep -q "$appname-$shortenv"
         then
@@ -67,7 +67,7 @@ spec:
 EOF
         fi
 
-        until kubectl get pvc -A | grep -q $appname-$shortenv; do sleep 1; done
+        until kubectl -n "$appname-$shortenv" get pvc | grep -q $appname-$shortenv; do sleep 1; done
 
     done
 done
