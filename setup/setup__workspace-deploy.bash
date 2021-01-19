@@ -38,6 +38,9 @@ pushd "$(dirname "$0")"
             --skip-tls-verify-registry=true -i=$HOME_REGISTRY/$appname \
             --tag-custom $TAG || echo "local" > /dev/null
 
+            sudo sed -i -e "/^.*$appname-$shortenv\.loc.*$/d" /etc/hosts
+            echo `minikube ip`" $appname-$shortenv.loc" | sudo tee -a /etc/hosts
+
             if [[ -f "./.helm/postdeploy.bash" ]]; then
                 ./.helm/postdeploy.bash
             fi
@@ -47,10 +50,21 @@ pushd "$(dirname "$0")"
 
     if [[ $# -eq 2 ]]; then
         deploy $1 $2
+        echo "==== /etc/hosts ===="
+        shortenv $1
+        echo `minikube ip`" $appname-$shortenv.loc"
     else
         for fullenv in `ls $HOME/workspace`; do
             for appname in `ls $HOME/workspace/$fullenv`; do
                 deploy $fullenv $appname
+            done
+        done
+
+        echo "==== full /etc/hosts ===="
+        for fullenv in `ls $HOME/workspace`; do
+            for appname in `ls $HOME/workspace/$fullenv`; do
+                shortenv $fullenv
+                echo `minikube ip`" $appname-$shortenv.loc"
             done
         done
     fi

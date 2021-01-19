@@ -1,9 +1,5 @@
 #!/bin/bash
 
-sudo sed -i -e "/^.*gitlab-$shortenv\.loc.*$/d" /etc/hosts
-echo `minikube ip`" gitlab-$shortenv.loc" | sudo tee -a /etc/hosts
-
-
 if [[ ! -d "$HOME/.ssh" ]]; then
     mkdir $HOME/.ssh
 fi
