@@ -47,6 +47,8 @@ spec:
 EOF
         fi
 
+        until kubectl get pv -A | grep -q $appname-$shortenv; do sleep 1; done
+
         if ! kubectl --namespace $appname-$shortenv get pvc | grep -q "$appname-$shortenv"
         then
             cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
@@ -64,6 +66,9 @@ spec:
   volumeName: "nfs-pv-$appname-$shortenv"
 EOF
         fi
+
+        until kubectl get pvc -A | grep -q $appname-$shortenv; do sleep 1; done
+
     done
 done
 
