@@ -17,8 +17,8 @@ spec:
         app: {{ .Chart.Name }}-{{ env "environment" }}
     spec:
       containers:
-      - name: gitlab
-        {{ tuple (printf "%s-%s" .Chart.Name "gitlab") . | werf_container_image }}
+      - name: gitlab-ce
+        {{ tuple (printf "%s-%s" .Chart.Name "ce") . | werf_container_image }}
         ports:
         - name: http
           containerPort: 80

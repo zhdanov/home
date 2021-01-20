@@ -1,0 +1,45 @@
+{{ $_ := env "environment" | set . "env" }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Chart.Name }}-runner-{{ env "environment" }}
+spec:
+  serviceName: {{ .Chart.Name }}-runner-{{ env "environment" }}
+  replicas: 1
+  selector:
+      matchLabels:
+        app: {{ .Chart.Name }}-runner-{{ env "environment" }}
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Chart.Name }}-runner-{{ env "environment" }}
+    spec:
+      containers:
+      - name: gitlab-runner
+        {{ tuple (printf "%s-%s" .Chart.Name "runner") . | werf_container_image }}
+        volumeMounts:
+          - name: data-store
+            mountPath: /etc/gitlab-runner
+            subPath: {{ .Chart.Name }}-runner-config
+          - name: docker-socket
+            mountPath: /var/run/docker.sock
+      initContainers:
+      - name: init-myservice
+        {{ tuple (printf "%s-%s" .Chart.Name "init") . | werf_container_image }}
+        command:
+          - "sh"
+          - "-c"
+          - >
+            while [[ "$(curl -s -o /dev/null -w '%{http_code}' http://gitlab-prod.gitlab-prod/users/sign_in)" != "200" ]];
+            do echo waiting for gitlab-prod;
+            sleep 2;
+            done
+      volumes:
+      - name: data-store
+        persistentVolumeClaim:
+          claimName: nfs-pvc-{{ .Chart.Name }}-{{ env "environment" }}
+      - name: docker-socket
+        hostPath:
+          path: /var/run/docker.sock

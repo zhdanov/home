@@ -5,5 +5,18 @@ deploy:
   namespaceSlug: false
 
 ---
-image: {{ env "appname" }}-gitlab
-from: gitlab/gitlab-ce:13.7.1-ce.0
+image: {{ env "appname" }}-ce
+from: gitlab/gitlab-ce:13.7.4-ce.0
+
+---
+image: {{ env "appname" }}-runner
+from: gitlab/gitlab-runner:alpine-v13.8.0
+
+---
+image: {{ env "appname" }}-init
+from: alpine:3.13.0
+ansible:
+  beforeInstall:
+  - name: install packages
+    shell: |
+      apk add --no-cache curl
