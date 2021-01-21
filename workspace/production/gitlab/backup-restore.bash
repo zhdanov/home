@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Copy backup file to /var/opt/gitlab/backups/prod_gitlab_backup.tar
+# Copy backup file (production-gitlab-backup.tar) to /var/opt/gitlab/backups/prod_gitlab_backup.tar
 #
 
 BACKUP_NAME=prod

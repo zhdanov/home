@@ -26,6 +26,8 @@ pushd "$(dirname "$0")"
     NOW_D=$(date +"%d")
     NOW_MD=$(date +"%m-%d")
 
+    ERROR_MESSAGE_LIST=""
+
     . ../setup/setup_def.bash
     if [[ -f "../setup/setup_def_custom.bash" ]]; then
         . ../setup/setup_def_custom.bash
@@ -50,14 +52,30 @@ pushd "$(dirname "$0")"
 
                         if [[ -f $DOMAIN_NAME.zip ]]; then
                             item=$DOMAIN_NAME
+                        else
+                            ERROR_MESSAGE_LIST="$ERROR_MESSAGE_LIST
+$DOMAIN_NAME.zip was not created"
                         fi
                     elif echo $item | grep -qoP '.*\/backup\.bash$'
                     then
                         if [[ -f $item ]]; then
                             /bin/bash $item $HOME_USER_NAME
+
+                            if [[ $(dirname "$item") =~ (.*)/(.*)/(.*)$ ]]; then
+                                BACKUP_FILE_NAME="${BASH_REMATCH[2]}-${BASH_REMATCH[3]}-backup.tar"
+                                if [[ ! -f $BACKUP_FILE_NAME ]]; then
+                                    ERROR_MESSAGE_LIST="$ERROR_MESSAGE_LIST
+$BACKUP_FILE_NAME was not created"
+                                fi
+                            fi
                         fi
                     else
                         zip -r $item.zip $item
+
+                        if [[ ! -f $item.zip ]]; then
+                            ERROR_MESSAGE_LIST="$ERROR_MESSAGE_LIST
+$item.zip was not created"
+                        fi
                     fi
                 popd
 
@@ -156,6 +174,12 @@ pushd "$(dirname "$0")"
                 git pull origin main
             popd
         done
+    fi
+
+    # send errors to kibana
+    if [[ $ERROR_MESSAGE_LIST != "" ]]; then
+        # @todo: push kibana api
+        echo "$ERROR_MESSAGE_LIST"
     fi
 
 popd
