@@ -20,6 +20,7 @@ Yandex.Disk
 Dropbox
 )
 
+
 pushd "$(dirname "$0")"
 
     NOW=$(date +"%Y-%m-%d")
@@ -37,6 +38,8 @@ pushd "$(dirname "$0")"
         mkdir /root/.kube
         cp /home/$HOME_USER_NAME/.kube/config /root/.kube/config
     fi
+
+    BACKUP_GIT_STORE_PATH=/home/$HOME_USER_NAME/Yandex.Disk/backup/git-store
 
     # make backups
     for environment in `ls ../data-store`; do
@@ -168,9 +171,9 @@ $item.zip was not created"
     done
 
     # pull git-store
-    if [[ -d "$HOME/Yandex.Disk/git-store" ]]; then
-        for repo in `ls $HOME/Yandex.Disk/git-store`; do
-            pushd $HOME/Yandex.Disk/git-store/$repo
+    if [[ -d "$BACKUP_GIT_STORE_PATH" ]]; then
+        for repo in `ls $BACKUP_GIT_STORE_PATH`; do
+            pushd $BACKUP_GIT_STORE_PATH/$repo
                 git pull origin main
             popd
         done

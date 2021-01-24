@@ -105,7 +105,7 @@ or setup/setup_def_custom.bash
 ./setup/setup__cloud-drive.bash
 
 # make symbolic links in ~/develop/ and ~/workspace/
-# sources: ~/Yandex.Disk/git-store/%repo% and %repo%/namespace-list.txt
+# sources: ~/Yandex.Disk/acitve-project-list/%repo% and %repo%/namespace-list.txt
 ./setup/setup__workspace-active-projects.bash
 
 # uninstall

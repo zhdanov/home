@@ -1,9 +1,11 @@
 #!/bin/bash
 
-if [[ -d "$HOME/Yandex.Disk/git-store" ]]; then
-    for repo in `ls $HOME/Yandex.Disk/git-store`; do
-        if [[ -f "$HOME/Yandex.Disk/git-store/$repo/namespace-list.txt" ]]; then
-            for namespace in `cat $HOME/Yandex.Disk/git-store/$repo/namespace-list.txt`; do
+ACTIVE_PROJECT_LIST_PATH=$HOME/Yandex.Disk/acitve-project-list
+
+if [[ -d "$ACTIVE_PROJECT_LIST_PATH" ]]; then
+    for repo in `ls $ACTIVE_PROJECT_LIST_PATH`; do
+        if [[ -f "$ACTIVE_PROJECT_LIST_PATH/$repo/namespace-list.txt" ]]; then
+            for namespace in `cat $ACTIVE_PROJECT_LIST_PATH/$repo/namespace-list.txt`; do
                 if [[ -h "$HOME/workspace/$namespace/$repo" ]]; then
                     rm $HOME/workspace/$namespace/$repo
                 fi
