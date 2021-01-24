@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-kibana-{{ env "environment" }}
+spec:
+  selector:
+    matchLabels:
+      run: {{ .Chart.Name }}-kibana-{{ env "environment" }}
+  template:
+    metadata:
+      labels:
+        run: {{ .Chart.Name }}-kibana-{{ env "environment" }}
+    spec:
+      containers:
+      - name: kibana
+        {{ tuple (printf "%s-%s" .Chart.Name "kibana") . | werf_container_image }}
+        env:
+        - name: SERVER_NAME
+          value: {{ .Chart.Name }}-kibana-{{ env "environment" }}.efk-prod.loc
+        - name: ELASTICSEARCH_HOSTS
+          value: http://{{ .Chart.Name }}-elasticsearch-{{ env "environment" }}.efk-prod:9200
+        - name: XPACK_SECURITY_ENABLED
+          value: "true"
+        ports:
+        - containerPort: 5601
+          name: http
+          protocol: TCP

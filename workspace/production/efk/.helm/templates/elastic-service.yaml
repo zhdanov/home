@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Chart.Name }}-elasticsearch-{{ env "environment" }}
+  labels:
+    service: {{ .Chart.Name }}-elasticsearch-{{ env "environment" }}
+spec:
+  type: NodePort
+  selector:
+    component: {{ .Chart.Name }}-elasticsearch-{{ env "environment" }}
+  ports:
+  - port: 9200
+    targetPort: 9200

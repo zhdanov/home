@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Chart.Name }}-elasticsearch-{{ env "environment" }}
+spec:
+  selector:
+    matchLabels:
+      component: {{ .Chart.Name }}-elasticsearch-{{ env "environment" }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Chart.Name }}-elasticsearch-{{ env "environment" }}
+    spec:
+      containers:
+      - name: elasticsearch
+        {{ tuple (printf "%s-%s" .Chart.Name "elasticsearch") . | werf_container_image }}
+        env:
+        - name: discovery.type
+          value: single-node
+        ports:
+        - containerPort: 9200
+          name: http
+          protocol: TCP
+        resources:
+          limits:
+            cpu: 500m
+            memory: 4Gi
+          requests:
+            cpu: 500m
+            memory: 3Gi

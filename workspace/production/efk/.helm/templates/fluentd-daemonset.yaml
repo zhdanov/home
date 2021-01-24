@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fluentd
+  namespace: kube-system
+  labels:
+    k8s-app: fluentd-logging
+    version: v1
+    kubernetes.io/cluster-service: "true"
+spec:
+  selector:
+    matchLabels:
+      k8s-app: fluentd-logging
+  template:
+    metadata:
+      labels:
+        k8s-app: fluentd-logging
+        version: v1
+        kubernetes.io/cluster-service: "true"
+    spec:
+      serviceAccount: fluentd
+      serviceAccountName: fluentd
+      tolerations:
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: fluentd
+        {{ tuple (printf "%s-%s" .Chart.Name "fluentd") . | werf_container_image }}
+        env:
+          - name: FLUENT_CONTAINER_TAIL_PARSER_TYPE
+            value: json
+          - name:  FLUENT_ELASTICSEARCH_HOST
+            value: '{{ .Chart.Name }}-elasticsearch-{{ env "environment" }}.{{ .Chart.Name }}-{{ env "environment" }}'
+          - name:  FLUENT_ELASTICSEARCH_PORT
+            value: "9200"
+          - name: FLUENT_ELASTICSEARCH_SCHEME
+            value: "http"
+          - name: FLUENT_UID
+            value: "0"
+          - name: FLUENTD_SYSTEMD_CONF
+            value: "disable"
+          - name: FLUENTD_PROMETHEUS_CONF
+            value: "disable"
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+        - name: {{ .Chart.Name }}-fluentd-config-{{ env "environment" }}
+          mountPath: /fluentd/etc/conf.d/myfilter.conf
+          subPath: myfilter.conf
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          path: /var/lib/docker/containers
+      - name: {{ .Chart.Name }}-fluentd-config-{{ env "environment" }}
+        configMap:
+          name: {{ .Chart.Name }}-fluentd-config-{{ env "environment" }}
