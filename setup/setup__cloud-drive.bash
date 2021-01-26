@@ -103,8 +103,17 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-        sudo systemctl enable dropbox
-        sudo systemctl start dropbox
+        # dropbox does not deserve to work at other times
+        sudo sed -i -e '/^.*systemctl start dropbox$/d' /etc/crontab
+        echo "30 1 * * * root systemctl start dropbox" | sudo tee -a /etc/crontab
+        sudo sed -i -e '/^.*systemctl stop dropbox$/d' /etc/crontab
+        echo "30 8 * * * root systemctl stop dropbox" | sudo tee -a /etc/crontab
+
+        # update dropbox
+        sudo sed -i -e '/^.*setup\_\_update\-dropbox\.bash$/d' /etc/crontab
+        echo "30 9 * * * root /home/zhdanov/setup/setup__update-dropbox.bash" | sudo tee -a /etc/crontab
+
+        sudo systemctl restart cron
 
         # another way
         #/opt/dropbox/dropboxd
