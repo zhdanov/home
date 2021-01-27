@@ -26,16 +26,8 @@ spec:
           - name: docker-socket
             mountPath: /var/run/docker.sock
       initContainers:
-      - name: init-myservice
-        {{ tuple (printf "%s-%s" .Chart.Name "init") . | werf_container_image }}
-        command:
-          - "sh"
-          - "-c"
-          - >
-            while [[ "$(curl -s -o /dev/null -w '%{http_code}' http://gitlab-prod.gitlab-prod/users/sign_in)" != "200" ]];
-            do echo waiting for gitlab-prod;
-            sleep 2;
-            done
+{{- $gitlabUrl := "http://gitlab-prod.gitlab-prod/users/sign_in" }}
+{{- include "h-init-container-wait-http-200" (list $ . $gitlabUrl) | indent 6 }}
       volumes:
       - name: data-store
         persistentVolumeClaim:

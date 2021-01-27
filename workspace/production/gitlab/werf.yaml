@@ -13,7 +13,7 @@ image: {{ env "appname" }}-runner
 from: gitlab/gitlab-runner:alpine-v13.8.0
 
 ---
-image: {{ env "appname" }}-init
+image: {{ env "appname" }}-wait-http-200
 from: alpine:3.13.0
 ansible:
   beforeInstall:
