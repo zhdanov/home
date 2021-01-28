@@ -19,5 +19,6 @@ if [[ $SETUP_TYPE == "master" ]]; then
     ./setup__cloud-drive.bash
     . setup__backup.bash
 
+    ./setup__workspace-active-projects.bash
     ./setup__workspace-deploy.bash
 fi
