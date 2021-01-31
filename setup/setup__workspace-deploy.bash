@@ -54,9 +54,13 @@ pushd "$(dirname "$0")"
         shortenv $1
         echo `minikube ip`" $appname-$shortenv.loc"
     else
+        deploy production gitlab
         for fullenv in `ls $HOME/workspace`; do
             for appname in `ls $HOME/workspace/$fullenv`; do
-                deploy $fullenv $appname
+                if [ $appname != "gitlab" ]
+                then
+                    deploy $fullenv $appname
+                fi
             done
         done
 
