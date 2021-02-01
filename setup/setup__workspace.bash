@@ -9,6 +9,7 @@ set -eux
 . setup__configure-ssh.bash
 . setup__configure-laptop.bash
 . setup__configure-vim.bash
+. setup__configure-visudo.bash
 
 if [[ $SETUP_TYPE == "master" ]]; then
     . setup__kubernetes.bash
