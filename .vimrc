@@ -1,19 +1,19 @@
 hi Visual cterm=reverse
 hi Visual ctermbg=NONE
 
-" Searching
+" searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 
-" Indentation
+" indentation
 set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
 
-" Misc
+" misc
 set nopaste
 set nocompatible
 filetype plugin on
@@ -28,3 +28,9 @@ function! XTermPasteBegin()
   return ""
 endfunction
 " end set paste
+
+" git blame for selected line
+vnoremap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+" cursor on last position
+au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
