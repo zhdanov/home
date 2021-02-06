@@ -93,6 +93,21 @@ $item.zip was not created"
 
             for clouddir in "${CLOUD_DIR_LIST[@]}"
             do
+                if [[ ! -d "../$clouddir/backup/daily" ]]; then
+                    mkdir -p ../$clouddir/backup/daily
+                    chown $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/daily
+                fi
+
+                if [[ ! -d "../$clouddir/backup/monthly" ]]; then
+                    mkdir -p ../$clouddir/backup/monthly
+                    chown $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/monthly
+                fi
+
+                if [[ ! -d "../$clouddir/backup/yearly" ]]; then
+                    mkdir -p ../$clouddir/backup/yearly
+                    chown $HOME_USER_NAME:$HOME_USER_NAME ../$clouddir/backup/yearly
+                fi
+
                 if [[ ! -d "../$clouddir/backup/daily/$NOW/$environment" ]]; then
                     mkdir -p ../$clouddir/backup/daily/$NOW/$environment
                 fi
