@@ -1,6 +1,8 @@
 #!/bin/bash
 
 [[ ! -d $HOME/.vim/after/ftplugin ]] && mkdir -p $HOME/.vim/after/ftplugin
+[[ ! -d $HOME/.vim/plugin ]] && mkdir -p $HOME/.vim/plugin
+[[ ! -d $HOME/.vim/autoload ]] && mkdir -p $HOME/.vim/autoload
 
 if [[ ! -f "$HOME/.vim/after/ftplugin/js.vim" ]]; then
     cat <<EOT >> $HOME/.vim/after/ftplugin/js.vim
@@ -35,4 +37,16 @@ if [[ ! -f "$HOME/.vim/after/ftplugin/sh.vim" ]]; then
 set tabstop=$HOME_VIM_INDENT_SHELL
 set shiftwidth=$HOME_VIM_INDENT_SHELL
 EOT
+fi
+
+if [[ ! -f "$HOME/.vim/plugin/emmet.vim" ]]; then
+    git clone https://github.com/mattn/emmet-vim.git
+
+    pushd emmet-vim
+        cp plugin/emmet.vim $HOME/.vim/plugin/
+        cp autoload/emmet.vim $HOME/.vim/autoload/
+        cp -a autoload/emmet $HOME/.vim/autoload/
+    popd
+
+    rm -rf emmet-vim
 fi
