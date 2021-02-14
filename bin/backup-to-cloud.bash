@@ -189,9 +189,10 @@ $item.zip was not created"
     if [[ -d "$BACKUP_GIT_STORE_PATH" ]]; then
         for repo in `ls $BACKUP_GIT_STORE_PATH`; do
             pushd $BACKUP_GIT_STORE_PATH/$repo
-                git pull origin main
+                git pull origin $(git symbolic-ref --short HEAD)
             popd
         done
+        chown -R $HOME_USER_NAME:$HOME_USER_NAME $BACKUP_GIT_STORE_PATH
     fi
 
     # send errors to kibana
