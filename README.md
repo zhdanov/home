@@ -30,11 +30,6 @@ minikube  local kubernetes cluster
 
 == browsers ==
 google-chrome
-  Go Back With Backspace
-  DeadMouse
-  Notifier for Gmail
-  Browsec
-  Adblock
 firefox
 opera
 yandex-browser
@@ -44,6 +39,8 @@ ttf-mscorefonts
 kate
 fbreader
 audacity
+growisofs
+kazam
 dbeaver
 ```
 
@@ -107,6 +104,9 @@ or setup/setup_def_custom.bash
 # make symbolic links in ~/develop/ and ~/workspace/
 # sources: ~/Yandex.Disk/acitve-project-list/%repo% and %repo%/namespace-list.txt
 ./setup/setup__workspace-active-projects.bash
+
+# clean werf images
+./setup/uninstall-purge.bash
 
 # uninstall
 ./setup/uninstall.bash
