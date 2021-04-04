@@ -15,4 +15,7 @@ pushd "$(dirname "$0")"
         done
     done
 
+    werf host cleanup
+    werf host purge
+
 popd
