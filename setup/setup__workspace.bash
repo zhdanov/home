@@ -12,6 +12,8 @@ set -eux
 . setup__configure-visudo.bash
 
 if [[ $SETUP_TYPE == "master" ]]; then
+    . setup__master-pre-hook.bash
+
     . setup__kubernetes.bash
     . setup__helm.bash
     . setup__minikube.bash
@@ -22,4 +24,6 @@ if [[ $SETUP_TYPE == "master" ]]; then
 
     ./setup__workspace-active-projects.bash
     ./setup__workspace-deploy.bash
+
+    . setup__master-post-hook.bash
 fi
