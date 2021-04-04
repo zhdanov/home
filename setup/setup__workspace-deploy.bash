@@ -27,6 +27,7 @@ pushd "$(dirname "$0")"
             fi
 
             werf build-and-publish --kube-config=$HOME_KUBECONFIG --stages-storage :local \
+            --parallel=false \
             --images-repo-implementation='harbor' \
             --insecure-registry=true \
             --skip-tls-verify-registry=true \
