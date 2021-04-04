@@ -4,7 +4,7 @@ if [[ ! -d "$HOME/develop" ]]; then
     mkdir $HOME/develop
 fi
 
-ACTIVE_PROJECT_LIST_PATH=$HOME/Yandex.Disk/acitve-project-list
+ACTIVE_PROJECT_LIST_PATH=$HOME/Yandex.Disk/active-project-list
 
 if [[ -d "$ACTIVE_PROJECT_LIST_PATH" ]]; then
     for repo in `ls $ACTIVE_PROJECT_LIST_PATH`; do
