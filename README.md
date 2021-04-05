@@ -15,8 +15,6 @@ Last stable version: [1.2.0](https://github.com/zhdanov/home/releases/tag/1.2.0)
 
 ### Packages set
 
-#### Main
-
 app | description
 --- | ---
 [i3](https://github.com/i3/i3) | tiling window manager
@@ -32,18 +30,14 @@ app | description
 [minikube](https://github.com/kubernetes/minikube) | local kubernetes cluster
 [werf](https://github.com/werf/werf) | build and deploy projects
 
-#### Browsers
-
 ```
+# browsers
 google-chrome
 firefox
 opera
 yandex-browser
-```
 
-#### Also
-
-```
+# other
 ttf-mscorefonts
 kate
 fbreader
