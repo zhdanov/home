@@ -201,4 +201,7 @@ $item.zip was not created"
         echo "$ERROR_MESSAGE_LIST"
     fi
 
+    # clear swap
+    sudo swapoff -a && sudo swapon -a
+
 popd
