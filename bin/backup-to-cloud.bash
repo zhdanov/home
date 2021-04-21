@@ -118,14 +118,14 @@ $item.zip was not created"
 
                 if ls ../data-store/$environment/ | grep -qoP '\.zip|\.tar$'
                 then
-                    if [[ $NOW_MD -eq "01-02" ]]; then
+                    if [[ "$NOW_MD" == "01-02" ]]; then
                         if [[ ! -d "../$clouddir/backup/yearly/$NOW/$environment" ]]; then
                             mkdir -p ../$clouddir/backup/yearly/$NOW/$environment
                         fi
                         cp ../data-store/$environment/*.{zip,tar} ../$clouddir/backup/yearly/$NOW/$environment/
                     fi
 
-                    if [[ $NOW_D -eq "02" ]]; then
+                    if [[ "$NOW_D" == "02" ]]; then
                         if [[ ! -d "../$clouddir/backup/monthly/$NOW/$environment" ]]; then
                             mkdir -p ../$clouddir/backup/monthly/$NOW/$environment
                         fi
