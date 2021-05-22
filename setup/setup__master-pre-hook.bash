@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -f "/etc/apt/sources.list.d/yandex-disk.list" ]]; then
+if ps ax | grep -v "grep" | grep -q "yandex-disk"; then
     yandex-disk stop
 fi
 

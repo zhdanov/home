@@ -18,7 +18,7 @@ elif docker ps -a | grep -q minikube; then
     minikube ssh "cat /etc/hosts | grep -v werf-registry | sudo tee /etc/hosts"
     minikube ssh "echo '$REGISTRY_IP $HOME_REGISTRY' | sudo tee -a /etc/hosts"
 
-    kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
+    kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
 else
 
     [ $(ps aux | grep ssh-agent | wc -l) -eq 0 ] &&
@@ -39,7 +39,7 @@ else
     kubectl wait --for=condition=available --timeout=120s --all deployments -A
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l actual-registry=true
     kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l registry-proxy=true
-    kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
+    kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
 
     . setup__minikube-ingress.bash
 
@@ -65,5 +65,5 @@ else
 
     . setup__minikube-pv.bash
 
-    kubectl -n kube-system wait --for=condition=ready --timeout=120s pods -l app.kubernetes.io/component=controller
+    kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s
 fi
