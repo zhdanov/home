@@ -1,5 +1,5 @@
 # Welcome Home
-Hi! My name is Yuriy Zhdanov. It's my home directory for deploying the desktop environment. Ubuntu 20.04.
+Hi! My name is Yuriy Zhdanov. This project is my home directory for deploying the desktop environment. Ubuntu 20.04.
 
 Last stable version: [1.2.0](https://github.com/zhdanov/home/releases/tag/1.2.0)
 
