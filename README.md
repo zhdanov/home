@@ -3,7 +3,7 @@ Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my h
 
 Last stable version: [1.2.0](https://github.com/zhdanov/home/releases/tag/1.2.0)
 
-## Structure
+## Project structure
 
 ### Dotfiles
 ```
@@ -11,6 +11,15 @@ Last stable version: [1.2.0](https://github.com/zhdanov/home/releases/tag/1.2.0)
 .gitconfig    aliases, settings
 .tmux.conf    hotkeys, options
 .vimrc        nothing outstanding
+```
+
+### Directories
+```
+Pictures    background image
+bin         useful scripts
+data-store  projects directory volumes (mount to minikube)
+setup       install and uninstall scripts
+workspace   environment directories for symbolic links from projects
 ```
 
 ### Packages set
