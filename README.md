@@ -1,5 +1,5 @@
 # Welcome Home
-Hi! My name is Yuriy Zhdanov. This is my home directory for deploying the desktop environment. Ubuntu 20.04.
+Hi! My name is Yuriy Zhdanov. It's my home directory for deploying the desktop environment. Ubuntu 20.04.
 
 Last stable version: [1.2.0](https://github.com/zhdanov/home/releases/tag/1.2.0)
 
@@ -70,7 +70,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ./setup/setup.bash master  # for minikube
 ```
 
-### Auto backup to cloud
+### Auto-backup to the cloud
 1. Make backup-list files. Example:
 ```bash
 ~/data-store/gitlab-prod/backup-list.txt
