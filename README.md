@@ -52,7 +52,7 @@ kate
 fbreader
 audacity
 growisofs
-kazam
+peek
 dbeaver
 ```
 
