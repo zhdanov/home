@@ -193,6 +193,13 @@ $item.zip was not created"
             popd
         done
         chown -R $HOME_USER_NAME:$HOME_USER_NAME $BACKUP_GIT_STORE_PATH
+
+        GIT_STORE_BASENAME=$(basename $BACKUP_GIT_STORE_PATH)
+        pushd $BACKUP_GIT_STORE_PATH
+            cd ..
+            rm $GIT_STORE_BASENAME.zip
+            zip -r $GIT_STORE_BASENAME.zip $GIT_STORE_BASENAME
+        popd
     fi
 
     # send errors to kibana
