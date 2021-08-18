@@ -185,15 +185,28 @@ $item.zip was not created"
         fi
     done
 
-    # pull git-store
     if [[ -d "$BACKUP_GIT_STORE_PATH" ]]; then
+        # pull git-store
         for repo in `ls $BACKUP_GIT_STORE_PATH`; do
             pushd $BACKUP_GIT_STORE_PATH/$repo
                 git pull origin $(git symbolic-ref --short HEAD)
             popd
         done
+
+        # get github issues
+        for repo in `ls $BACKUP_GIT_STORE_PATH`; do
+            pushd $BACKUP_GIT_STORE_PATH/$repo
+                if git remote -v | grep -q "github.com"; then
+                    if [[ $HOME_GITHUB_ACCESS_TOKEN != "" && $HOME_GITHUB_USER != "" ]]; then
+                        curl --silent -H "Authorization: token $HOME_GITHUB_ACCESS_TOKEN" $HOME_GITHUB_API_URL/repos/$HOME_GITHUB_USER/$repo/issues -q > issues.json
+                    fi
+                fi
+            popd
+        done
+
         chown -R $HOME_USER_NAME:$HOME_USER_NAME $BACKUP_GIT_STORE_PATH
 
+        # zip git-store
         GIT_STORE_BASENAME=$(basename $BACKUP_GIT_STORE_PATH)
         pushd $BACKUP_GIT_STORE_PATH
             cd ..
