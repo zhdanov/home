@@ -1,6 +1,6 @@
 # Welcome
 
-![](https://raw.githubusercontent.com/zhdanov/home/main/logo/logo-readme.png)
+![](https://raw.githubusercontent.com/zhdanov/home/main/Pictures/logo/logo-readme.png)
 
 Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my home directory for deploying the desktop environment. Ubuntu 20.04.
 
