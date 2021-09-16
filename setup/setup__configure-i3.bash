@@ -16,14 +16,14 @@ general {
         interval = 5
 }
 
-order += "cpu_usage"
+order += "tztime local"
+order += "volume master"
 order += "load"
+order += "cpu_usage"
 order += "disk /"
 #order += "wireless _first_"
 #order += "ethernet _first_"
 #order += "battery all"
-order += "volume master"
-order += "tztime local"
 
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
@@ -41,7 +41,7 @@ battery all {
 }
 
 tztime local {
-        format = "%d.%m %H:%M"
+        format = "%H:%M %d.%m"
 }
 
 load {
