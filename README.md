@@ -17,13 +17,13 @@ git remote add origin https://github.com/zhdanov/home
 git fetch origin
 git checkout -b main origin/main
 ```
-2. Change ./setup/setup_def.bash (or create setup/setup_def_custom.bash)
+2. Configure [./setup/setup_def.bash](https://github.com/zhdanov/home/blob/main/setup/setup_def.bash) (or create ./setup/setup_def_custom.bash)
 ```bash
 HOME_USER_NAME=torvalds
 HOME_USER_EMAIL=torvalds@linux-foundation.org
 ...
 ```
-3. Run setup
+3. Run [./setup/setup.bash](https://github.com/zhdanov/home/blob/main/setup/setup.bash)
 ```bash
 ./setup/setup.bash slave   # for workstation
 ./setup/setup.bash master  # for minikube
