@@ -8,7 +8,7 @@ Last stable version: [1.2.0](https://github.com/zhdanov/home/releases/tag/1.2.0)
 
 [Documentation](https://jupiter.solutions/home/docs/)
 
-## Installation
+## Getting started
 1. Init home directory
 ```bash
 cd $HOME
@@ -28,6 +28,8 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ./setup/setup.bash slave   # for workstation
 ./setup/setup.bash master  # for minikube
 ```
+
+Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/) and [configure backup](https://jupiter.solutions/home/docs/backup/).
 
 ## License
 The home directory is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
