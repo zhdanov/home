@@ -12,3 +12,7 @@ sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader aud
 . setup__yandex-browser.bash
 
 sudo snap install dbeaver-ce
+
+# java
+sudo apt -y install openjdk-17-jre-headless
+sudo snap install intellij-idea-community --classic
