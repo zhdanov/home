@@ -16,11 +16,11 @@ general {
         interval = 5
 }
 
-order += "tztime local"
 order += "volume master"
 order += "load"
 order += "cpu_usage"
 order += "disk /"
+order += "tztime local"
 #order += "wireless _first_"
 #order += "ethernet _first_"
 #order += "battery all"
@@ -41,7 +41,7 @@ battery all {
 }
 
 tztime local {
-        format = "%H:%M %d.%m"
+        format = "📆 %H:%M %d.%m.%Y"
 }
 
 load {
@@ -53,8 +53,8 @@ disk "/" {
 }
 
 volume master {
-        format = "♪: %volume"
-        format_muted = "♪: muted (%volume)"
+        format = "🔊 %volume"
+        format_muted = "🔈 muted (%volume)"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
