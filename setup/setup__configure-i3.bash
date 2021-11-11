@@ -19,11 +19,18 @@ general {
 order += "volume master"
 order += "load"
 order += "cpu_usage"
+order += "memory"
 order += "disk /"
 order += "tztime local"
 #order += "wireless _first_"
 #order += "ethernet _first_"
 #order += "battery all"
+
+memory {
+    format= "🗄 %available"
+    threshold_degraded = "300M"
+    format_degraded = "🗄 %available"
+}
 
 wireless _first_ {
         format_up = "W: (%quality at %essid) %ip"
@@ -45,7 +52,7 @@ tztime local {
 }
 
 load {
-        format = "%1min"
+        format = "⚙️ %1min"
 }
 
 disk "/" {
@@ -53,7 +60,7 @@ disk "/" {
 }
 
 volume master {
-        format = "🔊 %volume"
+        format = "🔉 %volume"
         format_muted = "🔈 muted (%volume)"
         device = "default"
         mixer = "Master"
