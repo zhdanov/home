@@ -14,7 +14,7 @@ sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader aud
 sudo snap install dbeaver-ce
 
 # php
-sudo apt -y install php-cli
+sudo apt -y install php-cli php-dom php-mbstring
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === '906a84df04cea2aa72f40b5f787e49f22d4c2f19492ac310e8cba5b96ac8b64115ac402c8cd292b8a03482574915d1a8') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
