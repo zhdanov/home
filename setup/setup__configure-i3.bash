@@ -13,7 +13,7 @@ fi
 cat <<EOF | sudo tee /etc/i3status.conf
 general {
         colors = true
-        interval = 5
+        interval = 1
 }
 
 order += "volume master"
@@ -41,7 +41,7 @@ battery all {
 }
 
 tztime local {
-        format = "📆 %H:%M %d.%m.%Y"
+        format = "📆 %H:%M:%S %d.%m.%Y"
 }
 
 load {
