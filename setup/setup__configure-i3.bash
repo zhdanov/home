@@ -27,9 +27,9 @@ order += "tztime local"
 #order += "battery all"
 
 memory {
-    format= "🗄 %available"
+    format= "📦 %available"
     threshold_degraded = "300M"
-    format_degraded = "🗄 %available"
+    format_degraded = "📦 %available"
 }
 
 wireless _first_ {
