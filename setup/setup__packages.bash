@@ -12,6 +12,7 @@ sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader aud
 . setup__yandex-browser.bash
 
 sudo snap install dbeaver-ce
+sudo snap install zoom-client
 
 # php
 sudo apt -y install php-cli php-dom php-mbstring
