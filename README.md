@@ -29,5 +29,26 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/) and [configure backup](https://jupiter.solutions/home/docs/backup/).
 
+## Documentation:
+[Getting started](https://jupiter.solutions/home/docs/)  
+[Project structure](https://jupiter.solutions/home/docs/project-structure/)  
+[Packages set](https://jupiter.solutions/home/docs/packages-set/)  
+[How to create a new project?](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/)  
+[Auto-backup to the cloud](https://jupiter.solutions/home/docs/backup/)  
+[Other (optional)](https://jupiter.solutions/home/docs/other/)  
+
+## External documentation:
+[bash](https://www.gnu.org/software/bash/manual/bash.html)  
+[i3wm](https://i3wm.org/docs/)  
+[helm](https://helm.sh/docs/)  
+[kubernetes](https://kubernetes.io/docs/home/)  
+[bem](https://en.bem.info/methodology/key-concepts/)  
+
+## This repository is inspired:
+[i3wm screencast](https://youtu.be/Wx0eNaGzAZU)  
+[Unix is my ide](https://mkaz.blog/code/unix-is-my-ide/)  
+[Home .git](https://martinovic.blog/post/home_git/)  
+[Linux Desktop Setup](https://hookrace.net/blog/linux-desktop-setup/)  
+
 ## License
 The home directory is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
