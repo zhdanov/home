@@ -42,6 +42,7 @@ Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/h
 [i3wm](https://i3wm.org/docs/)  
 [helm](https://helm.sh/docs/)  
 [kubernetes](https://kubernetes.io/docs/home/)  
+[werf](https://werf.io/documentation/v1.2/quickstart.html)  
 [bem](https://en.bem.info/methodology/key-concepts/)  
 
 ## This repository is inspired:
