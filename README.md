@@ -29,7 +29,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/) and [configure backup](https://jupiter.solutions/home/docs/backup/).
 
-## Documentation:
+## Documentation
 [Getting started](https://jupiter.solutions/home/docs/)  
 [Project structure](https://jupiter.solutions/home/docs/project-structure/)  
 [Packages set](https://jupiter.solutions/home/docs/packages-set/)  
@@ -37,7 +37,7 @@ Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/h
 [Auto-backup to the cloud](https://jupiter.solutions/home/docs/backup/)  
 [Other (optional)](https://jupiter.solutions/home/docs/other/)  
 
-## External documentation:
+## External documentation
 [bash](https://www.gnu.org/software/bash/manual/bash.html)  
 [i3wm](https://i3wm.org/docs/)  
 [helm](https://helm.sh/docs/)  
@@ -45,7 +45,7 @@ Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/h
 [werf](https://werf.io/documentation/v1.2/quickstart.html)  
 [bem](https://en.bem.info/methodology/key-concepts/)  
 
-## This repository is inspired:
+## This repository is inspired
 [i3wm screencast](https://youtu.be/Wx0eNaGzAZU)  
 [Unix is my ide](https://mkaz.blog/code/unix-is-my-ide/)  
 [Home .git](https://martinovic.blog/post/home_git/)  
