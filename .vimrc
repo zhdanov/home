@@ -29,8 +29,20 @@ function! XTermPasteBegin()
 endfunction
 " end set paste
 
-" git blame for selected line
+" git blame for selected lines (visal mode)
+" select lines and press \ + b
 vnoremap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 
 " cursor on last position
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+" remove last spaces in the line
+autocmd BufWritePre *.{bash,php,js,css} :%s/\s\+$//e
+
+" search down into subfolders
+" provides tab-completion for all file-related tasks
+" :find
+set path+=**
+
+" display all matching files when we tab complete
+set wildmenu
