@@ -16,12 +16,12 @@ general {
         interval = 1
 }
 
+order += "tztime local"
 order += "volume master"
 order += "load"
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
-order += "tztime local"
 #order += "wireless _first_"
 #order += "ethernet _first_"
 #order += "battery all"
