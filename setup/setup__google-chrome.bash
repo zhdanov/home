@@ -21,7 +21,7 @@ if [[ ! -f "/etc/apt/sources.list.d/google-chrome.list" ]]; then
     rm google-chrome-stable_current_amd64.deb
 
     install_chrome_extension "eekailopagacbcdloonjhbiecobagjci" "Go Back With Backspace"
-    install_chrome_extension "kioijmpindokaaahaeigkkkbogccljhm" "DeadMouse"
+    install_chrome_extension "dbepggeogbaibhgnhhndojpepiihcmeb" "Vimium"
     install_chrome_extension "dcjichoefijpinlfnjghokpkojhlhkgl" "Notifier for Gmail"
     install_chrome_extension "omghfjlpggmjjaagoclmmobgdodcjboh" "Browsec"
     install_chrome_extension "gighmmpiobklfepjocnamgkkbiglidom" "Adblock"
