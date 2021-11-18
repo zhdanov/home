@@ -10,6 +10,7 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod1
+set $mod2 Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -157,22 +158,22 @@ bar {
 }
 
 # copy to buffer
-bindsym Mod4+c exec xclip -o | xclip -selection clipboard -i
+bindsym $mod2+c exec xclip -o | xclip -selection clipboard -i
 
 # lock screen
 bindsym Mod1+Control+l exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/%HOME_USER_NAME%/Pictures/background.png; setxkbmap 'us,%HOME_SECOND_KEYBOARD_LAYOUT%' ',winkeys' 'grp:win_space_toggle'"
 
 # screenshot
-bindsym --release Mod1+Control+4 exec "gnome-screenshot -a"
+bindsym --release $mod+Control+4 exec "gnome-screenshot -a"
 
 # cmd+X -> ctrl+X
-bindsym --release Mod4+r exec --no-startup-id xdotool key --clearmodifiers ctrl+r
-bindsym --release Mod4+q exec --no-startup-id xdotool key --clearmodifiers Mod1+shift+q
-bindsym --release Mod4+t exec --no-startup-id xdotool key --clearmodifiers ctrl+t
-bindsym --release Mod4+f exec --no-startup-id xdotool key --clearmodifiers ctrl+f
-bindsym --release Mod4+o exec --no-startup-id xdotool key --clearmodifiers ctrl+o
-bindsym --release Mod4+u exec --no-startup-id xdotool key --clearmodifiers ctrl+u
-bindsym --release Mod4+i exec --no-startup-id xdotool key --clearmodifiers ctrl+shift+i
+bindsym --release $mod2+r exec --no-startup-id xdotool key --clearmodifiers ctrl+r
+bindsym --release $mod2+q exec --no-startup-id xdotool key --clearmodifiers $mod+shift+q
+bindsym --release $mod2+t exec --no-startup-id xdotool key --clearmodifiers ctrl+t
+bindsym --release $mod2+f exec --no-startup-id xdotool key --clearmodifiers ctrl+f
+bindsym --release $mod2+o exec --no-startup-id xdotool key --clearmodifiers ctrl+o
+bindsym --release $mod2+u exec --no-startup-id xdotool key --clearmodifiers ctrl+u
+bindsym --release $mod2+i exec --no-startup-id xdotool key --clearmodifiers ctrl+shift+i
 
 # pulse audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
@@ -181,33 +182,33 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 
 # workspace 1 browser
 assign [title="Google Chrome"] 91:browser
-bindsym Mod4+1 exec app-workspace google-chrome 91:browser
+bindsym $mod2+1 exec app-workspace google-chrome 91:browser
 
 # workspace 2 master
 exec --no-startup-id i3-msg "workspace 92:master; exec gnome-terminal"
-bindsym Mod4+2 exec i3-msg "workspace 92:master"
+bindsym $mod2+2 exec i3-msg "workspace 92:master"
 
 # workspace 3 prod
-bindsym Mod4+3 exec i3-msg "workspace 93:prod"
+bindsym $mod2+3 exec i3-msg "workspace 93:prod"
 
 # workspace 4 nemo 
 assign [title="Home"] 94:files
-bindsym Mod4+4 exec app-workspace nemo 94:files
+bindsym $mod2+4 exec app-workspace nemo 94:files
 
 # workspace 5 q/host
 exec --no-startup-id i3-msg "workspace 95:q/host; exec gnome-terminal"
-bindsym Mod4+5 exec i3-msg "workspace 95:q/host"
-bindsym Mod1+q exec i3-msg "workspace 95:q/host"
+bindsym $mod2+5 exec i3-msg "workspace 95:q/host"
+bindsym $mod+q exec i3-msg "workspace 95:q/host"
 
 # workspace 6 z/workspace
 assign [title="Mozilla Firefox"] 96:z/workspace
-bindsym Mod4+6 exec app-workspace firefox 96:z/workspace
-bindsym Mod1+z exec app-workspace firefox 96:z/workspace
+bindsym $mod2+6 exec app-workspace firefox 96:z/workspace
+bindsym $mod+z exec app-workspace firefox 96:z/workspace
 
 # workspace 7 board
 assign [title="Yandex Browser"] 96:board
-bindsym Mod4+7 exec app-workspace yandex-browser 96:board
+bindsym $mod2+7 exec app-workspace yandex-browser 96:board
 
 # workspace 8 database
 assign [title="DBeaver"] 98:database
-bindsym Mod4+8 exec app-workspace dbeaver-ce 98:database
+bindsym $mod2+8 exec app-workspace dbeaver-ce 98:database
