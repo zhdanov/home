@@ -45,7 +45,7 @@ Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/h
 [werf](https://werf.io/documentation/v1.2/quickstart.html)  
 [bem](https://en.bem.info/methodology/key-concepts/)  
 
-## This repository is inspired
+## This repository was inspired
 [i3wm screencast](https://youtu.be/Wx0eNaGzAZU)  
 [Unix is my ide](https://mkaz.blog/code/unix-is-my-ide/)  
 [Home .git](https://martinovic.blog/post/home_git/)  
