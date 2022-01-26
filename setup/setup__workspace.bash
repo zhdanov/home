@@ -7,6 +7,7 @@ set -eux
 . setup__packages.bash
 
 . setup__configure-ssh.bash
+. setup__configure-resolved.bash
 . setup__configure-laptop.bash
 . setup__configure-vim.bash
 . setup__configure-visudo.bash
