@@ -22,6 +22,24 @@ pushd "$(dirname "$0")"
         export HOME_USER_NAME=$HOME_USER_NAME
 
         pushd $HOME/workspace/$1/$appname
+
+            if [[ -d "./.git" ]]; then
+                if [ $shortenv == "prod" ]; then
+                    if git show-ref -q --heads main; then
+                        git checkout main
+                    fi
+                    if git show-ref -q --heads master; then
+                        git checkout master
+                    fi
+                fi
+
+                if [ $shortenv == "dev" ]; then
+                    if git show-ref -q --heads develop; then
+                        git checkout develop
+                    fi
+                fi
+            fi
+
             if [[ -f "./.helm/predeploy.bash" ]]; then
                 ./.helm/predeploy.bash
             fi
