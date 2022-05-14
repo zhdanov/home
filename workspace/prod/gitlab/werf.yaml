@@ -5,18 +5,17 @@ deploy:
   namespaceSlug: false
 
 ---
-image: {{ env "appname" }}-ce
+image: {{ env "appname" }}_ce
 from: gitlab/gitlab-ce:13.7.4-ce.0
 
 ---
-image: {{ env "appname" }}-runner
+image: {{ env "appname" }}_runner
 from: gitlab/gitlab-runner:alpine-v13.8.0
 ansible:
   setup:
   - name: local hostname
     shell: |
       echo "$(getent hosts {{ env "appname" }}-{{ env "environment" }}.{{ env "appname" }}-{{ env "environment" }} | awk '{ print $1 }')    {{ env "appname" }}-{{ env "environment" }}.loc" >> /etc/hosts
-
 ---
 {{ $tpl := .Files.Get ".werf/common/wait-http-200.yaml" }}
 {{ tpl $tpl . }}

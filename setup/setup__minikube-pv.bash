@@ -5,12 +5,10 @@ sudo sed -i -e '/^.*data-store.*$/d' /etc/exports
 for environment in `ls $HOME/workspace`; do
     for appname in `ls $HOME/workspace/$environment`; do
 
-        shortenv $environment
-
-        if [[ ! -d "$HOME/data-store/$appname-$shortenv" ]]; then
-            mkdir -p "$HOME/data-store/$appname-$shortenv"
+        if [[ ! -d "$HOME/data-store/$appname-$environment" ]]; then
+            mkdir -p "$HOME/data-store/$appname-$environment"
         fi
-        echo "$HOME/data-store/$appname-$shortenv "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
+        echo "$HOME/data-store/$appname-$environment "`minikube ip`"(rw,sync,no_root_squash,no_subtree_check)" | sudo tee -a /etc/exports
 
     done
 done
@@ -20,20 +18,18 @@ sudo systemctl restart nfs-kernel-server
 for environment in `ls $HOME/workspace`; do
     for appname in `ls $HOME/workspace/$environment`; do
 
-        shortenv $environment
-
-        if ! kubectl get namespaces | grep -q "$appname-$shortenv"
+        if ! kubectl get namespaces | grep -q "$appname-$environment"
         then
-            kubectl create namespace "$appname-$shortenv"
+            kubectl create namespace "$appname-$environment"
         fi
 
-        if ! kubectl --namespace $appname-$shortenv get pv | grep -q "$appname-$shortenv"
+        if ! kubectl --namespace $appname-$environment get pv | grep -q "$appname-$environment"
         then
-            cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
+            cat <<EOF | kubectl --namespace $appname-$environment apply -f -
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-$appname-$shortenv
+  name: nfs-pv-$appname-$environment
 spec:
   storageClassName: manual
   capacity:
@@ -43,19 +39,19 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     server: host.minikube.internal
-    path: $HOME/data-store/$appname-$shortenv
+    path: $HOME/data-store/$appname-$environment
 EOF
         fi
 
-        until kubectl -n "$appname-$shortenv" get pv | grep -q $appname-$shortenv; do sleep 1; done
+        until kubectl -n "$appname-$environment" get pv | grep -q $appname-$environment; do sleep 1; done
 
-        if ! kubectl --namespace $appname-$shortenv get pvc | grep -q "$appname-$shortenv"
+        if ! kubectl --namespace $appname-$environment get pvc | grep -q "$appname-$environment"
         then
-            cat <<EOF | kubectl --namespace $appname-$shortenv apply -f -
+            cat <<EOF | kubectl --namespace $appname-$environment apply -f -
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: nfs-pvc-$appname-$shortenv
+  name: nfs-pvc-$appname-$environment
 spec:
   storageClassName: manual
   accessModes:
@@ -63,11 +59,11 @@ spec:
   resources:
     requests:
       storage: $HOME_MINIKUBE_PV_SIZE
-  volumeName: "nfs-pv-$appname-$shortenv"
+  volumeName: "nfs-pv-$appname-$environment"
 EOF
         fi
 
-        until kubectl -n "$appname-$shortenv" get pvc | grep -q $appname-$shortenv; do sleep 1; done
+        until kubectl -n "$appname-$environment" get pvc | grep -q $appname-$environment; do sleep 1; done
 
     done
 done

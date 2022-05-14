@@ -19,7 +19,3 @@ fi
 # kubernetes
 source <(kubectl completion bash)
 complete -F __start_kubectl k
-
-# werf
-export PATH=$PATH:$HOME/bin
-. $(multiwerf use 1.1 stable --as-file)

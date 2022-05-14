@@ -1,24 +1,24 @@
-{{ $_ := env "environment" | set . "env" }}
+{{ $_ := .Values.werf.env | set . "env" }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ .Chart.Name }}-{{ env "environment" }}
+  name: {{ .Chart.Name }}-{{ .Values.werf.env }}
 spec:
-  serviceName: {{ .Chart.Name }}-{{ env "environment" }}
+  serviceName: {{ .Chart.Name }}-{{ .Values.werf.env }}
   replicas: 1
   selector:
       matchLabels:
-        app: {{ .Chart.Name }}-{{ env "environment" }}
+        app: {{ .Chart.Name }}-{{ .Values.werf.env }}
   updateStrategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}-{{ env "environment" }}
+        app: {{ .Chart.Name }}-{{ .Values.werf.env }}
     spec:
       containers:
       - name: gitlab-ce
-        {{ tuple (printf "%s-%s" .Chart.Name "ce") . | werf_container_image }}
+        image: {{ .Values.werf.image.gitlab_ce }}
         ports:
         - name: http
           containerPort: 80
@@ -50,4 +50,4 @@ spec:
       volumes:
       - name: data-store
         persistentVolumeClaim:
-          claimName: nfs-pvc-{{ .Chart.Name }}-{{ env "environment" }}
+          claimName: nfs-pvc-{{ .Chart.Name }}-{{ .Values.werf.env }}
