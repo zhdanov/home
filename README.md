@@ -4,7 +4,7 @@
 
 Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my home directory for deploying the desktop environment. Infrastructure as code. Ubuntu 20.04. See the [documentation](https://jupiter.solutions/home/docs/).
 
-Last stable version: [1.2.2](https://github.com/zhdanov/home/releases/tag/1.2.2)
+Last stable version: [1.3.1](https://github.com/zhdanov/home/releases/tag/1.3.1)
 
 ## Getting started
 1. Init home directory
