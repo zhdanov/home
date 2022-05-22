@@ -20,6 +20,15 @@ Yandex.Disk
 Dropbox
 )
 
+HOME_USER_NAME=$1
+
+
+if [[ $# -ne 1 ]]; then
+    echo "usage:"
+    echo "$0 username"
+    exit 0
+fi
+
 
 pushd "$(dirname "$0")"
 
@@ -189,6 +198,7 @@ $item.zip was not created"
         # pull git-store
         for repo in `ls $BACKUP_GIT_STORE_PATH`; do
             pushd $BACKUP_GIT_STORE_PATH/$repo
+                git config --global --add safe.directory $BACKUP_GIT_STORE_PATH/$repo
                 git pull origin $(git symbolic-ref --short HEAD)
             popd
         done
