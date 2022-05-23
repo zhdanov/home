@@ -20,15 +20,13 @@ Yandex.Disk
 Dropbox
 )
 
-HOME_USER_NAME=$1
-
-
 if [[ $# -ne 1 ]]; then
     echo "usage:"
     echo "$0 username"
     exit 0
 fi
 
+HOME_USER_NAME=$1
 
 pushd "$(dirname "$0")"
 

@@ -1,4 +1,13 @@
 #!/bin/bash
+
+if [[ $# -ne 1 ]]; then
+    echo "usage:"
+    echo "$0 username"
+    exit 0
+fi
+
+HOME_USER_NAME=$1
+
 pushd "$(dirname "$0")"
 
     . setup_def.bash
@@ -35,7 +44,8 @@ EOF
 
     fi
 
-    if [ $SETUP_TYPE == "master" ] && [ ! -d "/opt/dropbox" ]; then
+    # Run /opt/dropbox/dropboxd for connect dropbox to computer
+    if [ ! -d "/opt/dropbox" ]; then
         wget https://www.dropbox.com/download?plat=lnx.x86_64 -O dropbox-linux.tar.gz
 
         sudo mkdir /opt/dropbox/
@@ -62,11 +72,11 @@ EOF
 
         # update dropbox
         sudo sed -i -e '/^.*setup\_\_update\-dropbox\.bash$/d' /etc/crontab
-        echo "30 1 * * * root /home/zhdanov/setup/setup__update-dropbox.bash" | sudo tee -a /etc/crontab
+        echo "30 1 * * * root /home/$HOME_USER_NAME/setup/setup__update-dropbox.bash" | sudo tee -a /etc/crontab
 
         # dropbox does not deserve to work at other times
         sudo sed -i -e '/^.*systemctl start dropbox$/d' /etc/crontab
-        echo "30 2 * * * root systemctl start dropbox" | sudo tee -a /etc/crontab
+        echo "30 5 * * * root systemctl start dropbox" | sudo tee -a /etc/crontab
         sudo sed -i -e '/^.*systemctl stop dropbox$/d' /etc/crontab
         echo "30 8 * * * root systemctl stop dropbox" | sudo tee -a /etc/crontab
 
