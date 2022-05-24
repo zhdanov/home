@@ -17,6 +17,7 @@ general {
 }
 
 order += "tztime local"
+order += "battery all"
 order += "volume master"
 order += "load"
 order += "cpu_usage"
@@ -24,7 +25,6 @@ order += "memory"
 order += "disk /"
 #order += "wireless _first_"
 #order += "ethernet _first_"
-#order += "battery all"
 
 memory {
     format= "📦 %available"
@@ -44,7 +44,7 @@ ethernet _first_ {
 }
 
 battery all {
-        format = "%status %percentage %remaining"
+        format = "🔋 %status %percentage %remaining"
 }
 
 tztime local {
