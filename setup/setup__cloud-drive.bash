@@ -72,7 +72,7 @@ EOF
 
         # update dropbox
         sudo sed -i -e '/^.*setup\_\_update\-dropbox\.bash$/d' /etc/crontab
-        echo "30 1 * * * root /home/$HOME_USER_NAME/setup/setup__update-dropbox.bash" | sudo tee -a /etc/crontab
+        echo "30 4 * * * root /home/$HOME_USER_NAME/setup/setup__update-dropbox.bash" | sudo tee -a /etc/crontab
 
         # dropbox does not deserve to work at other times
         sudo sed -i -e '/^.*systemctl start dropbox$/d' /etc/crontab
