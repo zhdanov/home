@@ -197,6 +197,7 @@ $item.zip was not created"
         for repo in `ls $BACKUP_GIT_STORE_PATH`; do
             pushd $BACKUP_GIT_STORE_PATH/$repo
                 git config --global --add safe.directory $BACKUP_GIT_STORE_PATH/$repo
+                git reset --hard
                 git pull origin $(git symbolic-ref --short HEAD)
             popd
         done
