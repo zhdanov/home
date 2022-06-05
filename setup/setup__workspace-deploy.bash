@@ -27,7 +27,7 @@ pushd "$(dirname "$0")"
                     fi
                 fi
 
-                if [ $environment == "development" ]; then
+                if [ $environment == "dev" ]; then
                     if git show-ref -q --heads develop; then
                         git checkout develop
                     fi
