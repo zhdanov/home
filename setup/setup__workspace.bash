@@ -10,18 +10,15 @@ set -eux
 . setup__configure-laptop.bash
 . setup__configure-vim.bash
 . setup__configure-visudo.bash
+. setup__kubernetes.bash
+. setup__helm.bash
+. setup__minikube.bash
+. setup__werf.bash
+. setup__hakunamatata.bash
 
 if [[ $SETUP_TYPE == "master" ]]; then
 
-    . setup__kubernetes.bash
-    . setup__helm.bash
-    . setup__minikube.bash
-    . setup__werf.bash
-    . setup__hakunamatata.bash
-    #./setup__cloud-drive.bash
-    #. setup__backup.bash
-
-    #./setup__workspace-active-projects.bash
-    #./setup__workspace-deploy.bash
+    . setup__minikube-start.bash
+    ./setup__workspace-deploy.bash prod gitlab
 
 fi

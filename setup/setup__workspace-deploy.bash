@@ -3,6 +3,7 @@ pushd "$(dirname "$0")"
 
     . setup_def.bash
     . setup__minikube-pv.bash
+    ./setup__workspace-active-projects.bash
 
     kubectl config use-context $HOME_KUBECONTEXT
 

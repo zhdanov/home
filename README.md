@@ -23,8 +23,14 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ```
 3. Run [./setup/setup.bash](https://github.com/zhdanov/home/blob/main/setup/setup.bash)
 ```bash
-./setup/setup.bash slave   # for workstation
-./setup/setup.bash master  # for minikube
+./setup/setup.bash slave   # install/update software, dotfiles, configure system
+./setup/setup.bash master  # start minikube, deploy gitlab
+
+# optional
+./setup__cloud-drive.bash  # Yandex Disk, Dropbox
+./setup__notepad.bash      # fuzzy search, ripgrep
+./setup__backup.bash       # night backup
+./setup__commitizen.bash   # commitizen
 ```
 
 Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/) and [configure backup](https://jupiter.solutions/home/docs/backup/).
