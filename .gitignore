@@ -14,5 +14,6 @@ setup/setup_def_custom.bash
 !workspace
 !data-store
 !bin
-bin/multiwerf
+bin/trdl
+bin/install.sh
 !hakunamatata
