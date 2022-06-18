@@ -198,6 +198,7 @@ $item.zip was not created"
             pushd $BACKUP_GIT_STORE_PATH/$repo
                 git config --global --add safe.directory $BACKUP_GIT_STORE_PATH/$repo
                 git reset --hard
+                git fetch origin
                 git pull origin $(git symbolic-ref --short HEAD)
             popd
         done
