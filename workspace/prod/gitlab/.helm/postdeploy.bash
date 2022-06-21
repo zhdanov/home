@@ -13,5 +13,7 @@ if ! grep -q "Host gitlab-prod" $HOME/.ssh/config; then
     cat <<EOF | sudo tee $HOME/.ssh/config
 Host gitlab-prod.loc
     Port 2222
+Host gitlab-prod.gitlab-prod
+    Port 2222
 EOF
 fi
