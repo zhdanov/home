@@ -20,7 +20,7 @@ export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
 if [ -t 1 ]
 then
   bind -x '\"\C-p\": fzf_path=\$(fzf); vim \$fzf_path; history -s vim \$fzf_path'
-  bind -x '\"\C-h\": fzf_path=`pwd`;cd \$HOME/Yandex.Disk/notepad/;fzf_path_vim=\$(fzf);vim \$fzf_path_vim;cd \$fzf_path;history -s vim \$HOME/Yandex.Disk/notepad/\$fzf_path_vim'
+  bind -x '\"\C-h\": fzf_path=`pwd`;cd \$HOME/Yandex.Disk/notepad/;fzf_path_vim=\$(fzf);vim \$fzf_path_vim;cd -;history -s vim \$HOME/Yandex.Disk/notepad/\$fzf_path_vim'
 fi" >> $HOME/.bashrc
     fi
 
