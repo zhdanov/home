@@ -35,6 +35,19 @@ pushd "$(dirname "$0")"
                 fi
             fi
 
+            # hakunamatata builds
+            for repo in `grep hakunamatata werf.yaml`; do \
+                repo=${repo#*from:} && [[ "$repo" != "" ]] && res=`docker pull $repo > /dev/null && echo 0 || echo 1` && [[ $res == 1 ]] && \
+                repo_dir=${repo%_latest} && repo_dir=${repo_dir#*:} && [[ "$repo_dir" != "" ]] && pushd $HOME/develop/hakunamatata/werf-builds/$repo_dir && \
+                werf build --kube-config=$HOME_KUBECONFIG --env=$environment \
+                --add-custom-tag=%image%_latest \
+                --parallel=false \
+                --insecure-registry=true \
+                --skip-tls-verify-registry=true \
+                --repo=$HOME_REGISTRY/hakunamatata \
+                && popd \
+            ; done
+
             if [[ -f "./.helm/predeploy.bash" ]]; then
                 ./.helm/predeploy.bash
             fi
