@@ -10,6 +10,10 @@ if grep -q "%HOME_SECOND_KEYBOARD_LAYOUT%" $HOME/.config/i3/config; then
     sed -i "s/%HOME_SECOND_KEYBOARD_LAYOUT%/$HOME_SECOND_KEYBOARD_LAYOUT/" $HOME/.config/i3/config
 fi
 
+if ! grep video /etc/group | grep -q $USER; then
+    sudo usermod -aG video $USER
+fi
+
 cat <<EOF | sudo tee /etc/i3status.conf
 general {
         colors = true
