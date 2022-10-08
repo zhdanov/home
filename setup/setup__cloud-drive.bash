@@ -78,7 +78,7 @@ EOF
         sudo sed -i -e '/^.*systemctl start dropbox$/d' /etc/crontab
         echo "30 5 * * * root systemctl start dropbox" | sudo tee -a /etc/crontab
         sudo sed -i -e '/^.*systemctl stop dropbox$/d' /etc/crontab
-        echo "30 8 * * * root systemctl stop dropbox" | sudo tee -a /etc/crontab
+        echo "30 6 * * * root systemctl stop dropbox" | sudo tee -a /etc/crontab
 
         sudo systemctl restart cron
 
