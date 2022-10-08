@@ -184,6 +184,9 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 
+# nm-applet
+exec_always --no-startup-id "pgrep nm-applet || nm-applet &"
+
 # workspace 1 browser
 assign [title="Google Chrome"] 91:browser
 bindsym $mod2+1 exec app-workspace google-chrome 91:browser
