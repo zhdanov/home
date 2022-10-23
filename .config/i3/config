@@ -207,10 +207,10 @@ exec --no-startup-id i3-msg "workspace 95:q/host; exec gnome-terminal"
 bindsym $mod2+5 exec i3-msg "workspace 95:q/host"
 bindsym $mod+q exec i3-msg "workspace 95:q/host"
 
-# workspace 6 z/workspace
-assign [title="Mozilla Firefox"] 96:z/workspace
-bindsym $mod2+6 exec app-workspace firefox 96:z/workspace
-bindsym $mod+z exec app-workspace firefox 96:z/workspace
+# workspace 6 z/menu
+exec --no-startup-id i3-msg "workspace 96:z/menu; exec gnome-terminal"
+bindsym $mod2+6 exec i3-msg "workspace 96:z/menu"
+bindsym $mod+z exec i3-msg "workspace 96:z/menu"
 
 # workspace 7 board
 assign [title="Yandex Browser"] 96:board
@@ -219,3 +219,8 @@ bindsym $mod2+7 exec app-workspace yandex-browser 96:board
 # workspace 8 database
 assign [title="DBeaver"] 98:database
 bindsym $mod2+8 exec app-workspace dbeaver-ce 98:database
+
+# workspace 9 i/inbox
+exec --no-startup-id i3-msg "workspace 99:i/inbox; exec gnome-terminal"
+bindsym $mod2+9 exec i3-msg "workspace 99:i/inbox"
+bindsym $mod+i exec i3-msg "workspace 99:i/inbox"
