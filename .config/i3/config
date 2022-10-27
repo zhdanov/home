@@ -164,7 +164,7 @@ bindsym $mod2+c exec xclip -o | xclip -selection clipboard -i
 bindsym Mod1+Control+l exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/%HOME_USER_NAME%/Pictures/background.png; setxkbmap 'us,%HOME_SECOND_KEYBOARD_LAYOUT%' ',winkeys' 'grp:win_space_toggle'"
 
 # screenshot
-bindsym --release $mod+Control+4 exec "gnome-screenshot -a"
+bindsym --release $mod+Control+4 exec --no-startup-id maim --select "/home/$USER/Pictures/screenshot-$(date '+%Y-%m-%d--%H-%M-%S').png"
 
 # cmd+X -> ctrl+X
 bindsym --release $mod2+r exec --no-startup-id xdotool key --clearmodifiers ctrl+r
