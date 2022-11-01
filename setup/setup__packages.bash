@@ -11,6 +11,7 @@ sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader aud
 . setup__opera.bash
 . setup__yandex-browser.bash
 
+sudo snap install standard-notes
 sudo snap install dbeaver-ce
 sudo snap install zoom-client
 

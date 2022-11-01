@@ -188,39 +188,42 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 exec_always --no-startup-id "pgrep nm-applet || nm-applet &"
 
 # workspace 1 browser
-assign [title="Google Chrome"] 91:browser
-bindsym $mod2+1 exec app-workspace google-chrome 91:browser
+assign [title="Google Chrome"] 81:browser
+bindsym $mod2+1 exec app-workspace google-chrome 81:browser
 
 # workspace 2 master
-exec --no-startup-id i3-msg "workspace 92:master; exec gnome-terminal"
-bindsym $mod2+2 exec i3-msg "workspace 92:master"
+exec --no-startup-id i3-msg "workspace 82:master; exec gnome-terminal"
+bindsym $mod2+2 exec i3-msg "workspace 82:master"
 
 # workspace 3 prod
-bindsym $mod2+3 exec i3-msg "workspace 93:prod"
+bindsym $mod2+3 exec i3-msg "workspace 83:prod"
 
 # workspace 4 nemo 
-assign [title="Home"] 94:files
-bindsym $mod2+4 exec app-workspace nemo 94:files
+assign [title="Home"] 84:files
+bindsym $mod2+4 exec app-workspace nemo 84:files
 
 # workspace 5 q/host
-exec --no-startup-id i3-msg "workspace 95:q/host; exec gnome-terminal"
-bindsym $mod2+5 exec i3-msg "workspace 95:q/host"
-bindsym $mod+q exec i3-msg "workspace 95:q/host"
+exec --no-startup-id i3-msg "workspace 85:q/host; exec gnome-terminal"
+bindsym $mod2+5 exec i3-msg "workspace 85:q/host"
+bindsym $mod+q exec i3-msg "workspace 85:q/host"
 
 # workspace 6 z/menu
-exec --no-startup-id i3-msg "workspace 96:z/menu; exec gnome-terminal"
-bindsym $mod2+6 exec i3-msg "workspace 96:z/menu"
-bindsym $mod+z exec i3-msg "workspace 96:z/menu"
+exec --no-startup-id i3-msg "workspace 86:z/menu; exec gnome-terminal"
+bindsym $mod2+6 exec i3-msg "workspace 86:z/menu"
+bindsym $mod+z exec i3-msg "workspace 86:z/menu"
 
 # workspace 7 board
-assign [title="Yandex Browser"] 96:board
-bindsym $mod2+7 exec app-workspace yandex-browser 96:board
+assign [title="Yandex Browser"] 86:board
+bindsym $mod2+7 exec app-workspace yandex-browser 86:board
 
 # workspace 8 database
-assign [title="DBeaver"] 98:database
+assign [title="DBeaver"] 88:database
 bindsym $mod2+8 exec app-workspace dbeaver-ce 98:database
 
 # workspace 9 i/inbox
-exec --no-startup-id i3-msg "workspace 99:i/inbox; exec gnome-terminal"
-bindsym $mod2+9 exec i3-msg "workspace 99:i/inbox"
-bindsym $mod+i exec i3-msg "workspace 99:i/inbox"
+exec --no-startup-id i3-msg "workspace 89:i/inbox; exec gnome-terminal"
+bindsym $mod2+9 exec i3-msg "workspace 89:i/inbox"
+bindsym $mod+i exec i3-msg "workspace 89:i/inbox"
+
+# workspace 10 n/notes
+bindsym $mod+n exec i3-msg "workspace 90:n/notes"
