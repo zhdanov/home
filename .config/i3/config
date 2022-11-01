@@ -188,8 +188,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 exec_always --no-startup-id "pgrep nm-applet || nm-applet &"
 
 # workspace 1 browser
-assign [title="Google Chrome"] 81:browser
-bindsym $mod2+1 exec app-workspace google-chrome 81:browser
+assign [title="Chromium"] 81:browser
+bindsym $mod2+1 exec app-workspace chromium 81:browser
 
 # workspace 2 master
 exec --no-startup-id i3-msg "workspace 82:master; exec gnome-terminal"
