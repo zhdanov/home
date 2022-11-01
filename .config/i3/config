@@ -187,6 +187,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 # nm-applet
 exec_always --no-startup-id "pgrep nm-applet || nm-applet &"
 
+# volume control
+exec_always --no-startup-id "pgrep pasystray || pasystray &"
+
 # workspace 1 browser
 assign [title="Chromium"] 81:browser
 bindsym $mod2+1 exec app-workspace chromium 81:browser
