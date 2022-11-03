@@ -10,6 +10,11 @@ if grep -q "%HOME_SECOND_KEYBOARD_LAYOUT%" $HOME/.config/i3/config; then
     sed -i "s/%HOME_SECOND_KEYBOARD_LAYOUT%/$HOME_SECOND_KEYBOARD_LAYOUT/" $HOME/.config/i3/config
 fi
 
+if grep -q "%HOME_THIRD_KEYBOARD_LAYOUT%" $HOME/.config/i3/config; then
+    echo "changed %HOME_THIRD_KEYBOARD_LAYOUT% to $HOME_THIRD_KEYBOARD_LAYOUT in .config/i3/config"
+    sed -i "s/%HOME_THIRD_KEYBOARD_LAYOUT%/$HOME_THIRD_KEYBOARD_LAYOUT/" $HOME/.config/i3/config
+fi
+
 if ! grep video /etc/group | grep -q $USER; then
     sudo usermod -aG video $USER
 fi

@@ -166,6 +166,9 @@ bindsym Mod1+Control+l exec "setxkbmap us; i3lock -n -u --pointer=win --image=/h
 # screenshot
 bindsym --release $mod+Control+4 exec --no-startup-id maim --select "/home/$USER/Pictures/screenshot-$(date '+%Y-%m-%d--%H-%M-%S').png"
 
+# third layout
+bindsym $mod2+z exec --no-startup-id "layout-switch us,%HOME_SECOND_KEYBOARD_LAYOUT% %HOME_THIRD_KEYBOARD_LAYOUT%"
+
 # cmd+X -> ctrl+X
 bindsym --release $mod2+r exec --no-startup-id xdotool key --clearmodifiers ctrl+r
 bindsym --release $mod2+q exec --no-startup-id xdotool key --clearmodifiers $mod+shift+q

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-app=$1
-workspace=$2
+APP=$1
+WORKSPACE=$2
 
 count=`i3-msg -t get_workspaces | grep $2 | wc -l`
 if [[ $count -eq "0" ]]; then
-    $app &
+    $APP &
 fi
 
-i3-msg "workspace $workspace"
+i3-msg "workspace $WORKSPACE"
