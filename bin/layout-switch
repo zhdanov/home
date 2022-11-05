@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DEFAULT_LAYOUT=$1
+SWITCH_LAYOUT=$2
+
+CURRENT_LAYOUT_IS_SWITCH_LAYOUT=`setxkbmap -query | grep layout | grep "$SWITCH_LAYOUT" | wc -l`
+
+[[ "$CURRENT_LAYOUT_IS_SWITCH_LAYOUT" == 1 ]] && setxkbmap "$DEFAULT_LAYOUT"
+[[ "$CURRENT_LAYOUT_IS_SWITCH_LAYOUT" == 0 ]] && setxkbmap "$SWITCH_LAYOUT"
