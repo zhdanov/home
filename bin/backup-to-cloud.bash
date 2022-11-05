@@ -48,7 +48,7 @@ pushd "$(dirname "$0")"
 
     BACKUP_GIT_STORE_PATH=/home/$HOME_USER_NAME/Yandex.Disk/backup/git-store
 
-    # make backups
+    # make environment backups
     for environment in `ls ../data-store`; do
         if [[ -f "../data-store/$environment/backup-list.txt" ]]; then
 
@@ -94,7 +94,7 @@ $item.zip was not created"
         fi
     done
 
-    # copy backups
+    # copy environment backups
     for environment in `ls ../data-store`; do
         if [[ -f "../data-store/$environment/backup-list.txt" ]]; then
 
@@ -158,6 +158,14 @@ $item.zip was not created"
         fi
     done
 
+    # copy videos
+    for clouddir in "${CLOUD_DIR_LIST[@]}"
+    do
+        if [[ -d /home/$HOME_USER_NAME/Videos ]]; then
+            rsync -a /home/$HOME_USER_NAME/Videos ../$clouddir/backup
+        fi
+    done
+
     # clean backups
     for environment in `ls ../data-store`; do
         if ls ../data-store/$environment/ | grep -qoP '\.zip|\.tar$'
@@ -192,6 +200,7 @@ $item.zip was not created"
         fi
     done
 
+    # update git-store
     if [[ -d "$BACKUP_GIT_STORE_PATH" ]]; then
         # pull git-store
         for repo in `ls $BACKUP_GIT_STORE_PATH`; do
