@@ -16,6 +16,7 @@ sudo apt -y install chromium-browser
 sudo snap install standard-notes
 sudo snap install dbeaver-ce
 sudo snap install zoom-client
+sudo snap set system refresh.timer=3:00-5:00
 
 # php
 sudo apt -y install php-cli php-dom php-mbstring php-curl
