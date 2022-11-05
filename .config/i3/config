@@ -115,7 +115,7 @@ bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+#bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -166,8 +166,11 @@ bindsym Mod1+Control+l exec "setxkbmap us; i3lock -n -u --pointer=win --image=/h
 # screenshot
 bindsym --release $mod+Control+4 exec --no-startup-id maim --select "/home/$USER/Pictures/screenshot-$(date '+%Y-%m-%d--%H-%M-%S').png"
 
-# third layout
-bindsym $mod2+z exec --no-startup-id "layout-switch us,%HOME_SECOND_KEYBOARD_LAYOUT% %HOME_THIRD_KEYBOARD_LAYOUT%"
+# switch keyboard layout
+bindcode 108 exec --no-startup-id layout-switch us %HOME_SECOND_KEYBOARD_LAYOUT%
+
+# third keyboard layout
+bindsym $mod+shift+0 exec --no-startup-id setxkbmap "%HOME_THIRD_KEYBOARD_LAYOUT%"
 
 # cmd+X -> ctrl+X
 bindsym --release $mod2+r exec --no-startup-id xdotool key --clearmodifiers ctrl+r
