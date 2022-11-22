@@ -34,20 +34,26 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+Shift+q kill
+#key q
+bindcode $mod+Shift+24 kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# key d
+bindcode $mod+40 exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+# key j
+bindcode $mod+44 focus left
+# key k
+bindcode $mod+45 focus down
+# key l
+bindcode $mod+46 focus up
+# key ;
+bindcode $mod+47 focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -56,10 +62,14 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+# key j
+bindcode $mod+Shift+44 move left
+# key k
+bindcode $mod+Shift+45 move down
+# key l
+bindcode $mod+Shift+46 move up
+# key ;
+bindcode $mod+Shift+47 move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -68,18 +78,24 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+# key h
+bindcode $mod+43 split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+# key v
+bindcode $mod+55 split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# key f
+bindcode $mod+41 fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# key s
+bindcode $mod+39 layout stacking
+# key w
+bindcode $mod+25 layout tabbed
+# key e
+bindcode $mod+26 layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -88,7 +104,8 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+# key a
+bindcode $mod+38 focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -157,13 +174,13 @@ bar {
         strip_workspace_numbers yes
 }
 
-# lock screen
-bindsym Mod1+Control+l exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/%HOME_USER_NAME%/Pictures/background.png; setxkbmap 'us,%HOME_SECOND_KEYBOARD_LAYOUT%' ',winkeys' 'grp:win_space_toggle'"
+# lock screen (key l)
+bindcode Mod1+Control+46 exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/%HOME_USER_NAME%/Pictures/background.png; setxkbmap 'us,%HOME_SECOND_KEYBOARD_LAYOUT%' ',winkeys' 'grp:win_space_toggle'"
 
 # screenshot
 bindsym --release $mod+Control+4 exec --no-startup-id maim --select "/home/$USER/Pictures/screenshot-$(date '+%Y-%m-%d--%H-%M-%S').png"
 
-# switch second keyboard layout
+# switch second keyboard layout (key alt gr)
 bindcode 108 exec --no-startup-id layout-switch us %HOME_SECOND_KEYBOARD_LAYOUT%
 
 # switch third keyboard layout
@@ -209,16 +226,16 @@ bindsym $mod2+8 exec --no-startup-id app-workspace dbeaver-ce 98:database
 
 # workspace q/host
 exec --no-startup-id i3-msg "workspace 185:q/host; exec gnome-terminal"
-bindsym $mod+q exec i3-msg "workspace 185:q/host"
+bindcode $mod+24 exec i3-msg "workspace 185:q/host"
 
 # workspace z/menu
 exec --no-startup-id i3-msg "workspace 186:z/menu; exec gnome-terminal"
-bindsym $mod+z exec --no-startup-id i3-msg "workspace 186:z/menu"
+bindcode $mod+52 exec --no-startup-id i3-msg "workspace 186:z/menu"
 
 # workspace i/inbox
 exec --no-startup-id i3-msg "workspace 189:i/inbox; exec gnome-terminal"
-bindsym $mod+i exec --no-startup-id i3-msg "workspace 189:i/inbox"
+bindcode $mod+31 exec --no-startup-id i3-msg "workspace 189:i/inbox"
 
 # workspace n/notes
 assign [title="Standard Notes"] 190:n/notes
-bindsym $mod+n exec --no-startup-id app-workspace standard-notes 190:n/notes
+bindcode $mod+57 exec --no-startup-id app-workspace standard-notes 190:n/notes
