@@ -11,6 +11,7 @@ pushd "$(dirname "$0")"
     fi
 
     BACKUP_DIR_PATH=$HOME_CLOUD_DIR/backup
+    ARCHIVE_DIR_PATH=$HOME_CLOUD_DIR/archive
 
     for media in `ls /media/$HOME_USER_NAME/`; do
         if [ -d /media/$HOME_USER_NAME/$media/backup ]
@@ -19,6 +20,10 @@ pushd "$(dirname "$0")"
             [[ -d $BACKUP_DIR_PATH/yearly ]] && rsync -av $BACKUP_DIR_PATH/yearly /media/$HOME_USER_NAME/$media/backup/
             [[ -d $BACKUP_DIR_PATH/Videos ]] && rsync -av $BACKUP_DIR_PATH/Videos /media/$HOME_USER_NAME/$media/backup/
             [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && rsync -av $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
+        fi
+        if [ -d /media/$HOME_USER_NAME/$media/archive ]
+        then
+            [[ -d $ARCHIVE_DIR_PATH ]] && rsync -av $ARCHIVE_DIR_PATH /media/$HOME_USER_NAME/$media/
         fi
     done;
 
