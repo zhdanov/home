@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ACTIVE_PROJECT_LIST_PATH=$HOME/Yandex.Disk/active-project-list
+ACTIVE_PROJECT_LIST_PATH=$HOME/Yandex.Disk/deploy
 
 if [[ -d "$ACTIVE_PROJECT_LIST_PATH" ]]; then
     for repo in `ls $ACTIVE_PROJECT_LIST_PATH`; do
