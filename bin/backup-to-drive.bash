@@ -19,6 +19,7 @@ pushd "$(dirname "$0")"
             [[ -d $BACKUP_DIR_PATH/monthly ]] && rsync -av $BACKUP_DIR_PATH/monthly /media/$HOME_USER_NAME/$media/backup/
             [[ -d $BACKUP_DIR_PATH/yearly ]] && rsync -av $BACKUP_DIR_PATH/yearly /media/$HOME_USER_NAME/$media/backup/
             [[ -d $BACKUP_DIR_PATH/Videos ]] && rsync -av $BACKUP_DIR_PATH/Videos /media/$HOME_USER_NAME/$media/backup/
+            [[ -d $BACKUP_DIR_PATH/flow-unit-store ]] && rsync -av $BACKUP_DIR_PATH/Videos /media/$HOME_USER_NAME/$media/backup/
             [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && rsync -av $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
         fi
         if [ -d /media/$HOME_USER_NAME/$media/archive ]

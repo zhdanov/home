@@ -47,6 +47,7 @@ pushd "$(dirname "$0")"
     fi
 
     BACKUP_GIT_STORE_PATH=$HOME_CLOUD_DIR/backup/git-store
+    BACKUP_FLOW_UNIT_STORE_PATH=$HOME_CLOUD_DIR/backup/flow-unit-store
 
     # make environment backups
     for environment in `ls ../data-store`; do
@@ -232,6 +233,21 @@ $item.zip was not created"
             rm $GIT_STORE_BASENAME.zip
             zip -r $GIT_STORE_BASENAME.zip $GIT_STORE_BASENAME
         popd
+    fi
+
+    # update flow-unit-store
+    if [[ -d "$BACKUP_FLOW_UNIT_STORE_PATH" ]]; then
+        # pull git
+        for repo in `ls $BACKUP_FLOW_UNIT_STORE_PATH`; do
+            pushd $BACKUP_FLOW_UNIT_STORE_PATH/$repo
+                git config --global --add safe.directory $BACKUP_FLOW_UNIT_STORE_PATH/$repo
+                git reset --hard
+                git fetch origin
+                git pull origin $(git symbolic-ref --short HEAD)
+            popd
+        done
+
+        chown -R $HOME_USER_NAME:$HOME_USER_NAME $BACKUP_FLOW_UNIT_STORE_PATH
     fi
 
     # send errors to kibana
