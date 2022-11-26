@@ -1,13 +1,18 @@
 #!/bin/bash
 pushd "$(dirname "$0")"
 
+    . ../setup/setup_def.bash
+    if [[ -f "../setup/setup_def_custom.bash" ]]; then
+        . ../setup/setup_def_custom.bash
+    fi
+
     # notepad directory
-    if [[ ! -d "$HOME/Yandex.Disk/notepad" ]]; then
-        mkdir -p $HOME/Yandex.Disk/notepad
+    if [[ ! -d "$HOME_CLOUD_DIR/notepad" ]]; then
+        mkdir -p $HOME_CLOUD_DIR/notepad
     fi
 
     if [[ ! -f "$HOME/notepad" ]] && [[ ! -L "$HOME/notepad" ]]; then
-        ln -s $HOME/Yandex.Disk/notepad $HOME/notepad
+        ln -s $HOME_CLOUD_DIR/notepad $HOME/notepad
     fi
 
     # Ctrl+h fuzzy search in the notepad
@@ -20,7 +25,7 @@ export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
 if [ -t 1 ]
 then
   bind -x '\"\C-p\": fzf_path=\$(fzf); vim \$fzf_path; history -s vim \$fzf_path'
-  bind -x '\"\C-h\": fzf_path=`pwd`;cd \$HOME/Yandex.Disk/notepad/;fzf_path_vim=\$(fzf);vim \$fzf_path_vim;cd -;history -s vim \$HOME/Yandex.Disk/notepad/\$fzf_path_vim'
+  bind -x '\"\C-h\": fzf_path=`pwd`;cd \$HOME_CLOUD_DIR/notepad/;fzf_path_vim=\$(fzf);vim \$fzf_path_vim;cd -;history -s vim \$HOME_CLOUD_DIR/notepad/\$fzf_path_vim'
 fi" >> $HOME/.bashrc
     fi
 

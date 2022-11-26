@@ -46,7 +46,7 @@ pushd "$(dirname "$0")"
         cp /home/$HOME_USER_NAME/.kube/config /root/.kube/config
     fi
 
-    BACKUP_GIT_STORE_PATH=/home/$HOME_USER_NAME/Yandex.Disk/backup/git-store
+    BACKUP_GIT_STORE_PATH=$HOME_CLOUD_DIR/backup/git-store
 
     # make environment backups
     for environment in `ls ../data-store`; do

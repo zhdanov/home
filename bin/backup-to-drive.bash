@@ -10,7 +10,7 @@ pushd "$(dirname "$0")"
         . ../setup/setup_def_custom.bash
     fi
 
-    BACKUP_DIR_PATH=/home/$HOME_USER_NAME/Yandex.Disk/backup
+    BACKUP_DIR_PATH=$HOME_CLOUD_DIR/backup
 
     for media in `ls /media/$HOME_USER_NAME/`; do
         if [ -d /media/$HOME_USER_NAME/$media/backup ]
