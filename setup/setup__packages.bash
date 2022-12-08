@@ -7,6 +7,10 @@ sudo apt -y upgrade
 sudo apt -y install vim git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu
 sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader audacity growisofs peek screenkey cheese brightnessctl tcptrack pasystray samba
 
+# alacritty
+sudo add-apt-repository -y ppa:mmstick76/alacritty
+sudo apt install -y alacritty
+
 # browsers
 sudo apt -y install chromium-browser
 . setup__google-chrome.bash
