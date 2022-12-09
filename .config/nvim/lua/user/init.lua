@@ -4,6 +4,7 @@
 -- You can think of a Lua "table" as a dictionary like data structure the
 -- normal format is "key = value". These also handle array like data structures
 -- where a value with no key simply has an implicit numeric key
+
 local config = {
 
   -- Configure AstroNvim updates
@@ -331,6 +332,16 @@ local config = {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
+    vim.api.nvim_create_augroup("neotree", {})
+    vim.api.nvim_create_autocmd("UiEnter", {
+      desc = "Open Neotree automatically",
+      group = "neotree",
+      callback = function()
+        if vim.fn.argc() == 0 then
+          vim.cmd "Neotree toggle"
+        end
+      end,
+    })
   end,
 }
 
