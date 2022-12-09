@@ -206,7 +206,7 @@ assign [title="Chromium"] 81:browser
 bindsym $mod2+1 exec --no-startup-id app-workspace chromium 81:browser
 
 # workspace 2 master
-exec --no-startup-id i3-msg "workspace 82:master; exec gnome-terminal"
+exec --no-startup-id i3-msg "workspace 82:master; exec i3-sensible-terminal"
 bindsym $mod2+2 exec --no-startup-id i3-msg "workspace 82:master"
 
 # workspace 3 prod
@@ -225,15 +225,15 @@ assign [title="DBeaver"] 88:database
 bindsym $mod2+8 exec --no-startup-id app-workspace dbeaver-ce 98:database
 
 # workspace q/host
-exec --no-startup-id i3-msg "workspace 185:q/host; exec gnome-terminal"
+exec --no-startup-id i3-msg "workspace 185:q/host; exec i3-sensible-terminal"
 bindcode $mod+24 exec i3-msg "workspace 185:q/host"
 
 # workspace z/menu
-exec --no-startup-id i3-msg "workspace 186:z/menu; exec gnome-terminal"
+exec --no-startup-id i3-msg "workspace 186:z/menu; exec i3-sensible-terminal"
 bindcode $mod+52 exec --no-startup-id i3-msg "workspace 186:z/menu"
 
 # workspace i/inbox
-exec --no-startup-id i3-msg "workspace 189:i/inbox; exec gnome-terminal"
+exec --no-startup-id i3-msg "workspace 189:i/inbox; exec i3-sensible-terminal"
 bindcode $mod+31 exec --no-startup-id i3-msg "workspace 189:i/inbox"
 
 # workspace n/notes
