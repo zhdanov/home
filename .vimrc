@@ -1,6 +1,8 @@
 hi Visual cterm=reverse
 hi Visual ctermbg=NONE
 
+colorscheme solarized
+
 " searching
 set hlsearch
 set incsearch
