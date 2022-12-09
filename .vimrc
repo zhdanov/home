@@ -3,6 +3,9 @@ hi Visual ctermbg=NONE
 
 colorscheme solarized
 
+" navigation
+set scrolloff=8
+
 " searching
 set hlsearch
 set incsearch
@@ -20,6 +23,12 @@ set nopaste
 set nocompatible
 filetype plugin on
 
+" no .swp files
+set nobackup
+set noswapfile
+
+let mapleader = " "
+
 " begin set paste
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
@@ -34,6 +43,9 @@ endfunction
 " git blame for selected lines (visal mode)
 " select lines and press \ + b
 vnoremap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
+
+" save
+nmap <leader>w :w<cr>
 
 " cursor on last position
 au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
@@ -52,7 +64,3 @@ set wildmenu
 " cursor (insert/command mode)
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
-
-" no .swp files
-set nobackup
-set noswapfile
