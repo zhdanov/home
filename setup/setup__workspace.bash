@@ -19,6 +19,5 @@ set -eux
 if [[ $SETUP_TYPE == "master" ]]; then
 
     . setup__minikube-start.bash
-    ./setup__workspace-deploy.bash prod gitlab
 
 fi

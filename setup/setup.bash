@@ -14,5 +14,3 @@ pushd "$(dirname "$0")"
     . ./setup__dotfiles.bash
     . ./setup__workspace.bash
 popd
-
-exec bash

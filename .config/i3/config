@@ -195,12 +195,6 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 
-# nm-applet
-exec_always --no-startup-id "pgrep nm-applet || nm-applet &"
-
-# volume control
-exec_always --no-startup-id "pgrep pasystray || pasystray &"
-
 # workspace 1 browser
 assign [title="Chromium"] 81:browser
 bindsym $mod2+1 exec --no-startup-id app-workspace chromium 81:browser
@@ -225,7 +219,6 @@ assign [title="DBeaver"] 88:database
 bindsym $mod2+8 exec --no-startup-id app-workspace dbeaver-ce 98:database
 
 # workspace q/host
-exec --no-startup-id i3-msg "workspace 185:q/host; exec i3-sensible-terminal"
 bindcode $mod+24 exec i3-msg "workspace 185:q/host"
 
 # workspace z/menu
