@@ -229,11 +229,9 @@ exec --no-startup-id i3-msg "workspace 185:q/host; exec i3-sensible-terminal"
 bindcode $mod+24 exec i3-msg "workspace 185:q/host"
 
 # workspace z/menu
-exec --no-startup-id i3-msg "workspace 186:z/menu; exec i3-sensible-terminal"
 bindcode $mod+52 exec --no-startup-id i3-msg "workspace 186:z/menu"
 
 # workspace i/inbox
-exec --no-startup-id i3-msg "workspace 189:i/inbox; exec i3-sensible-terminal"
 bindcode $mod+31 exec --no-startup-id i3-msg "workspace 189:i/inbox"
 
 # workspace n/notes
@@ -241,5 +239,4 @@ assign [title="Standard Notes"] 190:n/notes
 bindcode $mod+57 exec --no-startup-id app-workspace standard-notes 190:n/notes
 
 # workspace p/nvim
-exec --no-startup-id i3-msg "workspace 191:p/nvim; exec i3-sensible-terminal"
 bindcode $mod+33 exec --no-startup-id i3-msg "workspace 191:p/nvim"
