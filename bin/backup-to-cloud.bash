@@ -163,7 +163,7 @@ $item.zip was not created"
     for clouddir in "${CLOUD_DIR_LIST[@]}"
     do
         if [[ -d /home/$HOME_USER_NAME/Videos ]]; then
-            rsync -a /home/$HOME_USER_NAME/Videos ../$clouddir/backup
+            rsync --ignore-existing -raz --progress /home/$HOME_USER_NAME/Videos ../$clouddir/archive
         fi
     done
 

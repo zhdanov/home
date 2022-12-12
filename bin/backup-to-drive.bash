@@ -16,10 +16,10 @@ pushd "$(dirname "$0")"
     for media in `ls /media/$HOME_USER_NAME/`; do
         if [ -d /media/$HOME_USER_NAME/$media/backup ]
         then
-            [[ -d $BACKUP_DIR_PATH/monthly ]] && rsync -av $BACKUP_DIR_PATH/monthly /media/$HOME_USER_NAME/$media/backup/
-            [[ -d $BACKUP_DIR_PATH/yearly ]] && rsync -av $BACKUP_DIR_PATH/yearly /media/$HOME_USER_NAME/$media/backup/
-            [[ -d $BACKUP_DIR_PATH/flow-unit-store ]] && rsync -av $BACKUP_DIR_PATH/flow-unit-store /media/$HOME_USER_NAME/$media/backup/
-            [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && rsync -av $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
+            [[ -d $BACKUP_DIR_PATH/monthly ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/monthly /media/$HOME_USER_NAME/$media/backup/
+            [[ -d $BACKUP_DIR_PATH/yearly ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/yearly /media/$HOME_USER_NAME/$media/backup/
+            [[ -d $BACKUP_DIR_PATH/flow-unit-store ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/flow-unit-store /media/$HOME_USER_NAME/$media/backup/
+            [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
 
             for file in `find /media/$HOME_USER_NAME/$media/backup -name *.zip`; do
                 res=`unzip -t $file  > /dev/null 2>&1; es=$? && echo $es`;
@@ -32,7 +32,7 @@ pushd "$(dirname "$0")"
         fi
         if [ -d /media/$HOME_USER_NAME/$media/archive ]
         then
-            [[ -d $ARCHIVE_DIR_PATH ]] && rsync -av $ARCHIVE_DIR_PATH /media/$HOME_USER_NAME/$media/
+            [[ -d $ARCHIVE_DIR_PATH ]] && rsync --ignore-existing -raz --progress $ARCHIVE_DIR_PATH /media/$HOME_USER_NAME/$media/
 
             for file in `find /media/$HOME_USER_NAME/$media/archive -name *.zip`; do
                 res=`unzip -t $file  > /dev/null 2>&1; es=$? && echo $es`;
