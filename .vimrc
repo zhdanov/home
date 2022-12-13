@@ -64,3 +64,7 @@ set wildmenu
 " cursor (insert/command mode)
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
+
+" colors
+set t_Co=256
+let g:solarized_termcolors=256

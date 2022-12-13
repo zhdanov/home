@@ -1,5 +1,5 @@
 . $HOME/setup/setup_def.bash
-alias ta="tmux attach"
+alias ta="tmux -2 attach"
 alias k=kubectl
 alias master="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
 
@@ -19,3 +19,7 @@ fi
 # kubernetes
 source <(kubectl completion bash)
 complete -F __start_kubectl k
+
+# tmux
+export TERM="screen-256color"
+alias tmux="tmux -2"
