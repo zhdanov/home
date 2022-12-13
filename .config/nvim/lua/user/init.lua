@@ -27,7 +27,7 @@ local config = {
   },
 
   -- Set colorscheme to use
-  colorscheme = "tokyonight",
+  colorscheme = "github",
 
   -- Add highlight groups in any theme
   highlights = {
@@ -59,6 +59,7 @@ local config = {
       status_diagnostics_enabled = true, -- enable diagnostics in statusline
       icons_enabled = true, -- disable icons in the UI (disable if no nerd font is available, requires :PackerSync after changing)
       ui_notifications_enabled = true, -- disable notifications when toggling UI elements
+      github_colors_soft = 1,
     },
   },
   -- If you need more control, you can use the function()...end notation
@@ -225,7 +226,6 @@ local config = {
       -- You can also add new plugins here as well:
       -- Add plugins, the packer syntax without the "use"
       -- { "andweeb/presence.nvim" },
-      { "folke/tokyonight.nvim" },
       -- {
       --   "ray-x/lsp_signature.nvim",
       --   event = "BufRead",
