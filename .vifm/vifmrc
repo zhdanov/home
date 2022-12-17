@@ -372,6 +372,9 @@ filextype */
 " For Windows:
 " filetype * start, explorer
 
+command evince evince *.{pdf} &
+filetype *.pdf evince
+
 " ------------------------------------------------------------------------------
 
 " What should be saved automatically between vifm sessions.  Drop "savedirs"
