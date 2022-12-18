@@ -1,4 +1,25 @@
 #!/bin/bash
+
+if [[ "$#" < 2 ]]; then
+    echo "usage:"
+    echo "~/setup/setup__workspace-deploy.bash env project"
+    echo "or"
+    echo "~/setup/setup__workspace-deploy.bash env project --purge"
+    exit 0
+fi
+
+ENVIRONMENT=$1
+APPNAME=$2
+PURGE=0
+
+while [[ "$#" -gt 2 ]]; do
+    case $3 in
+        -p|--purge) PURGE=1; shift ;;
+        *) echo "Unknown parameter passed: $3"; exit 1 ;;
+    esac
+    shift
+done
+
 pushd "$(dirname "$0")"
 
     . setup_def.bash
@@ -9,87 +30,74 @@ pushd "$(dirname "$0")"
 
     TAG=`echo -n "$(date)" | md5sum | awk '{print $1}'`
 
+    export environment=$ENVIRONMENT
+    export appname=$APPNAME
+    export HOME_USER_NAME=$HOME_USER_NAME
 
-    function deploy()
-    {
-        export environment=$1
-        export appname=$2
-        export HOME_USER_NAME=$HOME_USER_NAME
+    pushd $HOME/workspace/$environment/$appname
 
-        pushd $HOME/workspace/$environment/$appname
-
-            if [[ -d "./.git" ]]; then
-                if [ $environment == "prod" ]; then
-                    if git show-ref -q --heads main; then
-                        git checkout main
-                    fi
-                    if git show-ref -q --heads master; then
-                        git checkout master
-                    fi
+        if [[ -d "./.git" ]]; then
+            if [ $environment == "prod" ]; then
+                if git show-ref -q --heads main; then
+                    git checkout main
                 fi
-
-                if [ $environment == "dev" ]; then
-                    if git show-ref -q --heads develop; then
-                        git checkout develop
-                    fi
+                if git show-ref -q --heads master; then
+                    git checkout master
                 fi
             fi
 
-            # hakunamatata builds
-            for repo in `grep hakunamatata werf.yaml`; do \
-                repo=${repo#*from:} && [[ "$repo" != "" ]] && res=`docker pull $repo > /dev/null && echo 0 || echo 1` && [[ $res == 1 ]] && \
-                repo_dir=${repo%_latest} && repo_dir=${repo_dir#*:} && [[ "$repo_dir" != "" ]] && pushd $HOME/develop/hakunamatata/werf-builds/$repo_dir && \
-                werf build --kube-config=$HOME_KUBECONFIG --env=$environment \
-                --add-custom-tag=%image%_latest \
-                --parallel=false \
-                --insecure-registry=true \
-                --skip-tls-verify-registry=true \
-                --repo=$HOME_REGISTRY/hakunamatata \
-                && popd \
-            ; done
-
-            if [[ -f "./.helm/predeploy.bash" ]]; then
-                ./.helm/predeploy.bash
+            if [ $environment == "dev" ]; then
+                if git show-ref -q --heads develop; then
+                    git checkout develop
+                fi
             fi
+        fi
 
-            werf converge --kube-config=$HOME_KUBECONFIG --env=$environment \
-            --set HOME_USER_NAME=$HOME_USER_NAME \
+        # hakunamatata builds
+        for repo in `grep hakunamatata werf.yaml`; do \
+            repo=${repo#*from:} && [[ "$repo" != "" ]] && res=`docker pull $repo > /dev/null && echo 0 || echo 1` && [[ $res == 1 ]] && \
+            repo_dir=${repo%_latest} && repo_dir=${repo_dir#*:} && [[ "$repo_dir" != "" ]] && pushd $HOME/develop/hakunamatata/werf-builds/$repo_dir && \
+            werf build --kube-config=$HOME_KUBECONFIG --env=$environment \
+            --add-custom-tag=%image%_latest \
             --parallel=false \
+            --insecure-registry=true \
+            --skip-tls-verify-registry=true \
+            --repo=$HOME_REGISTRY/hakunamatata \
+            && popd \
+        ; done
+
+        if [[ -f "./.helm/predeploy.bash" ]]; then
+            ./.helm/predeploy.bash
+        fi
+
+        if [[ $PURGE == 1 ]]; then
+            werf cleanup --kube-config=$HOME_KUBECONFIG --env=$environment \
             --insecure-registry=true \
             --skip-tls-verify-registry=true \
             --repo=$HOME_REGISTRY/$appname || echo "local" > /dev/null
 
-            sudo sed -i -e "/^.*$appname-$environment\.loc.*$/d" /etc/hosts
-            echo `minikube ip`" $appname-$environment.loc" | sudo tee -a /etc/hosts
+            werf purge --kube-config=$HOME_KUBECONFIG --env=$environment \
+            --insecure-registry=true \
+            --skip-tls-verify-registry=true \
+            --repo=$HOME_REGISTRY/$appname || echo "local" > /dev/null
+        fi
 
-            if [[ -f "./.helm/postdeploy.bash" ]]; then
-                ./.helm/postdeploy.bash
-            fi
-        popd
-    }
+        werf converge --kube-config=$HOME_KUBECONFIG --env=$environment \
+        --set HOME_USER_NAME=$HOME_USER_NAME \
+        --parallel=false \
+        --insecure-registry=true \
+        --skip-tls-verify-registry=true \
+        --repo=$HOME_REGISTRY/$appname || echo "local" > /dev/null
 
+        sudo sed -i -e "/^.*$appname-$environment\.loc.*$/d" /etc/hosts
+        echo `minikube ip`" $appname-$environment.loc" | sudo tee -a /etc/hosts
 
-    if [[ $# -eq 2 ]]; then
-        deploy $1 $2
-        echo "==== /etc/hosts ===="
-        echo `minikube ip`" $appname-$environment.loc"
-    else
-        deploy prod gitlab
-        for fullenv in `ls $HOME/workspace`; do
-            for appname in `ls $HOME/workspace/$fullenv`; do
-                if [ $appname != "gitlab" ]
-                then
-                    deploy $fullenv $appname
-                fi
-            done
-        done
+        if [[ -f "./.helm/postdeploy.bash" ]]; then
+            ./.helm/postdeploy.bash
+        fi
+    popd
 
-        echo "==== full /etc/hosts ===="
-        for fullenv in `ls $HOME/workspace`; do
-            for appname in `ls $HOME/workspace/$fullenv`; do
-                echo `minikube ip`" $appname-$fullenv.loc"
-            done
-        done
-    fi
+    echo "==== host ===="
+    echo `minikube ip`" $appname-$environment.loc"
 
 popd
