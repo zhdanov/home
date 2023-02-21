@@ -22,10 +22,12 @@ pushd "$(dirname "$0")"
             [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
 
             for file in `find /media/$HOME_USER_NAME/$media/backup -name *.zip`; do
+                echo "unzip -t $file";
                 res=`unzip -t $file  > /dev/null 2>&1; es=$? && echo $es`;
                 [[ "$res" != "0" ]] && echo "----------- BROKEN ZIP FILE: -----------" && echo $file && exit
             done;
             for file in `find /media/$HOME_USER_NAME/$media/backup -name *.tar`; do
+                echo "tar tf $file";
                 res=`tar tf $file > /dev/null 2>&1; ex=$? && echo $ex`;
                 [[ "$res" != "0" ]] && echo "----------- BROKEN TAR FILE: -----------" && echo $file && exit
             done;
