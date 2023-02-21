@@ -68,3 +68,6 @@ let &t_EI = "\e[2 q"
 " colors
 set t_Co=256
 let g:solarized_termcolors=256
+
+" toggle paste
+set pastetoggle=<F1>
