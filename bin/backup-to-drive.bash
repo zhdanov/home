@@ -19,7 +19,7 @@ pushd "$(dirname "$0")"
             [[ -d $BACKUP_DIR_PATH/monthly ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/monthly /media/$HOME_USER_NAME/$media/backup/
             [[ -d $BACKUP_DIR_PATH/yearly ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/yearly /media/$HOME_USER_NAME/$media/backup/
             [[ -d $BACKUP_DIR_PATH/flow-unit-store ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/flow-unit-store /media/$HOME_USER_NAME/$media/backup/
-            [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
+            [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && cp $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
 
             for file in `find /media/$HOME_USER_NAME/$media/backup -name *.zip`; do
                 echo "unzip -t $file";
