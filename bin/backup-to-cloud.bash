@@ -233,6 +233,7 @@ $item.zip was not created"
                 cd ..
                 rm $GIT_STORE_BASENAME.zip
                 zip -r $GIT_STORE_BASENAME.zip $GIT_STORE_BASENAME
+                chown $HOME_USER_NAME:$HOME_USER_NAME $GIT_STORE_BASENAME.zip
             popd
         fi
 
