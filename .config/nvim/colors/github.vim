@@ -24,6 +24,11 @@ if !exists("g:github_colors_soft")
   let g:github_colors_soft = 0
 endif
 
+" change theme begin
+let g:github_colors_soft = 1
+set background=light
+" change theme end
+
 if !exists("g:github_colors_block_diffmark")
   let g:github_colors_block_diffmark = 0
 endif

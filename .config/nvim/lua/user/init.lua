@@ -1,3 +1,4 @@
+-- https://github.com/AstroNvim/user_example
 return {
   -- Configure AstroNvim updates
   updater = {
@@ -18,7 +19,7 @@ return {
   },
 
   -- Set colorscheme to use
-  colorscheme = "astrodark",
+  colorscheme = "github",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
   diagnostics = {
