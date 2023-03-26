@@ -29,3 +29,9 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === '55ce33d7678c5a6110855
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 sudo mv composer.phar /usr/local/bin/composer
+
+# neovim
+sudo mkdir -p /opt/neovim && rm -f /opt/neovim/* && sudo chown $HOME_USER_NAME:$HOME_USER_NAME /opt/neovim
+wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O /opt/neovim/nvim.appimage
+chmod +x /opt/neovim/nvim.appimage
+sudo ln -sf /opt/neovim/nvim.appimage /usr/local/bin/v
