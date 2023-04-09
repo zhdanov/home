@@ -19,4 +19,9 @@ sudo apt install nginx php-fpm certbot python3-certbot-nginx unzip zip htop tree
 sudo systemctl start nginx php7.4-fpm
 sudo systemctl enable nginx php7.4-fpm
 
+# set timezone
+sudo timedatectl set-timezone Europe/Moscow
+sudo timedatectl set-ntp true
+
+# other
 mkdir -p /var/www/domains/
