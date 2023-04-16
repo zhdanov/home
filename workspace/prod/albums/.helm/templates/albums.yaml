@@ -1,0 +1,91 @@
+{{- include "h-statefulset-header" (list $ .) }}
+      containers:
+      - name: lychee
+        image: {{ .Values.werf.image.albums_lychee }}
+        readinessProbe:
+          exec:
+            command:
+              - sh
+              - -c
+              - "echo 'select 1;' | mysql -h 127.0.0.1 -u{{ .Values.mysql.user }} -p{{ .Values.mysql.user_password }}"
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          failureThreshold: 20
+        lifecycle:
+          postStart:
+            exec:
+              command:
+                - "sh"
+                - "-c"
+                -  "chown -R www-data:www-data /conf && chmod 777 /conf && chown -R www-data:www-data /uploads && chmod 777 /uploads && chown -R www-data:www-data /sym && chmod 777 /sym && chown -R www-data:www-data /var/www/html/Lychee"
+        env:
+        - name: SSH_AUTH_SOCK
+          value: /ssh-agent
+        - name: ENVIRONMENT
+          value: {{ .Values.werf.env }}
+        - name: HOME_USER_NAME
+          value: {{ .Values.HOME_USER_NAME }}
+        - name: PHP_TZ
+          value: UTC
+        - name: TIMEZONE
+          value: UTC
+        - name: DB_CONNECTION
+          value: mysql
+        - name: DB_HOST
+          value: "127.0.0.1"
+        - name: DB_PORT
+          value: "3306"
+        - name: DB_DATABASE
+          value: {{ .Values.mysql.database }}
+        - name: DB_USERNAME
+          value: {{ .Values.mysql.user }}
+        - name: DB_PASSWORD
+          value: {{ .Values.mysql.user_password }}
+        - name: STARTUP_DELAY
+          value: "10"
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        volumeMounts:
+          - name: ssh-agent-sock
+            mountPath: /ssh-agent
+          - name: data-store
+            mountPath: /conf
+            subPath: {{ .Chart.Name }}-conf
+          - name: data-store
+            mountPath: /uploads
+            subPath: {{ .Chart.Name }}-uploads
+          - name: data-store
+            mountPath: /sym
+            subPath: {{ .Chart.Name }}-sym
+      - name: mariadb
+        image: {{ .Values.werf.image.mariadb }}
+        ports:
+        - containerPort: 3306
+          name: mysql
+          protocol: TCP
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: {{ .Values.mysql.root_password }}
+        - name: MYSQL_DATABASE
+          value: {{ .Values.mysql.database }}
+        - name: MYSQL_USER
+          value: {{ .Values.mysql.user }}
+        - name: MYSQL_PASSWORD
+          value: {{ .Values.mysql.user_password }}
+        volumeMounts:
+        - name: data-store
+          mountPath: /var/lib/mysql
+          subPath: {{ .Chart.Name }}-mariadb
+      initContainers:
+{{- $gitlabUrl := "http://gitlab-prod.gitlab-prod/users/sign_in" }}
+{{- include "h-init-container-wait-http-200" (list $ . $gitlabUrl) | indent 6 }}
+      volumes:
+      - name: data-store
+        persistentVolumeClaim:
+          claimName: nfs-pvc-{{ .Chart.Name }}-{{ .Values.werf.env }}
+      - name: ssh-agent-sock
+        hostPath:
+          path: /ssh-agent
+          type: Socket
