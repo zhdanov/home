@@ -11,13 +11,6 @@
           initialDelaySeconds: 10
           periodSeconds: 5
           failureThreshold: 20
-        lifecycle:
-          postStart:
-            exec:
-              command:
-                - "sh"
-                - "-c"
-                -  "chown -R www-data:www-data /conf && chmod 777 /conf && chown -R www-data:www-data /uploads && chmod 777 /uploads && chown -R www-data:www-data /sym && chmod 777 /sym && chown -R www-data:www-data /var/www/html/Lychee"
         env:
         - name: SSH_AUTH_SOCK
           value: /ssh-agent
