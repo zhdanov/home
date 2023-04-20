@@ -23,7 +23,7 @@ if kubectl -n $SERVICE_NAME get statefulsets.apps | grep -q $SERVICE_NAME; then
     fi
 fi
 
-ARCHIVE_DIR=/home/$HOME_USER_NAME/Yandex.Disk/archive/albums
+ARCHIVE_DIR=/home/$HOME_USER_NAME/Documents/archive/albums
 if [[ -d $ARCHIVE_DIR ]]; then
     pushd $ARCHIVE_DIR
         sudo cp -R /home/$HOME_USER_NAME/data-store/$SERVICE_NAME/albums-conf .
@@ -31,4 +31,12 @@ if [[ -d $ARCHIVE_DIR ]]; then
         sudo cp -R /home/$HOME_USER_NAME/data-store/$SERVICE_NAME/albums-uploads .
         sudo chown -R $HOME_USER_NAME:$HOME_USER_NAME $ARCHIVE_DIR
     popd
+fi
+
+ARCHIVE_CLOUD_DIR=/home/$HOME_USER_NAME/Yandex.Disk/archive/albums
+if [[ -d $ARCHIVE_CLOUD_DIR ]]; then
+	sudo rsync --ignore-existing -raz --progress /home/$HOME_USER_NAME/data-store/$SERVICE_NAME/albums-conf $ARCHIVE_CLOUD_DIR
+	sudo rsync --ignore-existing -raz --progress /home/$HOME_USER_NAME/data-store/$SERVICE_NAME/albums-sym $ARCHIVE_CLOUD_DIR
+	sudo rsync --ignore-existing -raz --progress /home/$HOME_USER_NAME/data-store/$SERVICE_NAME/albums-uploads $ARCHIVE_CLOUD_DIR
+	sudo chown -R $HOME_USER_NAME:$HOME_USER_NAME $ARCHIVE_CLOUD_DIR
 fi
