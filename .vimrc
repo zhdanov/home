@@ -17,6 +17,8 @@ set smartindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
+nnoremap <S-> >>
+nnoremap <S-< <gv
 
 " misc
 set nopaste
