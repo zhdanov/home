@@ -8,7 +8,12 @@ sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree 
 sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader audacity growisofs peek screenkey cheese brightnessctl tcptrack pasystray samba
 
 # alacritty
-sudo add-apt-repository -y ppa:mmstick76/alacritty
+UBUNTU_VERSION=$(lsb_release -r -s)
+if [ "$UBUNTU_VERSION" = "22.04" ]; then
+    sudo add-apt-repository ppa:aslatter/ppa -y
+else
+    sudo add-apt-repository -y ppa:mmstick76/alacritty
+fi
 sudo apt install -y alacritty
 
 # browsers

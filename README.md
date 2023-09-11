@@ -12,7 +12,7 @@ Last stable version: [1.4.0](https://github.com/zhdanov/home/releases/tag/1.4.0)
 
 ```bash
 cd $HOME
-git init
+sudo apt update -y && sudo apt install -y git && git init
 git remote add origin https://github.com/zhdanov/home
 git fetch origin
 git checkout -b main origin/main
