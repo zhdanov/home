@@ -30,6 +30,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 ```bash
 ./setup/setup.bash slave   # install/update software, dotfiles, configure system
+./setup/setup.bash vbox    # setup "slave" without desktop features
 ./setup/setup.bash master  # start minikube
 
 # optional
