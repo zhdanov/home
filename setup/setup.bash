@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [[ ! $1 =~ ^(slave|master)$ ]]; then
+if [[ ! $1 =~ ^(vbox|slave|master)$ ]]; then
     echo "usage:"
+    echo "./setup/setup.bash vbox"
     echo "./setup/setup.bash slave"
     echo "./setup/setup.bash master"
     exit 0

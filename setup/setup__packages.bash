@@ -5,7 +5,11 @@ sudo apt -y update
 sudo apt -y upgrade
 
 sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu
-sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate fbreader audacity growisofs peek screenkey cheese brightnessctl tcptrack pasystray samba
+sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba
+
+if [[ $SETUP_TYPE != "vbox" ]]; then
+    sudo apt -y install fbreader audacity growisofs peek screenkey cheese
+fi
 
 # alacritty
 UBUNTU_VERSION=$(lsb_release -r -s)
@@ -18,14 +22,16 @@ sudo apt install -y alacritty
 
 # browsers
 sudo apt -y install chromium-browser
-. setup__google-chrome.bash
-. setup__opera.bash
-. setup__yandex-browser.bash
+if [[ $SETUP_TYPE != "vbox" ]]; then
+    . setup__google-chrome.bash
+    . setup__opera.bash
+    . setup__yandex-browser.bash
 
-sudo snap install standard-notes
-sudo snap install dbeaver-ce
-sudo snap install zoom-client
-sudo snap set system refresh.timer=3:00-5:00
+    sudo snap install standard-notes
+    sudo snap install dbeaver-ce
+    sudo snap install zoom-client
+    sudo snap set system refresh.timer=3:00-5:00
+fi
 
 # php
 sudo apt -y install php-cli php-dom php-mbstring php-curl php-yaml
