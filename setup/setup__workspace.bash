@@ -11,12 +11,13 @@ set -eux
 . setup__configure-vim.bash
 . setup__configure-visudo.bash
 . setup__kubernetes.bash
-. setup__helm.bash
-. setup__minikube.bash
-. setup__werf.bash
 . setup__hakunamatata.bash
 
 if [[ $SETUP_TYPE == "master" ]]; then
+
+    . setup__helm.bash
+    . setup__minikube.bash
+    . setup__werf.bash
 
     . setup__minikube-start.bash
 
