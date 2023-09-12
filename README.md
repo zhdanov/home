@@ -2,9 +2,9 @@
 
 ![](https://raw.githubusercontent.com/zhdanov/home/main/Pictures/logo/logo-readme.png)
 
-Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my home directory for deploying the desktop environment. Infrastructure as code. Ubuntu 20.04. See the [documentation](https://jupiter.solutions/home/docs/).
+Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my home directory for deploying the desktop environment. Infrastructure as code. Ubuntu 20.04/22.04. See the [documentation](https://jupiter.solutions/home/docs/).
 
-Last stable version: [1.4.0](https://github.com/zhdanov/home/releases/tag/1.4.0)
+Last stable version: [1.5.0](https://github.com/zhdanov/home/releases/tag/1.5.0)
 
 ## Getting started
 
