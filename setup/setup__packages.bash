@@ -37,6 +37,8 @@ sudo mv composer.phar /usr/local/bin/composer
 
 # neovim
 sudo mkdir -p /opt/neovim && rm -f /opt/neovim/* && sudo chown $HOME_USER_NAME:$HOME_USER_NAME /opt/neovim
-wget https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -O /opt/neovim/nvim.appimage
-chmod +x /opt/neovim/nvim.appimage
-sudo ln -sf /opt/neovim/nvim.appimage /usr/local/bin/v
+wget https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz -O /opt/neovim/nvim-linux64.tar.gz
+pushd /opt/neovim
+    tar xf nvim-linux64.tar.gz
+popd
+sudo ln -sf /opt/neovim/nvim-linux64/bin/nvim /usr/local/bin/v

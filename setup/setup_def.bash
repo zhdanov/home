@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOME_USER_NAME=user
+HOME_USER_NAME=$USER
 HOME_USER_EMAIL=user@email.loc
 HOME_CLOUD_DIR=/home/$HOME_USER_NAME/Dropbox
 HOME_SSH_HOST=127.0.0.1
