@@ -7,7 +7,7 @@ sudo apt -y upgrade
 sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu
 sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba
 
-if [[ $SETUP_TYPE != "vbox" ]]; then
+if [[ $SETUP_TYPE == "slave" ]]; then
     sudo apt -y install fbreader audacity growisofs peek screenkey cheese
 fi
 
@@ -22,7 +22,7 @@ sudo apt install -y alacritty
 
 # browsers
 sudo apt -y install chromium-browser
-if [[ $SETUP_TYPE != "vbox" ]]; then
+if [[ $SETUP_TYPE == "slave" ]]; then
     . setup__google-chrome.bash
     . setup__opera.bash
     . setup__yandex-browser.bash
