@@ -36,8 +36,8 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ./setup__commitizen.bash   # commitizen
 ./setup/setup__workspace-deploy.bash prod albums  # albums
 
-# hosting
-curl -sSL https://raw.githubusercontent.com/zhdanov/home/selectel/setup/setup__hosting-debian-11.bash | bash
+# hosting (debian 11)
+curl -sSL https://raw.githubusercontent.com/zhdanov/home/main/setup/setup__hosting-debian-11.bash | bash
 ```
 
 Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/) and [configure backup](https://jupiter.solutions/home/docs/backup/).
