@@ -11,11 +11,7 @@ Last stable version: [1.5.0](https://github.com/zhdanov/home/releases/tag/1.5.0)
 1. Init home directory
 
 ```bash
-cd $HOME
-sudo apt update -y && sudo apt install -y git && git init
-git remote add origin https://github.com/zhdanov/home
-git fetch origin
-git checkout -b main origin/main
+curl -L https://raw.githubusercontent.com/zhdanov/home/main/setup/setup__init.bash | bash
 ```
 
 2. Configure [./setup/setup_def.bash](https://github.com/zhdanov/home/blob/main/setup/setup_def.bash) (or create ./setup/setup_def_custom.bash)
