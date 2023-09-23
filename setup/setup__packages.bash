@@ -20,7 +20,7 @@ else
 fi
 sudo apt install -y alacritty
 
-# browsers
+# slave soft
 sudo apt -y install chromium-browser
 if [[ $SETUP_TYPE == "slave" ]]; then
     . setup__google-chrome.bash
