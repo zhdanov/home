@@ -5,7 +5,7 @@ sudo apt -y update
 sudo apt -y upgrade
 
 sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu
-sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba
+sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba sqlite3
 
 if [[ $SETUP_TYPE == "slave" ]]; then
     sudo apt -y install fbreader audacity growisofs peek screenkey cheese
@@ -34,7 +34,7 @@ if [[ $SETUP_TYPE == "slave" ]]; then
 fi
 
 # php
-sudo apt -y install php-cli php-dom php-mbstring php-curl php-yaml
+sudo apt -y install php-cli php-dom php-mbstring php-curl php-yaml php-sqlite3
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php -r "if (hash_file('sha384', 'composer-setup.php') === 'e21205b207c3ff031906575712edab6f13eb0b361f2085f1f1237b7126d785e826a450292b6cfd1d64d92e6563bbde02') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
 php composer-setup.php
