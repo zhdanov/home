@@ -30,7 +30,10 @@ if [[ $SETUP_TYPE == "slave" ]]; then
     sudo snap install standard-notes
     sudo snap install dbeaver-ce
     sudo snap install zoom-client
-    sudo snap set system refresh.timer=3:00-5:00
+
+    sudo snap refresh
+    sudo snap set system refresh.metered=hold
+
 fi
 
 # php
