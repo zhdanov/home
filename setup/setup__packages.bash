@@ -24,7 +24,6 @@ sudo apt install -y alacritty
 sudo apt -y install chromium-browser
 if [[ $SETUP_TYPE == "slave" ]]; then
     . setup__google-chrome.bash
-    . setup__opera.bash
     . setup__yandex-browser.bash
 
     sudo snap install standard-notes
