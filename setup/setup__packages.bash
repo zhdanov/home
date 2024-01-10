@@ -23,15 +23,16 @@ sudo apt install -y alacritty
 # slave soft
 sudo apt -y install chromium-browser
 if [[ $SETUP_TYPE == "slave" ]]; then
-    . setup__google-chrome.bash
     . setup__yandex-browser.bash
 
-    sudo snap install standard-notes
-    sudo snap install dbeaver-ce
-    sudo snap install zoom-client
+    # snap begin
+    #sudo snap install standard-notes
+    #sudo snap install dbeaver-ce
+    #sudo snap install zoom-client
 
-    sudo snap refresh
-    sudo snap set system refresh.metered=hold
+    #sudo snap refresh
+    #sudo snap set system refresh.metered=hold
+    # snap end
 
 fi
 
