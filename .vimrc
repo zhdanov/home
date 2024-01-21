@@ -73,3 +73,7 @@ let g:solarized_termcolors=256
 
 " toggle paste
 set pastetoggle=<F1>
+
+" numbers
+set relativenumber
+nnoremap <F2> :set invrelativenumber<CR>
