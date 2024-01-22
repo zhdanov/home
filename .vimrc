@@ -76,4 +76,4 @@ set pastetoggle=<F1>
 
 " numbers
 set relativenumber
-nnoremap <F2> :set invrelativenumber<CR>
+nnoremap <C-w> :set invrelativenumber<CR>
