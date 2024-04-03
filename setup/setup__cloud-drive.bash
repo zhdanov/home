@@ -62,7 +62,7 @@ After=network.target
 [Service]
 Type=simple
 User=$HOME_USER_NAME
-ExecStart=/opt/dropbox/dropboxd
+ExecStart=/home/$HOME_USER_NAME/.dropbox-dist/dropboxd
 ExecStop=/bin/kill -HUP \$MAINPID
 Restart=always
 
