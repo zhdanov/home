@@ -40,19 +40,14 @@ EOF
 sudo -u $HOME_USER_NAME -s yandex-disk start
 EOF
 
-    fi
+        fi
 
     fi
 
-    # Run /opt/dropbox/dropboxd for connect dropbox to computer
-    if [ ! -d "/opt/dropbox" ]; then
-        wget https://www.dropbox.com/download?plat=lnx.x86_64 -O dropbox-linux.tar.gz
+    if [ ! -d "/home/$HOME_USER_NAME/.dropbox-dist" ]; then
+        /home/$HOME_USER_NAME/setup/setup__update-dropbox.bash
 
-        sudo mkdir /opt/dropbox/
-        sudo tar xvf dropbox-linux.tar.gz --strip 1 -C /opt/dropbox
         sudo apt -y install libc6 libglapi-mesa libxdamage1 libxfixes3 libxcb-glx0 libxcb-dri2-0 libxcb-dri3-0 libxcb-present0 libxcb-sync1 libxshmfence1 libxxf86vm1
-
-        rm dropbox-linux.tar.gz
 
         cat <<EOF | sudo tee /etc/systemd/system/dropbox.service
 [Unit]
@@ -72,18 +67,15 @@ EOF
 
         # update dropbox
         sudo sed -i -e '/^.*setup\_\_update\-dropbox\.bash$/d' /etc/crontab
-        echo "30 4 * * * root /home/$HOME_USER_NAME/setup/setup__update-dropbox.bash" | sudo tee -a /etc/crontab
+        echo "30 1 * * * root /home/$HOME_USER_NAME/setup/setup__update-dropbox.bash" | sudo tee -a /etc/crontab
 
         # dropbox does not deserve to work at other times
         sudo sed -i -e '/^.*systemctl start dropbox$/d' /etc/crontab
         echo "30 5 * * * root systemctl start dropbox" | sudo tee -a /etc/crontab
         sudo sed -i -e '/^.*systemctl stop dropbox$/d' /etc/crontab
-        echo "30 6 * * * root systemctl stop dropbox" | sudo tee -a /etc/crontab
+        echo "00 6 * * * root systemctl stop dropbox" | sudo tee -a /etc/crontab
 
         sudo systemctl restart cron
-
-        # another way
-        #/opt/dropbox/dropboxd
     fi
 
 popd
