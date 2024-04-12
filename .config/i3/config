@@ -232,8 +232,8 @@ bindcode $mod+53 exec --no-startup-id i3-msg "workspace 187:x/fs"
 bindcode $mod+31 exec --no-startup-id i3-msg "workspace 189:i/inbox"
 
 # workspace n/notes
-assign [title="Standard Notes"] 190:n/notes
-bindcode $mod+57 exec --no-startup-id app-workspace standard-notes 190:n/notes
+assign [title="Joplin"] 190:n/notes
+bindcode $mod+57 exec --no-startup-id app-workspace /home/$USER/.joplin/Joplin.AppImage 190:n/notes
 
 # workspace p/nvim
 bindcode $mod+33 exec --no-startup-id i3-msg "workspace 191:p/nvim"
