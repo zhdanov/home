@@ -217,7 +217,7 @@ bindsym $mod2+7 exec --no-startup-id app-workspace yandex-browser 86:board
 
 # workspace 8 database
 assign [title="DBeaver"] 88:database
-bindsym $mod2+8 exec --no-startup-id app-workspace dbeaver-ce 98:database
+bindsym $mod2+8 exec --no-startup-id app-workspace dbeaver-ce 88:database
 
 # workspace q/host
 bindcode $mod+24 exec i3-msg "workspace 185:q/host"
@@ -240,3 +240,7 @@ bindcode $mod+33 exec --no-startup-id i3-msg "workspace 191:p/nvim"
 
 # workspace o/opinion
 bindcode $mod+32 exec --no-startup-id i3-msg "workspace 192:o/opinion"
+
+# workspace g/dict
+assign [title="GoldenDict"] 193:g/dict
+bindcode $mod+58 exec --no-startup-id app-workspace goldendict 193:g/dict
