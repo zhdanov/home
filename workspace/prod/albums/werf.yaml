@@ -6,7 +6,7 @@ deploy:
 
 ---
 image: {{ env "appname" }}_lychee
-from: lycheeorg/lychee:v4.7.2
+from: lycheeorg/lychee:v4.13.0
 ansible:
   setup:
   - name: local hostname
