@@ -17,3 +17,9 @@ Host gitlab-prod.gitlab-prod
     Port 2222
 EOF
 fi
+
+if ! grep -q "gitlab-prod.gitlab-prod" /etc/hosts; then
+    cat <<EOF | sudo tee -a /etc/hosts
+192.168.49.2 gitlab-prod.gitlab-prod
+EOF
+fi
