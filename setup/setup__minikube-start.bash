@@ -26,7 +26,7 @@ else
 
     minikube config set cpus $HOME_MINIKUBE_CPU
     minikube config set memory $HOME_MINIKUBE_MEM
-    minikube start --driver=docker --mount-string "$SSH_AUTH_SOCK:/ssh-agent" --mount
+    minikube start --driver=docker --mount-string "$SSH_AUTH_SOCK:/ssh-agent" --mount --registry-mirror="$HOME_REGISTRY_MIRROR"
     minikube addons enable metrics-server
     minikube addons enable registry
     minikube addons enable ingress

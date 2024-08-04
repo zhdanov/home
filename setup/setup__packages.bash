@@ -14,17 +14,16 @@ fi
 
 # alacritty
 UBUNTU_VERSION=$(lsb_release -r -s)
-if [ "$UBUNTU_VERSION" = "22.04" ]; then
+if [ "$UBUNTU_VERSION" != "24.04" ]; then
     sudo add-apt-repository ppa:aslatter/ppa -y
-else
-    sudo add-apt-repository -y ppa:mmstick76/alacritty
+    sudo apt install -y alacritty
 fi
-sudo apt install -y alacritty
 
 # slave soft
 sudo apt -y install chromium-browser
-if [[ $SETUP_TYPE == "slave" ]]; then
-    . setup__yandex-browser.bash
+
+#if [[ $SETUP_TYPE == "slave" ]]; then
+    #. setup__yandex-browser.bash
 
     # snap begin
     #sudo snap install standard-notes
@@ -35,7 +34,7 @@ if [[ $SETUP_TYPE == "slave" ]]; then
     #sudo snap set system refresh.metered=hold
     # snap end
 
-fi
+#fi
 
 # php
 sudo apt -y install php-cli php-dom php-mbstring php-curl php-yaml php-sqlite3
