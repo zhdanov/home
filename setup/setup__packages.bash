@@ -4,7 +4,7 @@ sudo apt clean
 sudo apt -y update
 sudo apt -y upgrade
 
-sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu httpie gcal goldendict shotwell exfat-fuse exfat-utils mpv doublecmd-gtk
+sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu httpie gcal goldendict shotwell exfat-fuse exfat-utils mpv
 sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba sqlite3
 sudo apt -y install clang-format cppcheck valgrind
 
