@@ -4,7 +4,7 @@ sudo apt clean
 sudo apt -y update
 sudo apt -y upgrade
 
-sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu httpie gcal goldendict shotwell exfat-fuse exfat-utils mpv
+sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu httpie gcal goldendict shotwell mpv
 sudo apt -y install i3 i3status nemo ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba sqlite3
 sudo apt -y install clang-format cppcheck valgrind
 
@@ -15,8 +15,11 @@ fi
 # alacritty
 UBUNTU_VERSION=$(lsb_release -r -s)
 if [ "$UBUNTU_VERSION" != "24.04" ]; then
+    sudo apt -y install exfat-fuse exfat-utils
     sudo add-apt-repository ppa:aslatter/ppa -y
     sudo apt install -y alacritty
+else
+    sudo apt -y install exfatprogs
 fi
 
 # slave soft
