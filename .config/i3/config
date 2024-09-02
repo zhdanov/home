@@ -207,9 +207,9 @@ bindsym $mod2+2 exec --no-startup-id i3-msg "workspace 82:master"
 # workspace 3 prod
 bindsym $mod2+3 exec --no-startup-id i3-msg "workspace 83:prod"
 
-# workspace 4 nemo 
+# workspace 4 thunar
 assign [title="Home"] 84:files
-bindsym $mod2+4 exec --no-startup-id app-workspace nemo 84:files
+bindsym $mod2+4 exec --no-startup-id app-workspace thunar 84:files
 
 # workspace 7 board
 assign [title="Yandex Browser"] 86:board
@@ -239,5 +239,5 @@ bindcode $mod+33 exec --no-startup-id i3-msg "workspace 191:p/nvim"
 bindcode $mod+32 exec --no-startup-id i3-msg "workspace 192:o/opinion"
 
 # workspace g/dict
-assign [title="GoldenDict"] 193:g/dict
-bindcode $mod+58 exec --no-startup-id app-workspace goldendict 193:g/dict
+assign [title="GoldenDict"] 193:m/dict
+bindcode $mod+58 exec --no-startup-id app-workspace goldendict 193:m/dict
