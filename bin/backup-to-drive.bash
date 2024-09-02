@@ -21,11 +21,18 @@ pushd "$(dirname "$0")"
             [[ -d $BACKUP_DIR_PATH/flow-unit-store ]] && rsync --ignore-existing -raz --progress $BACKUP_DIR_PATH/flow-unit-store /media/$HOME_USER_NAME/$media/backup/
             [[ -f $BACKUP_DIR_PATH/git-store.zip ]] && cp $BACKUP_DIR_PATH/git-store.zip /media/$HOME_USER_NAME/$media/backup/
 
-            for file in `find /media/$HOME_USER_NAME/$media/backup -name *.zip`; do
-                echo "unzip -t $file";
-                res=`unzip -t $file  > /dev/null 2>&1; es=$? && echo $es`;
-                [[ "$res" != "0" ]] && echo "----------- BROKEN ZIP FILE: -----------" && echo $file && exit
-            done;
+            IFS=$'\n'
+            find /media/$HOME_USER_NAME/$media/backup -name '*.zip' | while read -r file; do
+                echo "unzip -t \"$file\""
+                res=$(unzip -t "$file" > /dev/null 2>&1; es=$? && echo $es)
+                if [[ "$res" != "0" ]]; then
+                    echo "----------- BROKEN ZIP FILE: -----------"
+                    echo "$file"
+                    exit
+                fi
+            done
+            unset IFS
+
             for file in `find /media/$HOME_USER_NAME/$media/backup -name *.tar`; do
                 echo "tar tf $file";
                 res=`tar tf $file > /dev/null 2>&1; ex=$? && echo $ex`;
@@ -36,10 +43,18 @@ pushd "$(dirname "$0")"
         then
             [[ -d $ARCHIVE_DIR_PATH ]] && rsync --ignore-existing -raz --progress $ARCHIVE_DIR_PATH /media/$HOME_USER_NAME/$media/
 
-            for file in `find /media/$HOME_USER_NAME/$media/archive -name *.zip`; do
-                res=`unzip -t $file  > /dev/null 2>&1; es=$? && echo $es`;
-                [[ "$res" != "0" ]] && echo "----------- BROKEN ZIP FILE: -----------" && echo $file && exit
-            done;
+            IFS=$'\n'
+            find /media/$HOME_USER_NAME/$media/archive -name '*.zip' | while read -r file; do
+                echo "unzip -t \"$file\""
+                res=$(unzip -t "$file" > /dev/null 2>&1; es=$? && echo $es)
+                if [[ "$res" != "0" ]]; then
+                    echo "----------- BROKEN ZIP FILE: -----------"
+                    echo "$file"
+                    exit
+                fi
+            done
+            unset IFS
+
             for file in `find /media/$HOME_USER_NAME/$media/archive -name *.tar`; do
                 res=`tar tf $file > /dev/null 2>&1; ex=$? && echo $ex`;
                 [[ "$res" != "0" ]] && echo "----------- BROKEN TAR FILE: -----------" && echo $file && exit
