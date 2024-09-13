@@ -25,13 +25,13 @@ general {
         interval = 1
 }
 
-order += "tztime local"
 order += "battery all"
 order += "volume master"
 order += "load"
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
+order += "tztime local"
 #order += "wireless _first_"
 #order += "ethernet _first_"
 
@@ -57,7 +57,7 @@ battery all {
 }
 
 tztime local {
-        format = "📆 %H:%M:%S %d.%m.%Y %A"
+        format = "📆 %A %d.%m.%Y %H:%M:%S"
 }
 
 load {
