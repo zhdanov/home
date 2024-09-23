@@ -225,6 +225,9 @@ bindcode $mod+24 exec i3-msg "workspace 185:q/host"
 # workspace z/links
 bindcode $mod+52 exec --no-startup-id i3-msg "workspace 186:z/links"
 
+# workspace x/services
+bindcode $mod+53 exec --no-startup-id i3-msg "workspace 187:x/services"
+
 # workspace i/inbox
 bindcode $mod+31 exec --no-startup-id i3-msg "workspace 189:i/inbox"
 
