@@ -23,7 +23,7 @@ background = "0xfdf6e3"
 foreground = "0x586e75"
 
 [font]
-size = 7.5
+size = 9.5
 
 [font.normal]
 family = "Monaco Nerd Font"
