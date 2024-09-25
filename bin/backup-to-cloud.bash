@@ -201,41 +201,6 @@ $item.zip was not created"
     # update *-store
     for clouddir in "${CLOUD_DIR_LIST[@]}"
     do
-        # update git-store
-        BACKUP_GIT_STORE_PATH=../$clouddir/backup/git-store
-        if [[ -d "$BACKUP_GIT_STORE_PATH" ]]; then
-            # pull git-store
-            for repo in `ls $BACKUP_GIT_STORE_PATH`; do
-                pushd $BACKUP_GIT_STORE_PATH/$repo
-                    git config --global --add safe.directory $BACKUP_GIT_STORE_PATH/$repo
-                    git reset --hard
-                    git fetch origin
-                    git pull origin $(git symbolic-ref --short HEAD)
-                popd
-            done
-
-            # get github issues
-            for repo in `ls $BACKUP_GIT_STORE_PATH`; do
-                pushd $BACKUP_GIT_STORE_PATH/$repo
-                    if git remote -v | grep -q "github.com"; then
-                        if [[ $HOME_GITHUB_ACCESS_TOKEN != "" && $HOME_GITHUB_USER != "" ]]; then
-                            curl --silent -H "Authorization: token $HOME_GITHUB_ACCESS_TOKEN" $HOME_GITHUB_API_URL/repos/$HOME_GITHUB_USER/$repo/issues -q > issues.json
-                        fi
-                    fi
-                popd
-            done
-
-            chown -R $HOME_USER_NAME:$HOME_USER_NAME $BACKUP_GIT_STORE_PATH
-
-            # zip git-store
-            GIT_STORE_BASENAME=$(basename $BACKUP_GIT_STORE_PATH)
-            pushd $BACKUP_GIT_STORE_PATH
-                cd ..
-                rm $GIT_STORE_BASENAME.zip
-                zip -r $GIT_STORE_BASENAME.zip $GIT_STORE_BASENAME
-                chown $HOME_USER_NAME:$HOME_USER_NAME $GIT_STORE_BASENAME.zip
-            popd
-        fi
 
         # update flow-unit-store
         BACKUP_FLOW_UNIT_STORE_PATH=../$clouddir/backup/flow-unit-store
