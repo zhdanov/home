@@ -5,7 +5,7 @@ sudo apt -y update
 sudo apt -y upgrade
 
 sudo apt -y install vim vifm git openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu httpie gcal goldendict shotwell mpv
-sudo apt -y install i3 i3status thunar ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba sqlite3 pulseaudio pavucontrol
+sudo apt -y install i3 i3status thunar ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba sqlite3 pulseaudio pavucontrol sshfs
 sudo apt -y install clang-format cppcheck valgrind
 
 if [[ $SETUP_TYPE == "slave" ]]; then
