@@ -222,8 +222,8 @@ bindsym $mod2+8 exec --no-startup-id app-workspace dbeaver-ce 88:database
 # workspace q/host
 bindcode $mod+24 exec i3-msg "workspace 185:q/host"
 
-# workspace z/links
-bindcode $mod+52 exec --no-startup-id i3-msg "workspace 186:z/links"
+# workspace z/nav
+bindcode $mod+52 exec --no-startup-id i3-msg "workspace 186:z/nav"
 
 # workspace x/services
 bindcode $mod+53 exec --no-startup-id i3-msg "workspace 187:x/services"
