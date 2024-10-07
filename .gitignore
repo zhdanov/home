@@ -1,8 +1,5 @@
 .*
 setup/setup_def_custom.bash
-bin/trdl
-bin/install.sh
-bin/GitAhead/
 develop
 notepad
 Desktop
