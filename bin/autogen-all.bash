@@ -7,6 +7,6 @@ pushd /opt/my-opinion/
 
     pushd resource/2.4/
         autogen --vault=../ --out=. --tags=autogen,mind,dev,common,backup,monitoring,confidence,jobber --prefix=2.4 --no_tags_is_ok=true
-        autogen --vault=/home/zhdanov/vault-store/films/vault/ --out=. --tags=films
+        autogen --vault=/home/zhdanov/vault-store/films/vault-films/ --out=. --tags=films
     popd
 popd
