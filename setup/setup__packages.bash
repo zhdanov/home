@@ -9,7 +9,7 @@ sudo apt -y install i3 i3status thunar ttf-mscorefonts-installer kate brightness
 sudo apt -y install clang-format cppcheck valgrind
 
 if [[ $SETUP_TYPE == "slave" ]]; then
-    sudo apt -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio
+    sudo apt -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio audacious
 fi
 
 # alacritty
