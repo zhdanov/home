@@ -1,8 +1,10 @@
 #!/bin/bash
 
-HOME_USER_NAME=$USER
+HOME_USER_NAME=$USER # will be "root" if you use it via sudo
 HOME_USER_EMAIL=user@email.loc
 HOME_CLOUD_DIR=/home/$HOME_USER_NAME/Dropbox
+HOME_MAIL_DIR=/home/$HOME_USER_NAME/.thunderbird
+HOME_MAIL_STORAGE_DIR=/home/$HOME_USER_NAME/storage/mail
 HOME_SSH_HOST=127.0.0.1
 HOME_SSH_PORT=22
 HOME_SOCKET_PORT=8123

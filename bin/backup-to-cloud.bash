@@ -46,6 +46,13 @@ pushd "$(dirname "$0")"
         cp /home/$HOME_USER_NAME/.kube/config /root/.kube/config
     fi
 
+    # backup mail
+    for storage_mail_folder in `ls $HOME_MAIL_STORAGE_DIR`; do
+        for home_mail_folder in `find $HOME_MAIL_DIR -name $storage_mail_folder`; do
+            rsync --ignore-existing -raz --progress $home_mail_folder $HOME_MAIL_STORAGE_DIR
+        done
+    done
+
     # make environment backups
     for environment in `ls ../data-store`; do
         if [[ -f "../data-store/$environment/backup-list.txt" ]]; then
