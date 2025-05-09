@@ -27,6 +27,7 @@ HOME_THIRD_KEYBOARD_LAYOUT="es"
 HOME_GITHUB_API_URL="https://api.github.com"
 HOME_GITHUB_USER=""
 HOME_GITHUB_ACCESS_TOKEN=""
+HOME_PHP_FPM_CONF_FILE=/etc/php/8.3/fpm/pool.d/www.conf
 
 HOME_SESSION_TYPE=local
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then

@@ -10,6 +10,7 @@ set -eux
 . setup__configure-laptop.bash
 . setup__configure-vim.bash
 . setup__configure-visudo.bash
+. setup__configure-php-fpm.bash
 . setup__kubernetes.bash
 . setup__hakunamatata.bash
 
