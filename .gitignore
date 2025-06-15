@@ -13,6 +13,4 @@ snap
 JoplinBackup/
 git-store/
 vault-store/
-tp/
-sd/
 bin/tmp
