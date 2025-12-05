@@ -26,3 +26,22 @@ complete -F __start_kubectl k
 # tmux
 export TERM="screen-256color"
 alias tmux="tmux -2"
+
+# incus
+alias incus='sudo incus'
+alias iil='incus image list -c lfpdts'
+alias il='incus list -c ns4tS'
+alias ir='sudo -u incus-root bash'
+
+# navigation
+alias pp='f(){ echo "$(pwd)/$1"; }; f'
+alias gcal='gcal -s1'
+
+# git
+alias gs='git status'
+alias gf='git diff'
+gi() {
+  msg="$*"
+  git add .
+  git commit -m "$msg"
+}
