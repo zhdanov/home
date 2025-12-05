@@ -38,15 +38,3 @@ set tabstop=$HOME_VIM_INDENT_SHELL
 set shiftwidth=$HOME_VIM_INDENT_SHELL
 EOT
 fi
-
-if [[ ! -f "$HOME/.vim/plugin/emmet.vim" ]]; then
-    git clone https://github.com/mattn/emmet-vim.git
-
-    pushd emmet-vim
-        cp plugin/emmet.vim $HOME/.vim/plugin/
-        cp autoload/emmet.vim $HOME/.vim/autoload/
-        cp -a autoload/emmet $HOME/.vim/autoload/
-    popd
-
-    rm -rf emmet-vim
-fi

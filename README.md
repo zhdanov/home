@@ -2,7 +2,7 @@
 
 ![](https://raw.githubusercontent.com/zhdanov/home/main/Pictures/logo/logo-readme.png)
 
-Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my home directory for deploying the desktop environment. Infrastructure as code. Ubuntu 20.04/22.04/24.04. See the [documentation](https://jupiter.solutions/home/docs/).
+Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my home directory for deploying the desktop environment. Infrastructure as code. Ubuntu 20.04/22.04/24.04.
 
 Last stable version: [1.5.0](https://github.com/zhdanov/home/releases/tag/1.5.0)
 
@@ -33,23 +33,10 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ./setup__cloud-drive.bash  # Yandex Disk, Dropbox
 ./setup__notepad.bash      # fuzzy search, ripgrep
 ./setup__backup.bash       # night backup
-./setup__commitizen.bash   # commitizen
-./setup/setup__workspace-deploy.bash prod albums  # albums
 
 # hosting (debian 11)
 curl -sSL https://raw.githubusercontent.com/zhdanov/home/main/setup/setup__hosting-debian-11.bash | bash
 ```
-
-Then you can [create a new project](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/) and [configure backup](https://jupiter.solutions/home/docs/backup/).
-
-## Documentation
-
-[Getting started](https://jupiter.solutions/home/docs/)  
-[Project structure](https://jupiter.solutions/home/docs/project-structure/)  
-[Packages set](https://jupiter.solutions/home/docs/packages-set/)  
-[How to create a new project?](https://jupiter.solutions/home/docs/how-to/how-to-create-a-new-project/)  
-[Auto-backup to the cloud](https://jupiter.solutions/home/docs/backup/)  
-[Other (optional)](https://jupiter.solutions/home/docs/other/)
 
 ## External documentation
 

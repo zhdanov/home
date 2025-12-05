@@ -1,5 +1,0 @@
-mysql:
-  root_password: root
-  database: lychee
-  user: lychee
-  user_password: lychee

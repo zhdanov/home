@@ -18,8 +18,7 @@ EOF
     sudo usermod -aG docker $HOME_USER_NAME && newgrp docker
 
     echo "{
-    \"registry-mirrors\": [ \"$HOME_REGISTRY_MIRROR\" ],
-    \"insecure-registries\": [\"$HOME_REGISTRY\"]
+    \"registry-mirrors\": [ \"$HOME_REGISTRY_MIRROR\" ]
 }" | sudo tee /etc/docker/daemon.json
 
     sudo systemctl daemon-reload
@@ -40,8 +39,7 @@ if [[ ! -f "/etc/apt/sources.list.d/kubernetes.list" && "$UBUNTU_VERSION" == "24
     sudo usermod -aG docker $HOME_USER_NAME && newgrp docker
 
     echo "{
-    \"registry-mirrors\": [ \"$HOME_REGISTRY_MIRROR\" ],
-    \"insecure-registries\": [\"$HOME_REGISTRY\"]
+    \"registry-mirrors\": [ \"$HOME_REGISTRY_MIRROR\" ]
 }" | sudo tee /etc/docker/daemon.json
 
     sudo systemctl daemon-reload

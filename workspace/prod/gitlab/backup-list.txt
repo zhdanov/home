@@ -1,3 +1,0 @@
-gitlab-config
-gitlab-runner-config
-$HOME/workspace/prod/gitlab/backup.bash

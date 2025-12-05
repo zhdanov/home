@@ -21,9 +21,6 @@ if [[ $SETUP_TYPE == "master" ]]; then
     if ! grep -q "Host github" /etc/ssh/ssh_config; then
         printf "Host github.com\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n" | sudo tee -a /etc/ssh/ssh_config
     fi
-    if ! grep -q "Host gitlab-prod" /etc/ssh/ssh_config; then
-        printf "Host gitlab-prod.loc\n\tStrictHostKeyChecking no\n\tUserKnownHostsFile=/dev/null\n" | sudo tee -a /etc/ssh/ssh_config
-    fi
 fi
 
 

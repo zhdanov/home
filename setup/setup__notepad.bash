@@ -19,7 +19,7 @@ pushd "$(dirname "$0")"
     # Ctrl+p fuzzy search in the history
     if ! grep -q "# fzf + rg" $HOME/.bashrc; then
         echo "
-# fzf + rg￼
+# fzf + rg
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore -g \"!{.git,node_modules,vendor}/*\" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=\"\$FZF_DEFAULT_COMMAND\"
 if [ -t 1 ]
