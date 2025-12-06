@@ -4,7 +4,7 @@ UBUNTU_VERSION=$(lsb_release -r -s)
 
 # Ubuntu < 24.04
 if [[ ! -f "/etc/apt/sources.list.d/kubernetes.list" && "$UBUNTU_VERSION" != "24.04" ]]; then
-    sudo apt install -y apt-transport-https virtualbox virtualbox-ext-pack
+    sudo apt install -y apt-transport-https
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
     cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
     deb https://apt.kubernetes.io/ kubernetes-xenial main
@@ -27,7 +27,7 @@ fi
 
 # Ubuntu 24.04
 if [[ ! -f "/etc/apt/sources.list.d/kubernetes.list" && "$UBUNTU_VERSION" == "24.04" ]]; then
-    sudo apt-get install -y apt-transport-https ca-certificates virtualbox virtualbox-ext-pack curl
+    sudo apt-get install -y apt-transport-https ca-certificates
     curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
     echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 

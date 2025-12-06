@@ -1,16 +1,13 @@
 #!/bin/bash
 
-if [[ ! $1 =~ ^(vbox|slave|master)$ ]]; then
-    echo "usage:"
-    echo "./setup/setup.bash vbox"
-    echo "./setup/setup.bash slave"
-    echo "./setup/setup.bash master"
-    exit 1
-else
-    SETUP_TYPE=$1
-fi
+# ↓ setup__master
+# ↓ setup__slave
+# ↓ setup__ctr_debian.bash
 
-pushd "$(dirname "$0")"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+
+pushd "$SCRIPT_DIR" > /dev/null
+
     set +eux
     . setup_def.bash
     set -eux
@@ -18,18 +15,12 @@ pushd "$(dirname "$0")"
     # dotfiles
     . setup__bashrc.bash
     . setup__configure-gitconfig.bash
-    . setup__configure-i3.bash
-
-    source $HOME/.bashrc
+    . setup__configure-vim.bash
 
     # soft
     . setup__packages.bash
 
     # configs
     . setup__configure-ssh.bash
-    . setup__configure-resolved.bash
-    . setup__configure-laptop.bash
-    . setup__configure-vim.bash
-    . setup__configure-visudo.bash
-    . setup__kubernetes.bash
-popd
+    . setup__configure-dns.bash
+popd > /dev/null

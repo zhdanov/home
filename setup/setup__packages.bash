@@ -4,40 +4,32 @@ sudo apt clean
 sudo apt -y update
 sudo apt -y upgrade
 
-sudo apt -y install vim vifm git gitk openssh-server net-tools curl maim hdparm tree nfs-kernel-server ffmpeg unrar nodejs npm tmux vim htop atop smem fzf ripgrep ncdu httpie gcal goldendict mpv cryptsetup apache2-utils rename
-sudo apt -y install i3 i3status thunar xarchiver ttf-mscorefonts-installer kate brightnessctl tcptrack pasystray samba sqlite3 pulseaudio pavucontrol sshfs whois
+# common
+sudo apt -y install \
+vim \
+git \
+openssh-server \
+curl \
+tree \
+nfs-kernel-server \
+ffmpeg \
+unrar \
+tmux \
+fzf \
+ripgrep \
+httpie \
+gcal \
+cryptsetup \
+apache2-utils \
+rename \
+sshfs \
+sqlite3
+
+# sys analysis
+sudo apt -y install hdparm htop atop smem ncdu
+
+# net analysis
+sudo apt -y install net-tools tcptrack whois
+
+# clang
 sudo apt -y install clang-format cppcheck valgrind
-
-if [[ $SETUP_TYPE == "slave" ]]; then
-    sudo apt -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio audacious
-fi
-
-# alacritty
-UBUNTU_VERSION=$(lsb_release -r -s)
-if [ "$UBUNTU_VERSION" != "24.04" ]; then
-    sudo apt -y install exfat-fuse exfat-utils
-    sudo add-apt-repository ppa:aslatter/ppa -y
-    sudo apt install -y alacritty trojita
-else
-    sudo apt -y install alacritty ntfs-3g exfatprogs
-fi
-
-# incus
-sudo apt install zfsutils-linux incus
-
-# slave soft
-sudo apt -y install chromium-browser
-
-#if [[ $SETUP_TYPE == "slave" ]]; then
-    #. setup__yandex-browser.bash
-
-    # snap begin
-    #sudo snap install standard-notes
-    #sudo snap install dbeaver-ce
-    #sudo snap install zoom-client
-
-    #sudo snap refresh
-    #sudo snap set system refresh.metered=hold
-    # snap end
-
-#fi
