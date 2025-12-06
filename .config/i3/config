@@ -201,7 +201,6 @@ assign [title="Chromium"] 81:browser
 bindsym $mod2+1 exec --no-startup-id app-workspace chromium 81:browser
 
 # workspace 2 master
-exec --no-startup-id i3-msg "workspace 82:master; exec i3-sensible-terminal"
 bindsym $mod2+2 exec --no-startup-id i3-msg "workspace 82:master"
 
 # workspace 3 prod
@@ -211,15 +210,12 @@ bindsym $mod2+3 exec --no-startup-id i3-msg "workspace 83:prod"
 assign [title="Home"] 84:files
 bindsym $mod2+4 exec --no-startup-id app-workspace thunar 84:files
 
-# workspace 7 board
-assign [title="Yandex Browser"] 86:board
-bindsym $mod2+7 exec --no-startup-id app-workspace yandex-browser 86:board
-
 # workspace 8 database
 assign [title="DBeaver"] 88:database
 bindsym $mod2+8 exec --no-startup-id app-workspace dbeaver-ce 88:database
 
 # workspace q/host
+exec --no-startup-id i3-msg "workspace 185:q/host; exec i3-sensible-terminal"
 bindcode $mod+24 exec i3-msg "workspace 185:q/host"
 
 # workspace z/nav
@@ -231,16 +227,16 @@ bindcode $mod+53 exec --no-startup-id i3-msg "workspace 187:x/services"
 # workspace i/inbox
 bindcode $mod+31 exec --no-startup-id i3-msg "workspace 189:i/inbox"
 
-# workspace n/notes
-assign [title="Joplin"] 190:n/notes
-bindcode $mod+57 exec --no-startup-id app-workspace /home/$USER/.joplin/Joplin.AppImage 190:n/notes
-
-# workspace p/nvim
-bindcode $mod+33 exec --no-startup-id i3-msg "workspace 191:p/nvim"
-
 # workspace o/opinion
 bindcode $mod+32 exec --no-startup-id i3-msg "workspace 192:o/opinion"
 
-# workspace g/dict
+# workspace m/dict
+# Ctrl+L - focus search input
 assign [title="GoldenDict"] 193:m/dict
 bindcode $mod+58 exec --no-startup-id app-workspace goldendict 193:m/dict
+
+# workspace 4 Mattermost
+assign [title="Mattermost Desktop App"] 4
+
+# workspace 1 Code
+assign [title="Visual Studio Code"] 1
