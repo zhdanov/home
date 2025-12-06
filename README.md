@@ -2,7 +2,7 @@
 
 ![](https://raw.githubusercontent.com/zhdanov/home/main/Pictures/logo/logo-readme.png)
 
-Hi! My name is [Yuriy Zhdanov](https://jupiter.solutions/). This project is my home directory for deploying the desktop environment. Infrastructure as code. Ubuntu 20.04/22.04/24.04.
+This project is a collection of bootstrap scripts used to configure and provision my desktop environment on Ubuntu (20.04/22.04/24.04). Instead of full IaC, it focuses on lightweight, reproducible setup automation for a new workstation.
 
 Last stable version: [1.5.0](https://github.com/zhdanov/home/releases/tag/1.5.0)
 
