@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # run it:
-# curl -sSL https://raw.githubusercontent.com/zhdanov/home/main/setup/setup__hosting-debian-11.bash | bash
+# curl -sSL https://raw.githubusercontent.com/zhdanov/home/master/setup/setup__hosting-debian-11.bash | bash
 #
 
 # apt update

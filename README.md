@@ -1,6 +1,6 @@
 # Welcome
 
-![](https://raw.githubusercontent.com/zhdanov/home/main/Pictures/logo/logo-readme.png)
+![](https://raw.githubusercontent.com/zhdanov/home/master/Pictures/logo/logo-readme.png)
 
 This project is a collection of bootstrap scripts used to configure and provision my desktop environment on Ubuntu (20.04/22.04/24.04). Instead of full IaC, it focuses on lightweight, reproducible setup automation for a new workstation.
 
@@ -11,10 +11,10 @@ Last stable version: [1.5.0](https://github.com/zhdanov/home/releases/tag/1.5.0)
 1. Init home directory
 
 ```bash
-curl -L https://raw.githubusercontent.com/zhdanov/home/main/setup/setup__init.bash | bash
+curl -L https://raw.githubusercontent.com/zhdanov/home/master/setup/setup__init.bash | bash
 ```
 
-2. Configure [./setup/setup_def.bash](https://github.com/zhdanov/home/blob/main/setup/setup_def.bash) (or create ./setup/setup_def_custom.bash)
+2. Configure [./setup/setup_def.bash](https://github.com/zhdanov/home/blob/master/setup/setup_def.bash) (or create ./setup/setup_def_custom.bash)
 
 ```bash
 HOME_USER_NAME=torvalds
@@ -22,7 +22,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ...
 ```
 
-3. Run [./setup/setup.bash](https://github.com/zhdanov/home/blob/main/setup/setup.bash)
+3. Run [./setup/setup.bash](https://github.com/zhdanov/home/blob/master/setup/setup.bash)
 
 ```bash
 # additional scripts inside the setup directory
