@@ -31,5 +31,8 @@ sudo apt -y install hdparm htop atop smem ncdu
 # net analysis
 sudo apt -y install net-tools tcptrack whois
 
+# php
+sudo apt -y install composer php-cli php-dom php-xml php-mbstring php-curl php-yaml php-sqlite3 php-zip php-gd php-redis php-mysql
+
 # clang
 sudo apt -y install clang-format cppcheck valgrind
