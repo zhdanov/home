@@ -3,7 +3,7 @@ alias ta="tmux -2 attach"
 alias k=kubectl
 alias master="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
 
-if [[ $HOME_SESSION_TYPE != "remote/ssh" ]]; then
+if [[ $HOME_SESSION_TYPE != "remote/ssh" && "$(whoami)" != 'incus-root' ]]; then
     # keyboard carret speed
     xset r rate 250 28
 
