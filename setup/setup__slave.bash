@@ -6,11 +6,6 @@ pushd "$SCRIPT_DIR" > /dev/null
 
     . setup.bash
 
-echo "$(dirname "$0")"
-echo "PWD = $PWD"
-echo "Trying to source: $PWD/setup__configure-laptop.bash"
-ls -l setup__configure-laptop.bash
-
     . setup__configure-laptop.bash
     . setup__configure-visudo.bash
 
