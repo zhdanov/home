@@ -31,7 +31,7 @@ alias tmux="tmux -2"
 alias incus='sudo incus'
 alias iil='incus image list -c lfpdts'
 alias il='incus list -c ns4tS'
-alias ir='sudo -u incus-root bash'
+alias ir='sudo -u incus-root -i'
 
 # navigation
 alias pp='f(){ echo "$(pwd)/$1"; }; f'
