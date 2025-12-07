@@ -11,6 +11,7 @@ git \
 less \
 openssh-server \
 curl \
+wget \
 tree \
 ffmpeg \
 tmux \
