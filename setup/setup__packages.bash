@@ -8,6 +8,7 @@ sudo apt -y upgrade
 sudo apt -y install \
 vim \
 git \
+less \
 openssh-server \
 curl \
 tree \
