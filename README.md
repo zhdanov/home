@@ -38,7 +38,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 [i3wm screencast](https://youtu.be/Wx0eNaGzAZU)  
 [Unix is my ide](https://mkaz.blog/code/unix-is-my-ide/)  
-[Home .git](https://martinovic.blog/post/home_git/)  
+[Home .git](https://martinovic.blog/posts/2019-06-09-home-git/)  
 [Linux Desktop Setup](https://hookrace.net/blog/linux-desktop-setup/)
 
 ## License
