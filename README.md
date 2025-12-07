@@ -4,7 +4,7 @@
 
 This project is a collection of bootstrap scripts and dotfiles for configuring and provisioning my desktop environment on Ubuntu (20.04/22.04/24.04). Instead of full IaC, it focuses on lightweight, reproducible automation for setting up a new workstation.
 
-Last stable version: [2.0.0](https://github.com/zhdanov/home/releases/tag/2.0.0).
+Last stable version: [2.1.0](https://github.com/zhdanov/home/releases/tag/2.1.0).
 
 ## Getting started
 
