@@ -1,9 +1,8 @@
 . $HOME/setup/setup_def.bash
 alias ta="tmux -2 attach"
-alias k=kubectl
 alias master="ssh -p ${HOME_SSH_PORT} ${HOME_USER_NAME}@${HOME_SSH_HOST}"
 
-if [[ $HOME_SESSION_TYPE != "remote/ssh" && "$(whoami)" != 'incus-root' ]]; then
+if [[ $HOME_SESSION_TYPE != "remote/ssh" && "$(whoami)" != 'incus-root' && "$(whoami)" != 'root' ]]; then
     # keyboard carret speed
     xset r rate 250 28
 
@@ -18,10 +17,6 @@ if [[ $HOME_SESSION_TYPE != "remote/ssh" && "$(whoami)" != 'incus-root' ]]; then
     # background color
     xsetroot -solid "#333333"
 fi
-
-# kubernetes
-source <(kubectl completion bash)
-complete -F __start_kubectl k
 
 # tmux
 export TERM="screen-256color"

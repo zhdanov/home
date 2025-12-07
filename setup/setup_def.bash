@@ -23,10 +23,10 @@ HOME_GITHUB_USER=""
 HOME_GITHUB_ACCESS_TOKEN=""
 
 HOME_SESSION_TYPE=local
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+if [ -n "${SSH_CLIENT-}" ] || [ -n "${SSH_TTY-}" ]; then
   HOME_SESSION_TYPE=remote/ssh
 else
-  case $(ps -o comm= -p $PPID) in
+  case $(ps -o comm= -p "$PPID" 2>/dev/null || ps -o comm= -p "$$") in
     sshd|*/sshd) HOME_SESSION_TYPE=remote/ssh;;
   esac
 fi

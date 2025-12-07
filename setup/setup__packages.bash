@@ -12,9 +12,7 @@ less \
 openssh-server \
 curl \
 tree \
-nfs-kernel-server \
 ffmpeg \
-unrar \
 tmux \
 fzf \
 ripgrep \

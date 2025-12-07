@@ -45,3 +45,8 @@ if [[ ! -f "/etc/apt/sources.list.d/kubernetes.list" && "$UBUNTU_VERSION" == "24
     sudo systemctl daemon-reload
     sudo systemctl restart docker
 fi
+
+echo "# kubernetes" >> /home/$HOME_USER_NAME/.bashrc
+echo "alias k=kubectl" >> /home/$HOME_USER_NAME/.bashrc
+echo "source <(kubectl completion bash)" >> /home/$HOME_USER_NAME/.bashrc
+echo "complete -F __start_kubectl k" >> /home/$HOME_USER_NAME/.bashrc
