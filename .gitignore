@@ -12,5 +12,6 @@ Yandex.Disk
 snap
 JoplinBackup/
 git-store/
+incus-store/
 vault-store/
 bin/tmp
