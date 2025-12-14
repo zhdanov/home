@@ -240,3 +240,10 @@ assign [title="Mattermost Desktop App"] 4
 
 # workspace 1 Code
 assign [title="Visual Studio Code"] 1
+
+# workspace n/notes
+assign [title="Joplin"] 190:n/notes
+bindcode $mod+57 exec --no-startup-id app-workspace joplin 190:n/notes
+
+# workspace 3 XnView
+assign [title="XnView"] 3
