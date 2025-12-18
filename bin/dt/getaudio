@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+
+yt-dlp --restrict-filenames -f bestaudio --extract-audio --audio-format mp3 -o '%(title)s.%(ext)s' "$@"
