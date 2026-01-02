@@ -196,6 +196,11 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl --min-val=2 -q set 3%-
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 
+# workspace navigation
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
 # workspace 1 browser
 assign [title="Chromium"] 81:browser
 bindsym $mod2+1 exec --no-startup-id app-workspace chromium 81:browser
