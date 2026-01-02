@@ -200,6 +200,8 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl -q set 3%+
 bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
+bindcode $mod+Ctrl+47 workspace next
+bindcode $mod+Ctrl+44 workspace prev
 
 # workspace 1 browser
 assign [title="Chromium"] 81:browser
