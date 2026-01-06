@@ -26,7 +26,7 @@ sshfs \
 sqlite3
 
 # sys analysis
-sudo apt -y install hdparm htop atop smem ncdu
+sudo apt -y install hdparm htop atop smem ncdu neofetch
 
 # net analysis
 sudo apt -y install net-tools tcptrack whois iptraf-ng tcpdump iftop
