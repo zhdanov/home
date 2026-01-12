@@ -1,0 +1,5 @@
+#!/bin/sh
+SOCK=/tmp/mpv-sock
+[ -S "$SOCK" ] || exit 0
+
+printf '%s\n' '{"command":["cycle","pause"]}' | socat - "UNIX-CONNECT:$SOCK" >/dev/null 2>&1
