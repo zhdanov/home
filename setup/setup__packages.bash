@@ -24,7 +24,8 @@ apache2-utils \
 rename \
 sshfs \
 sqlite3 \
-proxychains4
+proxychains4 \
+privoxy
 
 # sys analysis
 sudo apt -y install hdparm htop atop smem ncdu neofetch
