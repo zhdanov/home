@@ -23,7 +23,8 @@ cryptsetup \
 apache2-utils \
 rename \
 sshfs \
-sqlite3
+sqlite3 \
+proxychains4
 
 # sys analysis
 sudo apt -y install hdparm htop atop smem ncdu neofetch
