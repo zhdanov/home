@@ -31,6 +31,7 @@ alias ir='sudo -u incus-root -i'
 # navigation
 alias pp='f(){ echo "$(pwd)/$1"; }; f'
 alias gcal='gcal -s1'
+alias vpn='proxychains4 -f ~/.proxychains.conf bash --rcfile ~/.vpnrc'
 
 # git
 alias gs='git status'
