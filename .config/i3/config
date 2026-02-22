@@ -176,16 +176,18 @@ bar {
 }
 
 # lock screen (key l)
-bindcode Mod1+Control+46 exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/%HOME_USER_NAME%/Pictures/background.png; setxkbmap 'us,%HOME_SECOND_KEYBOARD_LAYOUT%' ',winkeys' 'grp:win_space_toggle'"
+bindcode Mod1+Control+46 exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/zhdanov/Pictures/background.png; setxkbmap 'us,ru' ',winkeys' 'grp:win_space_toggle'"
 
 # screenshot
 bindsym --release $mod+Control+4 exec --no-startup-id maim --select "/home/$USER/Pictures/screenshot-$(date '+%Y-%m-%d--%H-%M-%S').png"
 
-# switch second keyboard layout (key alt gr)
-bindcode 108 exec --no-startup-id layout-switch us %HOME_SECOND_KEYBOARD_LAYOUT%
+# switch second keyboard layout (CapsLock,Win+Space)
+exec_always --no-startup-id setxkbmap -layout "us,ru" -option "grp:caps_toggle,grp:win_space_toggle,caps:none"
+# key alt gr
+#bindcode 108 exec --no-startup-id layout-switch us ru
 
 # switch third keyboard layout
-bindsym $mod+shift+0 exec --no-startup-id setxkbmap "%HOME_THIRD_KEYBOARD_LAYOUT%"
+bindsym $mod+shift+0 exec --no-startup-id setxkbmap "es"
 
 # pulse audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume

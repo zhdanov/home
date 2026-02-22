@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio audacious unrar socat python3-gtts python3-pydub
+sudo apt -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio audacious unrar socat python3-gtts python3-pydub xdotool
 sudo apt -y install vifm goldendict brightnessctl
 sudo apt -y install chromium-browser
 
