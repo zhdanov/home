@@ -21,6 +21,7 @@ HOME_THIRD_KEYBOARD_LAYOUT="es"
 HOME_GITHUB_API_URL="https://api.github.com"
 HOME_GITHUB_USER=""
 HOME_GITHUB_ACCESS_TOKEN=""
+HOME_VPN_IP=""
 
 HOME_SESSION_TYPE=local
 if [ -n "${SSH_CLIENT-}" ] || [ -n "${SSH_TTY-}" ]; then
