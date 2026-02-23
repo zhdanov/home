@@ -56,13 +56,13 @@ gi() {
 }
 
 # vibe coding
-alias vpn='proxychains4 -f ~/.proxychains.conf bash --rcfile ~/.vpnrc'
+alias vpn='proxychains4 -q -f ~/.proxychains.conf bash --rcfile ~/.vpnrc'
 o() {
     if [ "$VPN_ACTIVE" != "1" ]; then
         echo "❗ opencode can only be run inside a VPN session. Run 'vpn' first."
         return 1
     fi
-    opencode "$@"
+    opencode --agent plan "$@"
 }
 
 # Add VPN prefix to prompt if inside VPN shell
