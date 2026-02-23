@@ -31,7 +31,6 @@ alias ir='sudo -u incus-root -i'
 # navigation
 alias pp='f(){ echo "$(pwd)/$1"; }; f'
 alias gcal='gcal -s1'
-alias vpn='proxychains4 -f ~/.proxychains.conf bash --rcfile ~/.vpnrc'
 
 # git
 alias gs='git status'
@@ -55,3 +54,19 @@ gi() {
 
     git commit -m "${type}(${scope}): ${msg}"
 }
+
+# vibe coding
+alias vpn='proxychains4 -f ~/.proxychains.conf bash --rcfile ~/.vpnrc'
+o() {
+    if [ "$VPN_ACTIVE" != "1" ]; then
+        echo "❗ opencode can only be run inside a VPN session. Run 'vpn' first."
+        return 1
+    fi
+    opencode "$@"
+}
+
+# Add VPN prefix to prompt if inside VPN shell
+# IMPORTANT: must be at the end of the file
+if [ "$VPN_ACTIVE" = "1" ]; then
+    PS1="[VPN] $PS1"
+fi
