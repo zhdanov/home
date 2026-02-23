@@ -25,7 +25,8 @@ rename \
 sshfs \
 sqlite3 \
 proxychains4 \
-privoxy
+privoxy \
+autossh
 
 # sys analysis
 sudo apt -y install hdparm htop atop smem ncdu neofetch
