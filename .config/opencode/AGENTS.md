@@ -2,12 +2,6 @@
 
 Always use Context7 MCP when I need library/API documentation, code generation, setup or configuration steps without me having to explicitly ask.
 
-## Режим по умолчанию
-
-- Для любой новой сессии: начинай в Plan-режиме (read-only).
-- Не переходи к выполнению/правкам, пока пользователь явно не скажет перейти в Build ("начинай", "выполняй", "действуй", "go", "do it").
-- Даже если сессия запущена в build-агенте, веди себя как в Plan до явной команды.
-
 ## Режимы работы
 
 - Никогда НЕ переключайся автоматически из Plan-режима в Build-режим
