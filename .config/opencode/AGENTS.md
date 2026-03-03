@@ -1,10 +1,7 @@
-Всегда задавай вопросы с вариантами выбора (options) вместо текстовых ответов пользователю.
-
-Always use Context7 MCP when I need library/API documentation, code generation, setup or configuration steps without me having to explicitly ask.
-
-## Режимы работы
-
-- Никогда НЕ переключайся автоматически из Plan-режима в Build-режим
-- В Plan-режиме можешь только планировать и анализировать
-- Переход в Build-режим возможен ТОЛЬКО после явного указания пользователя (например: "начинай", "выполняй", "действуй", "go", "do it")
-- Всегда спрашивай подтверждение перед переходом в Build-режим, если пользователь явно не указал действовать
+- If anything is unclear, ask clarifying questions using multiple-choice options (avoid free-form prompts; put the recommended option first).
+- Use Context7 MCP proactively for library/API docs, codegen, setup, and configuration guidance (don’t wait to be asked).
+- Plan mode is read-only: planning/analysis only; never switch to Build automatically.
+- Switch to Build only after an explicit user command (e.g., "go", "do it"); otherwise ask for confirmation.
+- For styling, write plain CSS and follow BEM naming (`block__element_modifier`).
+- Avoid Tailwind CSS; use it only if the project requires it.
+- After changes, update/add tests and documentation as needed to match behavior.
