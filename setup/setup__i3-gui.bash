@@ -2,7 +2,7 @@
 
 sudo apt -y install \
 i3 i3status \
-thunar xarchiver ttf-mscorefonts-installer kate pasystray samba gitk maim mpv pulseaudio pavucontrol
+rofi thunar xarchiver ttf-mscorefonts-installer kate pasystray samba gitk maim mpv pulseaudio pavucontrol
 
 # alacritty
 UBUNTU_VERSION=$(lsb_release -r -s)

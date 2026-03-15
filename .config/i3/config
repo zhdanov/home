@@ -39,11 +39,12 @@ bindcode $mod+Shift+24 kill
 
 # start dmenu (a program launcher)
 # key d
-bindcode $mod+40 exec dmenu_run
+#bindcode $mod+40 exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+d exec rofi -show drun
 
 # change focus
 # key j
@@ -176,7 +177,7 @@ bar {
 }
 
 # lock screen (key l)
-bindcode Mod1+Control+46 exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/zhdanov/Pictures/background.png; setxkbmap 'us,ru' ',winkeys' 'grp:win_space_toggle'"
+bindcode Mod1+Control+46 exec "setxkbmap us; i3lock -n -u --pointer=win --image=/home/$USER/Pictures/background.png; setxkbmap 'us,ru' ',winkeys' 'grp:win_space_toggle'"
 
 # screenshot
 bindsym --release $mod+Control+4 exec --no-startup-id maim --select "/home/$USER/Pictures/screenshot-$(date '+%Y-%m-%d--%H-%M-%S').png"
