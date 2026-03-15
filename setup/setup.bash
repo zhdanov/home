@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # ↓ setup__master
-# ↓ setup__slave
+# ↓ setup__desktop
 # ↓ setup__ctr_debian.bash
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"

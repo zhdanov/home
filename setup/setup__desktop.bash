@@ -12,7 +12,7 @@ pushd "$SCRIPT_DIR" > /dev/null
     . setup__i3-gui.bash
     . setup__configure-i3.bash
 
-    . setup__packages_slave.bash
+    . setup__packages_desktop.bash
     . setup__incus.bash
     . setup__k8s-docker.bash
 

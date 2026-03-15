@@ -26,7 +26,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 
 ```bash
 # additional scripts inside the setup directory
-./setup__slave.bash        # desktop environment
+./setup__desktop.bash      # desktop environment
 ./setup__ctr_debian.bash   # debian container (minimal setup)
 ./setup__master.bash       # standalone bare-metal host
 ./setup__cloud-drive.bash  # Yandex Disk, Dropbox
