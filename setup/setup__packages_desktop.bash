@@ -6,7 +6,7 @@ sudo apt-get -y install goldendict brightnessctl
 
 
 # chromium
-flatpak install -y flathub org.chromium.Chromium
+sudo flatpak install -y flathub org.chromium.Chromium
 sudo tee /usr/local/bin/chromium > /dev/null << 'EOF'
 #!/bin/bash
 exec flatpak run org.chromium.Chromium "$@"
@@ -14,7 +14,7 @@ EOF
 sudo chmod +x /usr/local/bin/chromium
 
 # dbeaver
-flatpak install -y flathub io.dbeaver.DBeaverCommunity
+sudo flatpak install -y flathub io.dbeaver.DBeaverCommunity
 sudo tee /usr/local/bin/dbeaver > /dev/null << 'EOF'
 #!/bin/bash
 exec flatpak run io.dbeaver.DBeaverCommunity "$@"
@@ -22,7 +22,7 @@ EOF
 sudo chmod +x /usr/local/bin/dbeaver
 
 # dbeaver
-flatpak install -y flathub us.zoom.Zoom
+sudo flatpak install -y flathub us.zoom.Zoom
 sudo tee /usr/local/bin/zoom > /dev/null << 'EOF'
 #!/bin/bash
 exec flatpak run us.zoom.Zoom "$@"
