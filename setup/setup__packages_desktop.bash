@@ -1,17 +1,30 @@
 #!/bin/bash
 
-sudo apt -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio audacious unrar socat python3-gtts python3-pydub xdotool
-sudo apt -y install qemu-system qemu-utilsl virt-viewer
-sudo apt -y install vifm goldendict brightnessctl
-sudo apt -y install chromium-browser
+sudo apt-get -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio audacious unrar socat python3-gtts python3-pydub xdotool
+sudo apt-get -y install qemu-system qemu-utils virt-viewer
+sudo apt-get -y install goldendict brightnessctl
 
 
-#. setup__yandex-browser.bash
+# chromium
+flatpak install -y flathub org.chromium.Chromium
+sudo tee /usr/local/bin/chromium > /dev/null << 'EOF'
+#!/bin/bash
+exec flatpak run org.chromium.Chromium "$@"
+EOF
+sudo chmod +x /usr/local/bin/chromium
 
-# snap begin
-#sudo snap install dbeaver-ce
-#sudo snap install zoom-client
+# dbeaver
+flatpak install -y flathub io.dbeaver.DBeaverCommunity
+sudo tee /usr/local/bin/dbeaver > /dev/null << 'EOF'
+#!/bin/bash
+exec flatpak run io.dbeaver.DBeaverCommunity "$@"
+EOF
+sudo chmod +x /usr/local/bin/dbeaver
 
-#sudo snap refresh
-#sudo snap set system refresh.metered=hold
-# snap end
+# dbeaver
+flatpak install -y flathub us.zoom.Zoom
+sudo tee /usr/local/bin/zoom > /dev/null << 'EOF'
+#!/bin/bash
+exec flatpak run us.zoom.Zoom "$@"
+EOF
+sudo chmod +x /usr/local/bin/zoom

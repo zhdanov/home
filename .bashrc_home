@@ -22,6 +22,15 @@ fi
 export TERM="screen-256color"
 alias tmux="tmux -2"
 
+# fzf + rg
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore -g "!{.git,node_modules,vendor}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+if [ -t 1 ]
+then
+  bind -x '"\C-p": fzf_path=$(fzf); vim $fzf_path; history -s vim $fzf_path'
+fi
+
+
 # incus
 alias incus='sudo incus'
 alias iil='incus image list -c lfpdts'

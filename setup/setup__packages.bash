@@ -1,11 +1,11 @@
 #!/bin/bash
 
-sudo apt clean
-sudo apt -y update
-sudo apt -y upgrade
+sudo apt-get clean
+sudo apt-get -y update
+sudo apt-get -y upgrade
 
 # common
-sudo apt -y install \
+sudo apt-get -y install \
 vim \
 git \
 less \
@@ -26,16 +26,17 @@ sshfs \
 sqlite3 \
 proxychains4 \
 privoxy \
-autossh
+autossh \
+jq
 
 # sys analysis
-sudo apt -y install hdparm htop atop smem ncdu neofetch
+sudo apt-get -y install hdparm htop atop smem ncdu neofetch
 
 # net analysis
-sudo apt -y install net-tools tcptrack whois iptraf-ng tcpdump iftop
+sudo apt-get -y install net-tools tcptrack whois iptraf-ng tcpdump iftop
 
 # php
-sudo apt -y install composer php-cli php-dom php-xml php-mbstring php-curl php-yaml php-sqlite3 php-zip php-gd php-redis php-mysql
+sudo apt-get -y install composer php-cli php-dom php-xml php-mbstring php-curl php-yaml php-sqlite3 php-zip php-gd php-redis php-mysql
 
 # clang
-sudo apt -y install clang-format cppcheck valgrind
+sudo apt-get -y install clang-format cppcheck valgrind

@@ -6,6 +6,7 @@ pushd "$SCRIPT_DIR" > /dev/null
 
     . setup.bash
 
+    . setup__configure-ssh_master.bash
     . setup__configure-laptop.bash
     . setup__configure-visudo.bash
 

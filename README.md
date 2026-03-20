@@ -2,9 +2,9 @@
 
 ![](https://raw.githubusercontent.com/zhdanov/home/master/Pictures/logo/logo-readme.png)
 
-This project is a collection of bootstrap scripts and dotfiles for configuring and provisioning my desktop environment on Ubuntu (20.04/22.04/24.04). Instead of full IaC, it focuses on lightweight, reproducible automation for setting up a new workstation.
+This project is a collection of bootstrap scripts and dotfiles for configuring and provisioning my desktop environment on Linux Mint (22.3). Instead of full IaC, it focuses on lightweight, reproducible automation for setting up a new workstation.
 
-Last stable version: [2.1.1](https://github.com/zhdanov/home/releases/tag/2.1.1).
+Last stable version: [3.0.1](https://github.com/zhdanov/home/releases/tag/3.0.1).
 
 ## Getting started
 
@@ -27,10 +27,7 @@ HOME_USER_EMAIL=torvalds@linux-foundation.org
 ```bash
 # additional scripts inside the setup directory
 ./setup__desktop.bash      # desktop environment
-./setup__ctr_debian.bash   # debian container (minimal setup)
-./setup__master.bash       # standalone bare-metal host
 ./setup__cloud-drive.bash  # Yandex Disk, Dropbox
-./setup__notepad.bash      # fuzzy search, ripgrep
 ./setup__backup.bash       # night backup
 ```
 
