@@ -14,6 +14,7 @@ echo "deb [signed-by=/etc/apt/keyrings/incus.gpg] https://pkgs.zabbly.com/incus/
 sudo apt update
 
 sudo apt install -y incus incus-client
+sudo apt-get -y install qemu-system qemu-utils virt-viewer virtiofsd
 
 sudo usermod -aG incus $USER
 sudo systemctl enable --now incus

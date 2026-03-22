@@ -1,7 +1,6 @@
 #!/bin/bash
 
 sudo apt-get -y install fbreader audacity growisofs peek screenkey cheese gimp obs-studio audacious unrar socat python3-gtts python3-pydub xdotool
-sudo apt-get -y install qemu-system qemu-utils virt-viewer
 sudo apt-get -y install goldendict brightnessctl
 
 
