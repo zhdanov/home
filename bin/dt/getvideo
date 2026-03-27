@@ -3,4 +3,4 @@ set -e
 set -u
 set -o pipefail
 
-yt-dlp --restrict-filenames -f bestvideo+bestaudio --merge-output-format mp4 -o '%(title)s.%(ext)s' "$@"
+/usr/local/bin/yt-dlp --restrict-filenames -f bestvideo+bestaudio --merge-output-format mp4 -o '%(title)s.%(ext)s' "$@"
