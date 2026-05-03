@@ -27,7 +27,10 @@ sqlite3 \
 proxychains4 \
 privoxy \
 autossh \
-jq
+jq \
+zfsutils-linux \
+wireguard \
+wireguard-tools
 
 # sys analysis
 sudo apt-get -y install hdparm htop atop smem ncdu neofetch
