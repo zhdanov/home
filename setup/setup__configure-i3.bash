@@ -22,7 +22,7 @@ fi
 cat <<EOF | sudo tee /etc/i3status.conf
 general {
         colors = true
-        interval = 1
+        interval = 10
 }
 
 order += "battery all"
