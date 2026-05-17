@@ -36,9 +36,9 @@ order += "tztime local"
 #order += "ethernet _first_"
 
 memory {
-    format= "📦 %available"
+    format= "FREE RAM/HDD %available"
     threshold_degraded = "300M"
-    format_degraded = "📦 %available"
+    format_degraded = "FREE RAM/HDD %available"
 }
 
 wireless _first_ {
@@ -53,15 +53,15 @@ ethernet _first_ {
 }
 
 battery all {
-        format = "🔋 %status %percentage %remaining"
+        format = "%status %percentage %remaining"
 }
 
 tztime local {
-        format = "📆 %A %d.%m.%Y %H:%M"
+        format = "| %A %d.%m.%Y %H:%M"
 }
 
 load {
-        format = "⚙️ %1min"
+        format = "CPU %1min"
 }
 
 disk "/" {
@@ -69,8 +69,8 @@ disk "/" {
 }
 
 volume master {
-        format = "🔉 %volume"
-        format_muted = "🔈 muted (%volume)"
+        format = "VOL %volume"
+        format_muted = "muted (%volume)"
         device = "default"
         mixer = "Master"
         mixer_idx = 0
