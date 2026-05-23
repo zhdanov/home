@@ -45,3 +45,6 @@ sudo tee /usr/local/bin/zoom > /dev/null << 'EOF'
 exec flatpak run us.zoom.Zoom "$@"
 EOF
 sudo chmod +x /usr/local/bin/zoom
+
+# Freelens
+flatpak install flathub app.freelens.Freelens
