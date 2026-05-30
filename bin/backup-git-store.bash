@@ -15,6 +15,8 @@ Dropbox
 HOME_USER_NAME=$1
 pushd /home/$HOME_USER_NAME/
     tar -cvf git-store.tar git-store
+    mkdir -p data-store/gitlab-prod
+    [ ! -f data-store/gitlab-prod/backup-list.txt ] && touch data-store/gitlab-prod/backup-list.txt
     mv git-store.tar data-store/gitlab-prod/
 popd
 
