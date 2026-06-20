@@ -26,7 +26,7 @@ Categories=Network;WebBrowser;
 MimeType=text/html;text/xml;application/xhtml+xml;x-scheme-handler/http;x-scheme-handler/https;
 StartupNotify=true
 EOF
-chmod +x /home/$HOME_USER_NAME/.local/share/applications/chromium.desktop
+sudo chmod +x /home/$HOME_USER_NAME/.local/share/applications/chromium.desktop
 xdg-settings set default-web-browser chromium.desktop
 xdg-mime default chromium.desktop x-scheme-handler/http
 xdg-mime default chromium.desktop x-scheme-handler/https
